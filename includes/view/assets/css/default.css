@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Viceroy';
+    src: url('../fonts/Viceroy.ttf') format('truetype');
+}
+
+.viceroy-font {
+    font-family: 'Viceroy', sans-serif;
+}
