@@ -1,22 +1,13 @@
-<?php 
-include("autoload_assets.php"); 
+<?php
+require_once("autoload_assets.php");
 autoloadFunctions()
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>JusticiaLaw</title>
-    <!--This code will load every css and js including bootstrap, libraries, etc which i have placed inside their respective folders-->
-    <?php
-    inc_css();
-    inc_js();
-    inc_favicon(); 
-    ?>
-</head>
+<?php load_head(); ?>
+
 <body>
-<?php load_header();?>
+    <?php load_header(); ?>
     <!-- Page Header Start -->
     <div class="con tainer-fluid bg-page-header" style="margin-bottom: 90px;">
         <div class="container">
@@ -151,8 +142,9 @@ autoloadFunctions()
         </div>
     </div>
     <!-- Features End -->
-<?php
-load_footer();
-?>
+    <?php
+    load_footer();
+    ?>
 </body>
+
 </html>
