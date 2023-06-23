@@ -1,23 +1,37 @@
+@font-face {
+    font-family: 'viceroy';
+    src: 
+    url('../fonts/viceroy/viceroy.woff') format('woff'),
+    url('../fonts/viceroy/viceroy.woff2') format('woff2'),
+    url('../fonts/viceroy/viceroy.ttf') format('ttf'),
+    url('../fonts/viceroy/viceroy.eot') format('eot'),
+  }
+@font-face {
+    font-family: 'poppins';
+    src: 
+    url('../fonts/poppins/poppins_1.ttf') format('ttf'),
+    url('../fonts/poppins/poppins_2.ttf') format('ttf'),
+    url('../fonts/poppins/poppins_3.ttf') format('ttf'),
+    url('../fonts/poppins/poppins_4.ttf') format('ttf'),
+    url('../fonts/poppins/poppins_5.ttf') format('ttf'),
+    url('../fonts/poppins/poppins_6.ttf') format('ttf'),
+    url('../fonts/poppins/poppins_7.ttf') format('ttf'),
+    url('../fonts/poppins/poppins_8.ttf') format('ttf'),
+    url('../fonts/poppins/poppins_9.ttf') format('ttf')
+  }
 /******* Bootstrap Theming ********/
 
-$primary: #B49C73;
-$secondary: #37373F;
+$primary:  #A6D7E8;
+$secondary: #112B56;
 
-$font-family-sans-serif: 'Montserrat', sans-serif;
-
-$headings-font-family: 'Roboto', sans-serif;
-
+$font-family-sans-serif: 'poppins', sans-serif;
+$headings-font-family: 'viceroy', sans-serif;
 $body-color: #757575;
-
 $headings-color: $secondary;
-
 $enable-responsive-font-sizes: true;
-
 $border-radius: 5px;
 
 @import "bootstrap/scss/bootstrap";
-
-
 /********** Custom CSS ************/
 h1, h2, h3 {
     font-weight: 700 !important;
