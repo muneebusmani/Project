@@ -8,6 +8,7 @@ echo
     <!--This code will load every css and js including bootstrap, libraries, etc which i have placed inside their respective folders-->
     '.inc_favicon().'
     '.inc_css().'
+    '.inc_js().'
 </head>
 '
 ;

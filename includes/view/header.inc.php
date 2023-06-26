@@ -21,8 +21,8 @@ echo
                         <small>+012 345 6789</small>
                     </div>
                 </div>
-                <div class="col-lg-5 text-right">
-                    <div class="d-inline-flex align-items-center p-2">
+                <div class="col-lg-5 clearfix">
+                    <div class="d-inline-flex float-end p-2">
                         <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="">
                             <i class="fab fa-facebook-f"></i>
                         </a>

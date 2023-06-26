@@ -13,7 +13,7 @@ autoloadFunctions()
         <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item position-relative active" style="height: 100vh; min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="includes/view/assets/img/carousel-1.jpg" style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100" src="includes/view/assets/includes/view/assets/img/carousel-1.jpg" style="object-fit: cover;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Best Law Agency</h4>
@@ -23,7 +23,7 @@ autoloadFunctions()
                     </div>
                 </div>
                 <div class="carousel-item position-relative" style="height: 100vh; min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="includes/view/assets/img/carousel-2.jpg" style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100" src="includes/view/assets/includes/view/assets/img/carousel-2.jpg" style="object-fit: cover;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Results You Deserve</h4>
@@ -47,13 +47,12 @@ autoloadFunctions()
     </div>
     <!-- Carousel End -->
 
-
     <!-- About Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-5">
-                    <img class="img-fluid rounded" src="img/about.jpg" alt="">
+                    <img class="img-fluid rounded" src="includes/view/assets/img/about.jpg" alt="">
                 </div>
                 <div class="col-lg-7 mt-4 mt-lg-0">
                     <h2 class="position-relative text-center bg-white text-primary rounded p-3 mt-4 mb-4 d-none d-lg-block" style="width: 350px; margin-left: -205px;">25 Years Experience</h2>
@@ -175,7 +174,7 @@ autoloadFunctions()
             <div class="row">
                 <div class="col-lg-6" style="min-height: 500px;">
                     <div class="position-relative h-100 rounded overflow-hidden">
-                        <img class="position-absolute w-100 h-100" src="img/feature.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="includes/view/assets/img/feature.jpg" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-6 pt-5 pb-lg-5">
@@ -248,7 +247,7 @@ autoloadFunctions()
                             <h5 class="mb-2 px-4">Attorney Name</h5>
                             <p class="mb-3 px-4">Practice Area</p>
                             <div class="team-img position-relative">
-                                <img class="img-fluid" src="img/team-1.jpg" alt="">
+                                <img class="img-fluid" src="includes/view/assets/img/team-1.jpg" alt="">
                                 <div class="team-social">
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -260,7 +259,7 @@ autoloadFunctions()
                             <h5 class="mb-2 px-4">Attorney Name</h5>
                             <p class="mb-3 px-4">Practice Area</p>
                             <div class="team-img position-relative">
-                                <img class="img-fluid" src="img/team-2.jpg" alt="">
+                                <img class="img-fluid" src="includes/view/assets/img/team-2.jpg" alt="">
                                 <div class="team-social">
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -272,7 +271,7 @@ autoloadFunctions()
                             <h5 class="mb-2 px-4">Attorney Name</h5>
                             <p class="mb-3 px-4">Practice Area</p>
                             <div class="team-img position-relative">
-                                <img class="img-fluid" src="img/team-3.jpg" alt="">
+                                <img class="img-fluid" src="includes/view/assets/img/team-3.jpg" alt="">
                                 <div class="team-social">
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -284,7 +283,7 @@ autoloadFunctions()
                             <h5 class="mb-2 px-4">Attorney Name</h5>
                             <p class="mb-3 px-4">Practice Area</p>
                             <div class="team-img position-relative">
-                                <img class="img-fluid" src="img/team-4.jpg" alt="">
+                                <img class="img-fluid" src="includes/view/assets/img/team-4.jpg" alt="">
                                 <div class="team-social">
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -296,7 +295,7 @@ autoloadFunctions()
                             <h5 class="mb-2 px-4">Attorney Name</h5>
                             <p class="mb-3 px-4">Practice Area</p>
                             <div class="team-img position-relative">
-                                <img class="img-fluid" src="img/team-5.jpg" alt="">
+                                <img class="img-fluid" src="includes/view/assets/img/team-5.jpg" alt="">
                                 <div class="team-social">
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -325,7 +324,7 @@ autoloadFunctions()
                         Sed ea amet kasd elitr stet nonumy, stet rebum et ipsum est duo elitr clita lorem
                     </div>
                     <div class="d-flex align-items-center pt-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-1.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid rounded-circle" src="includes/view/assets/img/testimonial-1.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="pl-4">
                             <h5>Client Name</h5>
                             <p class="m-0">Profession</p>
@@ -337,7 +336,7 @@ autoloadFunctions()
                         Sed ea amet kasd elitr stet nonumy, stet rebum et ipsum est duo elitr clita lorem
                     </div>
                     <div class="d-flex align-items-center pt-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-2.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid rounded-circle" src="includes/view/assets/img/testimonial-2.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="pl-4">
                             <h5>Client Name</h5>
                             <p class="m-0">Profession</p>
@@ -349,7 +348,7 @@ autoloadFunctions()
                         Sed ea amet kasd elitr stet nonumy, stet rebum et ipsum est duo elitr clita lorem
                     </div>
                     <div class="d-flex align-items-center pt-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-3.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid rounded-circle" src="includes/view/assets/img/testimonial-3.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="pl-4">
                             <h5>Client Name</h5>
                             <p class="m-0">Profession</p>
@@ -361,7 +360,7 @@ autoloadFunctions()
                         Sed ea amet kasd elitr stet nonumy, stet rebum et ipsum est duo elitr clita lorem
                     </div>
                     <div class="d-flex align-items-center pt-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-4.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid rounded-circle" src="includes/view/assets/img/testimonial-4.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="pl-4">
                             <h5>Client Name</h5>
                             <p class="m-0">Profession</p>
