@@ -1,6 +1,6 @@
 <?php
 require_once("autoload_assets.php");
-autoloadFunctions()
+autoloadFunctions();
 ?>
 <!DOCTYPE html>
 <html lang="en">
