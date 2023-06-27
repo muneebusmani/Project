@@ -6,7 +6,7 @@ $db_name = 'JusticiaLaw';
 $port = 3306;
 
 try {
-    $conn = new mysqli($host, $username, $password, $db_name, $port);
+    $conn = new mysqli($host, $username, $password, $db_name);
 
     if ($conn->connect_error) {
         throw new Exception('Connection failed: ' . $conn->connect_error);
