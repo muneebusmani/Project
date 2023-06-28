@@ -3,6 +3,10 @@
 This is the main route file in which i defined the routes for the website
 
 */
+if (!in_array('mod_rewrite', apache_get_modules())) {
+    echo "mod_rewrite is not enabled on this server.";
+}
+
 $autoloader='app/view/src/autoload_func.php';
 require($autoloader);
 autoloadFunctions();
