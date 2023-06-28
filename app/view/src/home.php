@@ -1,7 +1,3 @@
-<?php
-require_once("autoload_assets.php");
-autoloadFunctions();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <?php load_head(); ?>

@@ -1,29 +1,38 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-try{
-    $viewDir = 'app/view/src/';
-    $request = $_SERVER['REQUEST_URI'];
-    $ext     = '.php';
-    $file    = $viewDir.$request.$ext;
-    $err_page= $viewDir.'404'.$ext;
+/*
+This is the main route file in which i defined the routes for the website
 
-    if ($request = "/" || $request = "/home" || $request = "") {
-        $request = "/home";
-        $file    = $viewDir.$request.$ext;
-        require_once($file);
-    }
-    elseif (file_exists($file)){
-        require_once($file);
-    }
-    else {
-        require $err_page;
-        echo $request;
-    }
-}
-catch(Exception $e){
-$error=$e->getMessage();
-echo $error;
-}
+*/
+$autoloader='app/view/src/autoload_func.php';
+require($autoloader);
+autoloadFunctions();
 
-?>
+$router = get_uri();
+    switch ($router) {
+        
+        case '':
+        case 'home':
+        case 'index':
+            require('app/view/src/home.php');
+            break;
+
+        case 'about':
+            require('app/view/src/about.php');
+            break;
+
+        case 'service':
+            require('app/view/src/service.php');
+            break;
+
+        case 'team':
+            require('app/view/src/team.php');
+            break;
+
+        case 'contact':
+            require('app/view/src/contact.php');
+            break;
+        
+        default:
+            require('app/view/src/404.php');
+            break;
+    }
