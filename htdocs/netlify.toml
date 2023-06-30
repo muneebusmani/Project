@@ -1,0 +1,18 @@
+[[redirects]]
+  from = "/old-path"
+  to = "/new-path"
+
+from    = /app/view/src/home.php"
+to      = "/index.php"
+
+from    = /app/view/src/team.php"
+to      = "/index.php"
+
+from    = /app/view/src/services.php"
+to      = "/index.php"
+
+from    = /app/view/src/about.php"
+to      = "/index.php"
+
+from    = /app/view/src/contact.php"
+to      = "/index.php"
