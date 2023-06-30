@@ -8,7 +8,8 @@ $autoloader='app/view/src/autoload_func.php';
 require($autoloader);
 autoloadFunctions();
 
-$router = get_uri();
+try {
+    echo $router = get_uri();
     switch ($router) {
         
         case '':
@@ -37,3 +38,6 @@ $router = get_uri();
             require('app/view/src/404.php');
             break;
     }
+} catch (Throwable $th) {
+    throw $th;
+}

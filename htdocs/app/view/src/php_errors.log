@@ -1,0 +1,4 @@
+[30-Jun-2023 17:32:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function load_head() in C:\inetpub\wwwroot\Project\app\view\src\home.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\Project\app\view\src\home.php on line 3
