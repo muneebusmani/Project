@@ -32,20 +32,31 @@ $file = ($router===''||$router==='home'||$router==='index')?$home:$normal;
 
 //This will check if the file processed in $file variable exists , if it exists it will include that file , if not then it will include error 404 page
 if(file_exists($file)){
-    echo
-    '
-    <!DOCTYPE html>
-    <html lang="en">
-    '.load_head().'
-    <body>
-    ';load_header();
-    require $file;
-    load_footer();
-echo
-"
-    </body>
-    </html>
-";
+    if (preg_match('/(admin\w*|lawyer\w*)/', $file)) {
+    /*
+    This will check if the uri request contains the keyword 'admin' or lawyer, then it wont render header and footer
+    otherwise it will render full header,footer,etc
+    */
+        load_head();
+        require $file;
+      } 
+    else {
+        echo
+        '
+        <!DOCTYPE html>
+        <html lang="en">
+        '.load_head().'
+        <body>
+        ';load_header();
+        require $file;
+        load_footer();
+        echo
+        "
+        </body>
+        </html>
+        ";
+      }
+
 }
 else{
     require $err_dir;
