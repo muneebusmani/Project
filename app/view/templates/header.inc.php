@@ -13,13 +13,15 @@
      and we have done routing so our files are safe and arent accessible to anyone until we register that file in routes
  -->
 
-
 <!-- Header Start -->
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-3 bg-secondary d-none d-lg-block">
-            <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                <h1 class="m-0 display-4 text-primary text-uppercase">Justice</h1>
+            <a href="home" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                <?php
+                $logo='app/view/assets/img/.png';
+                echo file_exists($logo)?'<img class="main-logo" src="'.$logo.'" alt="">':'<h1 class="m-0 display-4 text-primary">JusticiaLaw</h1>';
+                ?>
             </a>
         </div>
         <div class="col-lg-9">
