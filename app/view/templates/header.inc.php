@@ -63,26 +63,11 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="home" class="nav-item nav-link 
-                                <?php if ($uri === 'home') {
-                                echo 'active';} ?>
-                        ">
-                        Home</a>
-                        <a href="about" class="nav-item nav-link 
-                                <?php if ($uri === 'about') {
-                                echo 'active';} ?>
-                        ">
-                        About</a>
-                        <a href="service" class="nav-item nav-link 
-                                <?php if ($uri === 'service') {
-                                    echo 'active';} ?>
-                        ">
-                        Practice</a>
-                        <a href="team" class="nav-item nav-link 
-                                <?php if ($uri === 'team') {
-                                    echo 'active';} ?>
-                        ">
-                        Attorneys</a>
+                        <!-- Dynamic Nav highlighting Starts-->
+                        <a href="home" class="nav-item nav-link <?php if ($uri === 'home') {echo 'active';} ?>">Home</a>
+                        <a href="about" class="nav-item nav-link <?php if ($uri === 'about') {echo 'active';} ?>">About</a>
+                        <a href="service" class="nav-item nav-link <?php if ($uri === 'service') {echo 'active';} ?>">Practice</a>
+                        <a href="team" class="nav-item nav-link <?php if ($uri === 'team') {    echo 'active';} ?>">Attorneys</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -91,11 +76,8 @@
                                 <a href="#" class="dropdown-item">Menu Item 3</a>
                             </div>
                         </div>
-                        <a href="contact" class="nav-item nav-link 
-                                <?php if ($uri === 'contact') {
-                                    echo 'active';} ?>
-                        ">
-                        Contact</a>
+                        <a href="contact" class="nav-item nav-link <?php if ($uri === 'contact') {echo 'active';} ?>">Contact</a>
+                        <!-- Dynamic Nav highlighting Ends-->
                     </div>
                     <a href="" class="btn btn-primary mr-3 d-none d-lg-block">Get A Quote</a>
                 </div>

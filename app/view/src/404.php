@@ -40,7 +40,7 @@
     <div class="container">
         <h1>Oops! Page Not Found</h1>
         <p>The page you're looking for doesn't exist.</p>
-        <p>Go back to <a href="/">Home</a>.</p>
+        <p>Go back to <a href="home">Home</a>.</p>
     </div>
 </body>
 </html>

@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php load_head(); ?>
-
-<body>
-    <?php load_header(); ?>
     <!-- Page Header Start -->
     <div class="con tainer-fluid bg-page-header" style="margin-bottom: 90px;">
         <div class="container">
@@ -137,10 +131,3 @@
             </div>
         </div>
     </div>
-    <!-- Features End -->
-    <?php
-    load_footer();
-    ?>
-</body>
-
-</html>

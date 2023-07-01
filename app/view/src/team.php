@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php load_head(); ?>
-
-<body>
-    <?php load_header(); ?>
-
     <!-- Page Header Start -->
     <div class="container-fluid bg-page-header" style="margin-bottom: 90px;">
         <div class="container">
@@ -36,7 +29,7 @@
                             <h5 class="mb-2 px-4">Attorney Name</h5>
                             <p class="mb-3 px-4">Practice Area</p>
                             <div class="team-img position-relative">
-                                <img class="img-fluid" src="img/team-1.jpg" alt="">
+                                <img class="img-fluid" src="app/view/assets/img/team-1.jpg" alt="">
                                 <div class="team-social">
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -48,7 +41,7 @@
                             <h5 class="mb-2 px-4">Attorney Name</h5>
                             <p class="mb-3 px-4">Practice Area</p>
                             <div class="team-img position-relative">
-                                <img class="img-fluid" src="img/team-2.jpg" alt="">
+                                <img class="img-fluid" src="app/view/assets/img/team-2.jpg" alt="">
                                 <div class="team-social">
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -60,7 +53,7 @@
                             <h5 class="mb-2 px-4">Attorney Name</h5>
                             <p class="mb-3 px-4">Practice Area</p>
                             <div class="team-img position-relative">
-                                <img class="img-fluid" src="img/team-3.jpg" alt="">
+                                <img class="img-fluid" src="app/view/assets/img/team-3.jpg" alt="">
                                 <div class="team-social">
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -72,7 +65,7 @@
                             <h5 class="mb-2 px-4">Attorney Name</h5>
                             <p class="mb-3 px-4">Practice Area</p>
                             <div class="team-img position-relative">
-                                <img class="img-fluid" src="img/team-4.jpg" alt="">
+                                <img class="img-fluid" src="app/view/assets/img/team-4.jpg" alt="">
                                 <div class="team-social">
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -84,7 +77,7 @@
                             <h5 class="mb-2 px-4">Attorney Name</h5>
                             <p class="mb-3 px-4">Practice Area</p>
                             <div class="team-img position-relative">
-                                <img class="img-fluid" src="img/team-5.jpg" alt="">
+                                <img class="img-fluid" src="app/view/assets/img/team-5.jpg" alt="">
                                 <div class="team-social">
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -158,7 +151,7 @@
             <div class="row">
                 <div class="col-lg-6" style="min-height: 500px;">
                     <div class="position-relative h-100 rounded overflow-hidden">
-                        <img class="position-absolute w-100 h-100" src="img/feature.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="app/view/assets/img/feature.jpg" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-6 pt-5 pb-lg-5">
@@ -198,9 +191,3 @@
         </div>
     </div>
     <!-- Features End -->
-    <?php
-    load_footer();
-    ?>
-</body>
-
-</html>

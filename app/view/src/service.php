@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php load_head(); ?>
-
-<body>
-    <?php load_header(); ?>
-
     <!-- Page Header Start -->
     <div class="container-fluid bg-page-header" style="margin-bottom: 90px;">
         <div class="container">
@@ -99,7 +92,7 @@
                         Sed ea amet kasd elitr stet nonumy, stet rebum et ipsum est duo elitr clita lorem
                     </div>
                     <div class="d-flex align-items-center pt-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-1.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid rounded-circle" src="app/view/assets/img/testimonial-1.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="pl-4">
                             <h5>Client Name</h5>
                             <p class="m-0">Profession</p>
@@ -111,7 +104,7 @@
                         Sed ea amet kasd elitr stet nonumy, stet rebum et ipsum est duo elitr clita lorem
                     </div>
                     <div class="d-flex align-items-center pt-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-2.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid rounded-circle" src="app/view/assets/img/testimonial-2.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="pl-4">
                             <h5>Client Name</h5>
                             <p class="m-0">Profession</p>
@@ -123,7 +116,7 @@
                         Sed ea amet kasd elitr stet nonumy, stet rebum et ipsum est duo elitr clita lorem
                     </div>
                     <div class="d-flex align-items-center pt-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-3.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid rounded-circle" src="app/view/assets/img/testimonial-3.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="pl-4">
                             <h5>Client Name</h5>
                             <p class="m-0">Profession</p>
@@ -135,7 +128,7 @@
                         Sed ea amet kasd elitr stet nonumy, stet rebum et ipsum est duo elitr clita lorem
                     </div>
                     <div class="d-flex align-items-center pt-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-4.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid rounded-circle" src="app/view/assets/img/testimonial-4.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="pl-4">
                             <h5>Client Name</h5>
                             <p class="m-0">Profession</p>
@@ -146,11 +139,3 @@
         </div>
     </div>
     <!-- Testimonial End -->
-
-
-    <?php
-    load_footer();
-    ?>
-</body>
-
-</html>
