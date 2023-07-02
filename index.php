@@ -27,7 +27,9 @@ $err_dir='app/view/src/404.php';
 //Here are some concatinations
 $ext='.php';
 $home=$dir.'home'.$ext;
-$normal=$dir.$router.$ext;
+$normalUri=$dir.$router.$ext;
+
+$normal = (strpos($router, '?')) ? query_check()    :   $normalUri;
 
 //This ternary if lese determines if it is a home page or other page then it processes the request according to it
 $file = ($router===''||$router==='home'||$router==='index')?$home:$normal;
@@ -41,7 +43,7 @@ if(file_exists($file)){
     otherwise it will render full header,footer,etc
     */
         load_head();
-        require $file;
+        require $file;        
       } 
     else {
         echo

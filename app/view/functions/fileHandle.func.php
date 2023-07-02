@@ -1,4 +1,4 @@
-<?php 
+<?php
 function file_handle(){
     if (isset($_FILES['file']) && $_FILES['file']['error'] === 0) {
         // Maximum file size (in bytes)

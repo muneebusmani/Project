@@ -99,6 +99,6 @@
     <script src="app/view/assets/lib/tempusdominus/js/moment.min.js"></script>
     <script src="app/view/assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="app/view/assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <?php 
+    <?php
     inc_js();
     ?>

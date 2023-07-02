@@ -4,28 +4,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['submit'])) {
         $errors=[]; 
         fetch_post();
-        $err_msg=handle_err();
-        if($err_msg){
+        $errors=[];
+        if (empty($name)) {
+            array_push($errors, "name");
+        }
+        if (empty($number)) {
+            array_push($errors, "number");
+        }
+        if (empty($email)) {
+            array_push($errors, "email");
+        }
+        if (empty($address)) {
+            array_push($errors, "address");
+        }
+        if (empty($speciality)) {
+            array_push($errors, "speciality");
+        }
+        if (empty($education)) {
+            array_push($errors, "education");
+        }
+        if (empty($experience)) {
+            array_push($errors, "experience");
+        }
+        if (empty($password)) {
+            array_push($errors, "password");
+        }
+        if (!empty($errors)) {
+            $errorMessage = 'Please enter your ';
+            $lastError = end($errors);
+            foreach ($errors as $error) {
+                $errorMessage .= $error;
+                if ($error !== $lastError) {
+                    $errorMessage .= ', ';
+                }
+            }
+            $err_msg = "<script>alert('$errorMessage');</script>";
             echo $err_msg;
         }
+        
+        }
+        bulk_sanitize();
+        $img=file_handle();
+        if (empty($img)) {
+            echo 
+            "
+            <script>
+            alert('Please upload an image');
+            </script>
+            ";
+        }
         else{
-            bulk_sanitize();
-            $img=file_handle();
-            if (empty($img)) {
-                echo 
-                "
-                <script>
-                alert('Please upload an image');
-                </script>
-                ";
-            }
-            else{
-                prepare_and_execute();
-            }
+            prepare_and_execute();
         }
     }
-    
-}
 ?>
 <style>
     .myform{

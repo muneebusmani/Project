@@ -1,4 +1,6 @@
-<?php $uri = get_uri(); ?>
+<?php
+$uri = get_uri();
+?>
 <!--
      This will fetch the curent request in address bar excluding hostname/websitename/localhost
      current directory:

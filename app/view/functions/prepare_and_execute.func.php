@@ -13,6 +13,9 @@ function prepare_and_execute(){
     // Check for successful execution
     if (mysqli_stmt_affected_rows($stmt) > 0) {
         echo "Record inserted successfully.";
+        $stmt->close();
+        $conn->close();
+        header('location:lawyer_login');
     } else {
         echo "Error: " . mysqli_error($conn);
     }
