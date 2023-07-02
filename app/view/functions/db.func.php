@@ -1,7 +1,7 @@
 <?php
 function inc_db()
 {
-    $dbfile ='app/model/db.php';
-    require($dbfile);
+require_once('app/model/db.php');
+return $conn;
 }
 

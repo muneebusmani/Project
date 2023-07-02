@@ -1,7 +1,10 @@
-<!--This is the main file- -->
-
 <?php
+declare(strict_types=1);
 
+//This checks if mod_rewrite is enabled
+if(!in_array('mod_rewrite', apache_get_modules())){
+    echo "mod_rewrite is not enabled on this server";
+};
 
 //This will load All functions to all pages because we are including pages based on request so every page can access the functions because of this file
 $autoloader='app/view/src/autoload_func.php';
@@ -9,12 +12,8 @@ require($autoloader);
 autoloadFunctions();
 
 //This Connects to database
-inc_db();
+$conn=inc_db();
 
-//This checks if mod_rewrite is enabled
-if(!in_array('mod_rewrite', apache_get_modules())){
-    echo "mod_rewrite is not enabled on this server";
-};
 
 //This function will Fetch, sanitize and then output the uri
 $router = get_uri();
@@ -35,6 +34,7 @@ $file = ($router===''||$router==='home'||$router==='index')?$home:$normal;
 
 //This will check if the file processed in $file variable exists , if it exists it will include that file , if not then it will include error 404 page
 if(file_exists($file)){
+
     if (preg_match('/(admin\w*|lawyer\w*)/', $file)) {
     /*
     This will check if the uri request contains the keyword 'admin' or lawyer, then it wont render header and footer
