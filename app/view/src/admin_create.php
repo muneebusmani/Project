@@ -55,7 +55,6 @@ function toggle_password(){var passToggle = document.getElementById('password');
 
 
 <?php
-inc_db();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['submit'])) {
         $name=$number=$email=$address=$speciality=$education=$experience=$password= '';
@@ -85,16 +84,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             array_push($errors,"Please Enter Your Name");
         }
 
-
-        $name=                  $conn->real_escape_string($_POST['name']);
-        $number=                $conn->real_escape_string($_POST['number']);
-        $email=                 $conn->real_escape_string($_POST['email']);
-        $address=               $conn->real_escape_string($_POST['address']);
-        $speciality=            $conn->real_escape_string($_POST['speciality']);
-        $education=             $conn->real_escape_string($_POST['education']);
-        $experience=            $conn->real_escape_string($_POST['experience']);
-        $password=              $conn->real_escape_string($_POST['password']);
-        
+try {
+    $name=                  $conn->real_escape_string($_POST['name']);
+    $number=                $conn->real_escape_string($_POST['number']);
+    $email=                 $conn->real_escape_string($_POST['email']);
+    $address=               $conn->real_escape_string($_POST['address']);
+    $speciality=            $conn->real_escape_string($_POST['speciality']);
+    $education=             $conn->real_escape_string($_POST['education']);
+    $experience=            $conn->real_escape_string($_POST['experience']);
+    $password=              $conn->real_escape_string($_POST['password']);    
+} catch (error $e) {
+    echo $e->getMessage();
+}
 
 
 
@@ -147,4 +148,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
 }
-?>

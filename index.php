@@ -1,12 +1,15 @@
+<!--This is the main file- -->
+
 <?php
+
+
 //This will load All functions to all pages because we are including pages based on request so every page can access the functions because of this file
 $autoloader='app/view/src/autoload_func.php';
 require($autoloader);
 autoloadFunctions();
 
-
-//This is the main route file in which i defined the routes for the website
-
+//This Connects to database
+inc_db();
 
 //This checks if mod_rewrite is enabled
 if(!in_array('mod_rewrite', apache_get_modules())){
