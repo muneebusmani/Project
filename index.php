@@ -43,8 +43,38 @@ if(file_exists($file)){
     otherwise it will render full header,footer,etc
     */
         load_head();
-        require $file;        
-      } 
+        if(preg_match('/admin\w*/',$file)){
+            echo
+                '
+                <!DOCTYPE html>
+                <html lang="en">
+                '.load_head().'
+                <body>
+                ';load_header_a();
+                require $file;
+                echo
+                "
+                </body>
+                </html>
+                ";
+        }
+        elseif(preg_match('/lawyer\w*/',$file)){
+            echo
+            '
+            <!DOCTYPE html>
+            <html lang="en">
+            '.load_head().'
+            <body>
+            ';load_header_a();
+            require $file;
+            echo
+            "
+            </body>
+            </html>
+            ";
+        }
+    } 
+    
     else {
         echo
         '

@@ -104,7 +104,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
+<style>
+    input[name='identity']{
+        display: none;
+    }
+</style>
 
 
 <form method="post">

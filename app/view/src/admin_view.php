@@ -1,15 +1,13 @@
-<?php
-load_head();
-?>
 <style>
     tr,th,td{
         border: 2px solid black;
     }
-    .btn-danger,.btn-success{
+    .btn-danger,.btn-success,.btn-primary{
         border-radius: 25px;
     }
 
 </style>
+
 <table class="table text-center">
     <tr>
       <th scope="col">ID</th>
@@ -70,3 +68,73 @@ load_head();
     }
     echo "</table>";
 ?>
+<button onclick="emptyCacheAndReload()" type='button' class='btn btn-primary'>Refresh</button>
+<script>
+function emptyCacheAndReload() {
+    if ('caches' in window) {
+        caches.keys().then(function (cacheNames) {
+            cacheNames.forEach(function (cacheName) {
+                caches.delete(cacheName);
+            });
+        });
+    }
+
+    window.location.reload(true);
+}
+      
+    </script>
+</script>
+
+<form method="post" class="text-center">
+    <h1 class="display1 ">
+        Delete All Images
+    </h1>
+    <button onclick="confirmDelete()" type='submit' name='delete_imgs' class='btn btn-danger' value='Delete'>Delete</button>
+</form>
+<script>
+function confirmDelete() {
+  // Prompt the user to confirm the deletion
+  var confirmed = confirm("Are you sure you want to delete the files?");
+
+  // If the user confirmed, submit the form
+  if (confirmed) {
+    document.forms[0].submit();
+  }
+}
+</script>
+<?php
+if (isset($_POST['delete_imgs'])) {
+    
+    del_img();
+    echo
+    "
+    <script>
+    alert('Images Deletion Successful');
+    ";
+}
+function del_img(){
+$folderPath = 'uploads/lawyers/';
+
+// Get the list of files in the folder
+$fileList = scandir($folderPath);
+
+// Loop through each file and delete it
+foreach ($fileList as $file) {
+    // Skip "." and ".." entries
+    if ($file === '.' || $file === '..') {
+        continue;
+    }
+
+    // Build the full path to the file
+    $filePath = $folderPath . $file;
+
+    // Check if the file is writable
+    if (is_writable($filePath)) {
+        // Delete the file
+        unlink($filePath);
+        echo "Deleted file: $file <br>";
+    } else {
+        echo "Unable to delete file: $file <br>";
+    }
+}
+}
