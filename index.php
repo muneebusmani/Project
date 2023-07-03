@@ -43,33 +43,35 @@ if (preg_match($pattern, $normal, $matches)) {
 
 // This ternary if-else determines if it is a home page or other page, then it processes the request accordingly
 $file = ($router === '' || $router === 'home' || $router === 'index') ? $home : $normal;
-echo 'home:',$home, '<br>normal:', $normal,'<br>router:', $router ,'<br>file:', $file;
+
+//Testing all variables
+// echo 'home:',$home, '<br>normal:', $normal,'<br>router:', $router ,'<br>file:', $file;
 $route=
 [
-    //These routes for normal uri
-    'home.php'              ,
-    'index.php'             ,
-    'default.php'           ,
-    'main.php'              ,
-    'about.php'             ,
-    'contact.php'           ,
-    'service.php'           ,
-    'team.php'              ,
+//These routes for uri with 
+'home.php?'             ,
+'index.php?'            ,
+'default.php?'          ,
+'main.php?'             ,
+'about.php?'            ,
+'contact.php?'          ,
+'service.php?'          ,
+'team.php?'             ,
 
-    //These routes for uri with query string
-    'home.php?'             ,
-    'index.php?'            ,
-    'default.php?'          ,
-    'main.php?'             ,
-    'about.php?'            ,
-    'contact.php?'          ,
-    'service.php?'          ,
-    'team.php?'             
-
+'home'              ,
+'index'             ,
+'default'           ,
+'main'              ,
+'about'             ,
+'contact'           ,
+'service'           ,
+'team'              
 ];
 $routes=array_fill_keys($route,'1');
 // This will check if the file processed in $file variable exists, if it exists it will include that file, if not then it will include the error 404 page
 if (file_exists($file) && isset($routes[$router])) {
+//checking if query string is sent
+// print_r($_GET);
     if (preg_match('/(admin\w*|lawyer\w*)/', $file)) {
         /*
         This will check if the URI request contains the keyword 'admin' or 'lawyer', then it won't render header and footer.
