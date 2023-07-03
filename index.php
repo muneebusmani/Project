@@ -4,11 +4,17 @@ declare(strict_types=1);
 if (!in_array('mod_rewrite', apache_get_modules())) {
     echo "mod_rewrite is not enabled on this server";
 };
-
-//This will load all functions to all pages because we are including pages based on request so every page can access the functions because of this file
+//This will load all functions to all pages 
+//because we are including pages based on request so every page can access the functions because of this file
 $autoloader = 'app/view/src/autoload_func.php';
 require($autoloader);
 autoloadFunctions();
+
+//Path which needs to be created if doesnt exist
+$directory = $_SERVER['DOCUMENT_ROOT'].'/Project/' . '/uploads/lawyers';
+
+//This creates uploads/lawyers if it doesnt exist, this is done because git doesnt push empty folders
+createLawyersDirectory($directory);
 
 //This connects to the database
 $conn = inc_db();
