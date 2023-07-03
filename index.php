@@ -10,23 +10,12 @@ $autoloader = 'app/view/src/autoload_func.php';
 require($autoloader);
 autoloadFunctions();
 
-//Path which needs to be created if doesnt exist
-$directory = $_SERVER['DOCUMENT_ROOT'].'/Project/' . '/uploads/lawyers';
+inc_globals();
 
-//This creates uploads/lawyers if it doesnt exist, this is done because git doesnt push empty folders
-createLawyersDirectory($directory);
 
-//This connects to the database
-$conn = inc_db();
+// Code For Path which needs to be created if doesnt exist
+createLawyersDirectory();
 
-//This function will fetch, sanitize, and then output the URI
-$router = get_uri();
-
-//This is the directory which contains all pages
-$dir = 'app/view/src/';
-
-//This is the file which gets loaded if the requested file doesn't exist
-$err_dir = 'app/view/src/404.php';
 
 //Here are some concatenations
 $ext = '.php';
@@ -34,7 +23,6 @@ $home = $dir . 'home' . $ext;
 $normalUri = $dir . $router . $ext;
 
 $normal = (strpos($router, '?')) ? query_check() : $normalUri;
-global $GET;
 // Extract and remove the query string from the current URI
 $pattern = '/^(.*?)\?(.*)$/';
 $matches = [];
@@ -52,9 +40,12 @@ $file = ($router === '' || $router === 'home' || $router === 'index') ? $home : 
 
 //Testing all variables
 // echo 'home:',$home, '<br>normal:', $normal,'<br>router:', $router ,'<br>file:', $file;
+
+
+
+//These are routes defined, for preventing unauthorized access  
 $route=
 [
-//These routes for uri with 
 'home.php?'             ,
 'index.php?'            ,
 'default.php?'          ,
@@ -64,13 +55,23 @@ $route=
 'service.php?'          ,
 'team.php?'             ,
 
-'home'              ,
-'index'             ,
-'default'           ,
-'main'              ,
-'about'             ,
-'contact'           ,
-'service'           ,
+'admin_view.php?'       ,
+'admin_update.php?'     ,
+'admin_delete.php?'     ,
+'lawyer_create.php?'    ,
+
+'admin_view'            ,
+'admin_update'          ,
+'admin_delete'          ,
+'lawyer_create'         ,
+
+'home'                  ,
+'index'                 ,
+'default'               ,
+'main'                  ,
+'about'                 ,
+'contact'               ,
+'service'               ,
 'team'              
 ];
 $routes=array_fill_keys($route,'1');
