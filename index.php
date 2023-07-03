@@ -46,6 +46,7 @@ $file = ($router === '' || $router === 'home' || $router === 'index') ? $home : 
 //These are routes defined, for preventing unauthorized access  
 $route=
 [
+''                      ,
 'home.php?'             ,
 'index.php?'            ,
 'default.php?'          ,
