@@ -25,7 +25,7 @@
 <?php
     $sql='SELECT * FROM lawyers';
     $result=$conn->query($sql);
-
+    print_r($_GET);
     while ($rows=$result->fetch_assoc()) {
         $ID=$rows['ID'];
         $Photo=$rows['Photo'];
@@ -43,8 +43,8 @@
         <td scope='col'>$ID</td>
         <td scope='col'><img src='$Photo' alt='$name' width='50px' height='50px' ></td>
         <td scope='col'>$name</td>
-        <td scope='col'>$number</td>
         <td scope='col'>$email</td>
+        <td scope='col'>$number</td>
         <td scope='col'>$address</td>
         <td scope='col'>$speciality</td>
         <td scope='col'>$education</td>

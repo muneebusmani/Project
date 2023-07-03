@@ -2,98 +2,101 @@
 declare(strict_types=1);
 
 //This checks if mod_rewrite is enabled
-if(!in_array('mod_rewrite', apache_get_modules())){
+if (!in_array('mod_rewrite', apache_get_modules())) {
     echo "mod_rewrite is not enabled on this server";
 };
 
-//This will load All functions to all pages because we are including pages based on request so every page can access the functions because of this file
-$autoloader='app/view/src/autoload_func.php';
+//This will load all functions to all pages because we are including pages based on request so every page can access the functions because of this file
+$autoloader = 'app/view/src/autoload_func.php';
 require($autoloader);
 autoloadFunctions();
 
-//This Connects to database
-$conn=inc_db();
+//This connects to the database
+$conn = inc_db();
 
-
-//This function will Fetch, sanitize and then output the uri
+//This function will fetch, sanitize, and then output the URI
 $router = get_uri();
 
-//This is the Directory which contains all Pages
-$dir='app/view/src/';
+//This is the directory which contains all pages
+$dir = 'app/view/src/';
 
-//This is the File which gets loaded if the requested file doesnt exist
-$err_dir='app/view/src/404.php';
+//This is the file which gets loaded if the requested file doesn't exist
+$err_dir = 'app/view/src/404.php';
 
-//Here are some concatinations
-$ext='.php';
-$home=$dir.'home'.$ext;
-$normalUri=$dir.$router.$ext;
+//Here are some concatenations
+$ext = '.php';
+$home = $dir . 'home' . $ext;
+$normalUri = $dir . $router . $ext;
 
-$normal = (strpos($router, '?')) ? query_check()    :   $normalUri;
+$normal = (strpos($router, '?')) ? query_check() : $normalUri;
+global $GET;
+// Extract and remove the query string from the current URI
+$pattern = '/^(.*?)\?(.*)$/';
+$matches = [];
+if (preg_match($pattern, $normal, $matches)) {
+    $normal = $matches[1];
+    $queryString = $matches[2];
+    
+    // Parse the query string parameters into an associative array
+} else {
+    $queryString = '';
+}
 
-//This ternary if lese determines if it is a home page or other page then it processes the request according to it
-$file = ($router===''||$router==='home'||$router==='index')?$home:$normal;
+// This ternary if-else determines if it is a home page or other page, then it processes the request accordingly
+$file = ($router === '' || $router === 'home' || $router === 'index') ? $home : $normal;
 
-//This will check if the file processed in $file variable exists , if it exists it will include that file , if not then it will include error 404 page
-if(file_exists($file)){
+// This will check if the file processed in $file variable exists, if it exists it will include that file, if not then it will include the error 404 page
+if (file_exists($file)) {
 
     if (preg_match('/(admin\w*|lawyer\w*)/', $file)) {
-    /*
-    This will check if the uri request contains the keyword 'admin' or lawyer, then it wont render header and footer
-    otherwise it will render full header,footer,etc
-    */
+        /*
+        This will check if the URI request contains the keyword 'admin' or 'lawyer', then it won't render header and footer.
+        Otherwise, it will render the full header, footer, etc.
+        */
         load_head();
-        if(preg_match('/admin\w*/',$file)){
-            echo
-                '
+        if (preg_match('/admin\w*/', $file)) {
+            echo '
                 <!DOCTYPE html>
                 <html lang="en">
-                '.load_head().'
+                ' . load_head() . '
                 <body>
-                ';load_header_a();
-                require $file;
-                echo
-                "
+                ';
+            load_header_a();
+            require $file;
+            echo "
                 </body>
                 </html>
                 ";
-        }
-        elseif(preg_match('/lawyer\w*/',$file)){
-            echo
-            '
+        } elseif (preg_match('/lawyer\w*/', $file)) {
+            echo '
             <!DOCTYPE html>
             <html lang="en">
-            '.load_head().'
+            ' . load_head() . '
             <body>
-            ';load_header_a();
+            ';
+            load_header_a();
             require $file;
-            echo
-            "
+            echo "
             </body>
             </html>
             ";
         }
-    } 
-    
-    else {
-        echo
-        '
+    } else {
+        echo '
         <!DOCTYPE html>
         <html lang="en">
-        '.load_head().'
+        ' . load_head() . '
         <body>
-        ';load_header();
+        ';
+        load_header();
         require $file;
         load_footer();
-        echo
-        "
+        echo "
         </body>
         </html>
         ";
-      }
-
-}
-else{
+    }
+} else {
     require $err_dir;
 }
-?>    
+?>
