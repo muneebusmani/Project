@@ -3,8 +3,8 @@ function inc_db()
 {
 $host = 'localhost';
 $username = 'root';
-$password = 'admin';
-$db_name = 'JusticiaLaw';
+$password = '';
+$db_name = 'justicialaw';
 $conn = new mysqli($host, $username, $password, $db_name);
 return $conn;
 }
