@@ -101,4 +101,13 @@
     <script src="app/view/assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <?php
     inc_js();
+    // if($router = 'contact'){
+    //     echo 
+    //     '
+    //     <!-- Contact Javascript File -->
+    //     <script src="app/view/src/mail/jqBootstrapValidation.min.js"></script>
+    //     <script src="app/view/src/mail/contact.js"></script>
+    //     '
+    //     ;
+    // }
     ?>

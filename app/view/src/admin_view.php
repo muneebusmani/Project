@@ -7,7 +7,6 @@
     }
 
 </style>
-
 <table class="table text-center">
     <tr>
       <th scope="col">ID</th>
@@ -25,7 +24,6 @@
 <?php
     $sql='SELECT * FROM lawyers';
     $result=$conn->query($sql);
-    print_r($_GET);
     while ($rows=$result->fetch_assoc()) {
         $ID=$rows['ID'];
         $Photo=$rows['Photo'];
@@ -58,7 +56,7 @@
         </form>
         <form class='d-inline' method='POST' action='admin_delete'>
         <input value='$ID' name='id' type='hidden'>
-        <button type='submit' name='delete' class='btn btn-danger' value='Delete'>Delete</button>
+        <button type='submit' name='delete' onclick='confirmDelete_a();' class='btn btn-danger' value='Delete'>Delete</button>
         </form>
         </span>
         </td>
@@ -100,6 +98,21 @@ function confirmDelete() {
   if (confirmed) {
     document.forms[0].submit();
   }
+  else{
+    return false; 
+  }
+}
+function confirmDelete_a() {
+  // Prompt the user to confirm the deletion
+  var confirmed = confirm("Are you sure you want to delete this record?");
+
+  // If the user confirmed, submit the form
+  if (confirmed) {
+    document.forms[0].submit();
+  }
+  else{
+    return false; 
+  }
 }
 </script>
 <?php
@@ -138,3 +151,4 @@ foreach ($fileList as $file) {
     }
 }
 }
+?>
