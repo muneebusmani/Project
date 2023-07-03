@@ -43,7 +43,7 @@ load_head();
         "
         <tr>
         <td scope='col'>$ID</td>
-        <td scope='col'>$Photo</td>
+        <td scope='col'><img src='$Photo' alt='$name' width='50px' height='50px' ></td>
         <td scope='col'>$name</td>
         <td scope='col'>$number</td>
         <td scope='col'>$email</td>
@@ -54,37 +54,19 @@ load_head();
         <td scope='col'>$password</td>
         <td scope='col' style='width:20%;'>
         <span>
-            <form class='d-inline' method='POST' action='admin_update'> 
-            <input value='$ID' name='id' type='hidden'>
-            <input value='$Photo' name='photo' type='hidden'>
-            <input value='$name' name='Name' type='hidden'>    
-            <input value='$number' name='Number'  type='hidden'>
-            <input value='$email' name='Email'  type='hidden'>
-            <input value='$address' name='Address'  type='hidden'>
-            <input value='$speciality' name='Speciality'  type='hidden'>
-            <input value='$education' name='Education'  type='hidden'>
-            <input value='$experience' name='Experience'  type='hidden'>
-            <input value='$password' name='Password'  type='hidden'>
-            <button type='submit' name='update' class='btn btn-success' value='Update'>Update</button>
-            </form>
-            <form class='d-inline' method='POST' action='admin_delete'>
-            <input value='$ID' name='id' type='hidden'>
-            <input value='$Photo' name='photo' type='hidden'>
-            <input value='$name' name='Name' type='hidden'>    
-            <input value='$number' name='Number'  type='hidden'>
-            <input value='$email' name='Email'  type='hidden'>
-            <input value='$address' name='Address'  type='hidden'>
-            <input value='$speciality' name='Speciality'  type='hidden'>
-            <input value='$education' name='Education'  type='hidden'>
-            <input value='$experience' name='Experience'  type='hidden'>
-            <input value='$password' name='Password'  type='hidden'>
-            <button type='submit' name='delete' class='btn btn-danger' value='Delete'>Delete</button>
-            </form>
+        <form class='d-inline' method='POST' action='admin_update'> 
+        <input value='$ID' name='id' type='hidden'>
+        <button type='submit' name='update' class='btn btn-success' value='Update'>Update</button>
+        </form>
+        <form class='d-inline' method='POST' action='admin_delete'>
+        <input value='$ID' name='id' type='hidden'>
+        <button type='submit' name='delete' class='btn btn-danger' value='Delete'>Delete</button>
+        </form>
         </span>
         </td>
-    </tr>
-      </tr>
-      ";
+        </tr>
+        </tr>
+        ";
     }
     echo "</table>";
 ?>

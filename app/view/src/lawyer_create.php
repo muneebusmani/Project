@@ -2,7 +2,6 @@
 $name=$number=$email=$address=$speciality=$education=$experience=$password= '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['submit'])) {
-        $errors=[]; 
         fetch_post();
         $errors=[];
         if (empty($name)) {
@@ -41,22 +40,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $err_msg = "<script>alert('$errorMessage');</script>";
             echo $err_msg;
         }
-        
-        }
-        bulk_sanitize();
-        $img=file_handle();
-        if (empty($img)) {
-            echo 
-            "
-            <script>
-            alert('Please upload an image');
-            </script>
-            ";
-        }
         else{
-            prepare_and_execute();
+            bulk_sanitize();
+            $img=file_handle();
+            if (empty($img)) {
+                echo 
+                "
+                <script>
+                alert('Please upload an image');
+                </script>
+                ";
+            }
+            else{
+                prepare_and_execute();
+            }
         }
+        
     }
+}
 ?>
 <style>
     .myform{

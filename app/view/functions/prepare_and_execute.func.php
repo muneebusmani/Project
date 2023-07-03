@@ -1,6 +1,9 @@
 <?php
 function prepare_and_execute(){
-    global $conn ,$img , $name, $number, $email, $address, $speciality, $education, $experience, $password;
+    try{
+        global $conn ,$img , $name, $number, $email, $address, $speciality, $education, $experience, $password;
+    $conn=inc_db();
+
     // Prepare the SQL statement
     $sql = "INSERT INTO lawyers (`Photo` ,`name`, `number`, `email`, `address` , `speciality`, `education` , `experience` , `password`) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -16,7 +19,14 @@ function prepare_and_execute(){
         $stmt->close();
         $conn->close();
         header('location:lawyer_login');
+        ob_end_flush();
     } else {
         echo "Error: " . mysqli_error($conn);
+    }        
+    }
+    catch(Exception $e){
+        echo $e->getCode();
     }
 }
+
+
