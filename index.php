@@ -15,9 +15,12 @@ autoloadFunctions();
 ?>
 
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 <?php
 load_head();?>
+<style>
+
+</style>
 
 <body>
 <?php
@@ -91,20 +94,18 @@ $route=
 'service'               ,
 'team'              
 ];
+
 $routes=array_fill_keys($route,'1');
 // This will check if the file processed in $file variable exists, if it exists it will include that file, if not then it will include the error 404 page
 if (file_exists($file) && isset($routes[$router])) {
-
     if (preg_match('/(admin\w*|lawyer\w*)/', $file)) {
         /*
         This will check if the URI request contains the keyword 'admin' or 'lawyer', then it won't render header and footer.
         Otherwise, it will render the full header, footer, etc.
         */
         if (preg_match('/admin\w*/', $file)) {
-
             load_header_a();
             require $file;
-
         } elseif (preg_match('/lawyer\w*/', $file)) {
             load_header_a();
             require $file;
@@ -118,5 +119,71 @@ if (file_exists($file) && isset($routes[$router])) {
     require $err_dir;
 }
 ?>
+
+
+<!-- Frontend JavaScript Libraries -->
+<script src="app/view/assets/lib/jquery/jquery.min.js"></script>
+<script src="app/view/assets/lib/bootstrapbundlejs/bootstrap.bundle.min.js"></script>
+<script src="app/view/assets/lib/easing/easing.min.js"></script>
+<script src="app/view/assets/lib/waypoints/waypoints.min.js"></script>
+<script src="app/view/assets/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="app/view/assets/lib/tempusdominus/js/moment.min.js"></script>
+<script src="app/view/assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="app/view/assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<?php
+inc_js()
+?>
+<!-- Dark mode Api -->
+<script src="app/view/assets/lib/darkreader/darkreader.min.js"></script>
+<script>
+  // Get the toggle button element
+  const toggleButton = document.getElementById('toggleDarkMode');
+
+  // Check if Dark Mode is enabled in localStorage
+  const isDarkModeEnabled = localStorage.getItem('darkModeEnabled') === 'true';
+
+  // Set the initial state of the toggle button
+  toggleButton.checked = isDarkModeEnabled;
+  if (isDarkModeEnabled) {
+    toggleButton.parentNode.classList.add('on');
+    enableDarkMode();
+  }
+
+  // Add event listener to the toggle button
+  toggleButton.addEventListener('change', toggleDarkMode);
+
+  // Function to enable Dark Mode
+  function enableDarkMode() {
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  }
+
+  // Function to disable Dark Mode
+  function disableDarkMode() {
+    DarkReader.disable();
+  }
+
+  // Function to toggle Dark Mode
+  function toggleDarkMode() {
+    // Check if Dark Mode is currently enabled
+    const isEnabled = toggleButton.checked;
+
+    // Update the localStorage state
+    localStorage.setItem('darkModeEnabled', isEnabled);
+
+    // If enabled, enable Dark Mode with custom settings
+    // If disabled, disable Dark Mode
+    if (isEnabled) {
+      enableDarkMode();
+      toggleButton.parentNode.classList.add('on');
+    } else {
+      disableDarkMode();
+      toggleButton.parentNode.classList.remove('on');
+    }
+  }
+</script>
 </body>
 </html>

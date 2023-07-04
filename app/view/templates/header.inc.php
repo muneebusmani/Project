@@ -39,7 +39,7 @@ $uri = get_uri();
                     </div>
                 </div>
                 <div class="col-lg-5 clearfix">
-                    <div class="d-inline-flex float-end p-2">
+                    <div class="d-inline-flex float-right p-2">
                         <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="">
                             <i class="fab fa-facebook-f"></i>
                         </a>
@@ -83,6 +83,10 @@ $uri = get_uri();
                         <a href="contact" class="nav-item nav-link <?php if ($uri === 'contact') {echo 'active';} ?>">Contact</a>
                         <!-- Dynamic Nav highlighting Ends-->
                     </div>
+                    <label class="switch mr-5 mt-2">
+                        <input id="toggleDarkMode" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
                     <a href="" class="btn btn-primary mr-3 d-none d-lg-block">Get A Quote</a>
                 </div>
             </nav>

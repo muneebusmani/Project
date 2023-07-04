@@ -2,3 +2,64 @@ img[src="app/view/assets/img/logo.png"]{
     width: 75%;
     height: 75%;
 }
+  /* Ensure the vertical scroll bar is always visible */
+  body {
+    overflow-y: scroll;
+  }
+  
+  /* Style for the switch */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 6rem;
+    height: 3rem;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cccccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 2.5rem;
+    width: 2.5rem;
+    left: 4px;
+    bottom: 4px;
+    background-color: rgb(255, 187, 0);
+    background-image: url(../img/sun.svg);
+    background-size: cover;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input[type="checkbox"] {
+    display: none;
+  }
+  
+  input[type="checkbox"]:checked + .slider {
+    background-color: #ccc;
+  }
+  
+  input[type="checkbox"]:checked + .slider:before {
+    -webkit-transform: translateX(3rem);
+    -ms-transform: translateX(3rem);
+    transform: translateX(3rem);
+    background-image: url(../img/moon.svg);
+    background-repeat: no-repeat;
+    background-size:cover;
+  }
+  
+  .on .slider:before {
+    background-color: #2196F3;
+  }
