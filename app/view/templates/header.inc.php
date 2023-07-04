@@ -83,11 +83,11 @@ $uri = get_uri();
                         <a href="contact" class="nav-item nav-link <?php if ($uri === 'contact') {echo 'active';} ?>">Contact</a>
                         <!-- Dynamic Nav highlighting Ends-->
                     </div>
-                    <label class="switch mr-5 mt-2">
+                    <a href="" class="btn btn-primary d-none d-lg-block">Get A Quote</a>
+                    <label class="switch ml-5 mt-2">
                         <input id="toggleDarkMode" type="checkbox">
                         <span class="slider round"></span>
                     </label>
-                    <a href="" class="btn btn-primary mr-3 d-none d-lg-block">Get A Quote</a>
                 </div>
             </nav>
         </div>

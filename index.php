@@ -30,7 +30,6 @@ inc_globals();
 // Code For Path which needs to be created if doesnt exist
 createLawyersDirectory();
 
-
 //Here are some concatenations
 $ext = '.php';
 $home = $dir . 'home' . $ext;
@@ -121,7 +120,7 @@ if (file_exists($file) && isset($routes[$router])) {
 ?>
 
 
-<!-- Frontend JavaScript Libraries -->
+<!-- Frontend JavaScript Libraries For Carousel and other minor UI components -->
 <script src="app/view/assets/lib/jquery/jquery.min.js"></script>
 <script src="app/view/assets/lib/bootstrapbundlejs/bootstrap.bundle.min.js"></script>
 <script src="app/view/assets/lib/easing/easing.min.js"></script>
@@ -130,60 +129,14 @@ if (file_exists($file) && isset($routes[$router])) {
 <script src="app/view/assets/lib/tempusdominus/js/moment.min.js"></script>
 <script src="app/view/assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
 <script src="app/view/assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Dark mode Api -->
+<script src="app/view/assets/lib/darkreader/darkreader.min.js"></script>
+<script src="app/view/assets/lib/darkreader/darkreader.config.js"></script>
+
+<!-- Custom JS-->
 <?php
 inc_js()
 ?>
-<!-- Dark mode Api -->
-<script src="app/view/assets/lib/darkreader/darkreader.min.js"></script>
-<script>
-  // Get the toggle button element
-  const toggleButton = document.getElementById('toggleDarkMode');
-
-  // Check if Dark Mode is enabled in localStorage
-  const isDarkModeEnabled = localStorage.getItem('darkModeEnabled') === 'true';
-
-  // Set the initial state of the toggle button
-  toggleButton.checked = isDarkModeEnabled;
-  if (isDarkModeEnabled) {
-    toggleButton.parentNode.classList.add('on');
-    enableDarkMode();
-  }
-
-  // Add event listener to the toggle button
-  toggleButton.addEventListener('change', toggleDarkMode);
-
-  // Function to enable Dark Mode
-  function enableDarkMode() {
-    DarkReader.enable({
-      brightness: 100,
-      contrast: 90,
-      sepia: 10
-    });
-  }
-
-  // Function to disable Dark Mode
-  function disableDarkMode() {
-    DarkReader.disable();
-  }
-
-  // Function to toggle Dark Mode
-  function toggleDarkMode() {
-    // Check if Dark Mode is currently enabled
-    const isEnabled = toggleButton.checked;
-
-    // Update the localStorage state
-    localStorage.setItem('darkModeEnabled', isEnabled);
-
-    // If enabled, enable Dark Mode with custom settings
-    // If disabled, disable Dark Mode
-    if (isEnabled) {
-      enableDarkMode();
-      toggleButton.parentNode.classList.add('on');
-    } else {
-      disableDarkMode();
-      toggleButton.parentNode.classList.remove('on');
-    }
-  }
-</script>
 </body>
 </html>
