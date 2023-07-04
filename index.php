@@ -46,7 +46,6 @@ $file = ($router === '' || $router === 'home' || $router === 'index') ? $home : 
 //These are routes defined, for preventing unauthorized access  
 $route=
 [
-''                      ,
 'home.php?'             ,
 'index.php?'            ,
 'default.php?'          ,
@@ -116,7 +115,7 @@ if (file_exists($file) && isset($routes[$router])) {
     } else {
         echo '
         <!DOCTYPE html>
-        <html lang="en" data-bs-theme="dark">
+        <html lang="en">
         ' . load_head() . '
         <body>
         ';
