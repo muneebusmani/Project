@@ -44,7 +44,7 @@ function file_handle(){
         // echo "File uploaded successfully.";
         return $image;
     } else {
-
+        return 0;
         // echo "File upload failed.";
     }
 }
