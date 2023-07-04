@@ -2,3 +2,59 @@ img[src="app/view/assets/img/logo.png"]{
     width: 75%;
     height: 75%;
 }
+:root{
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: "poppins", sans-serif;
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+   :root[data-bs-theme="light"]{
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #A6D7E8;
+    --secondary: #112B56;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+  }
+  :root[data-bs-theme="dark"] {
+    --blue: #003d80;
+    --indigo: #330b99;
+    --purple: #381f80;
+    --pink: #9d1e57;
+    --red: #a52933;
+    --orange: #a85d0e;
+    --yellow: #ab7304;
+    --green: #124e22;
+    --teal: #10524d;
+    --cyan: #0b4d58;
+    --white: #000;
+    --gray: #1d2126;
+    --gray-dark: #494f57;
+    --primary: #699ebb;
+    --secondary: #0a162b;
+    --success: #124e22;
+    --info: #0b4d58;
+    --warning: #ab7304;
+    --danger: #a52933;
+    --light: #1d2126;
+    --dark: #dcdcdc;
+  }
+  
+    
