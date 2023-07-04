@@ -1,7 +1,6 @@
 <?php
-
 declare(strict_types=1);
-
+ob_start();
 //This checks if mod_rewrite is enabled
 if (!in_array('mod_rewrite', apache_get_modules())) {
     echo "mod_rewrite is not enabled on this server";
@@ -13,10 +12,34 @@ $autoloader = 'app/view/src/autoload_func.php';
 require($autoloader);
 autoloadFunctions();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <?php
+
+//Document root from which is renamed to localhost
+$GLOBALS['doc_root'] = $_SERVER['DOCUMENT_ROOT'];
+
+//Project root aka Parent folder in which this file is place
+$GLOBALS['project_root'] = '/Project/';
+
+
+//Lawyers image registration folder
+$GLOBALS['lawyers_img']='uploads/lawyers';
+
+
+//This connects to the database
+$GLOBALS['conn']=inc_db();
+
+//This function will fetch, sanitize, and then output the URI
+$GLOBALS['router'] = get_uri();
+
+//This is the directory which contains all pages
+$GLOBALS['dir'] = 'app/view/src/';
+
+//This is the file which gets loaded if the requested file doesn't exist
+$GLOBALS['err_dir'] = 'app/view/src/404.php';
+
+($router === 'admin') ? header('location:app/view/src/admin/'):null;
 load_head();?>
 <style>
 
@@ -24,7 +47,8 @@ load_head();?>
 
 <body>
 <?php
-inc_globals();
+
+
 
 
 // Code For Path which needs to be created if doesnt exist
@@ -91,7 +115,8 @@ $route=
 'about'                 ,
 'contact'               ,
 'service'               ,
-'team'              
+'team'                  ,
+'admin'                 
 ];
 
 $routes=array_fill_keys($route,'1');
@@ -136,7 +161,19 @@ if (file_exists($file) && isset($routes[$router])) {
 
 <!-- Custom JS-->
 <?php
-inc_js()
+inc_js();
+if($router = 'contact'){
+    echo 
+    '
+    <!-- Contact Javascript File -->
+    <script src="app/view/src/mail/jqBootstrapValidation.min.js"></script>
+    <script src="app/view/src/mail/contact.js"></script>
+    '
+    ;
+}
 ?>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

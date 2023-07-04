@@ -19,7 +19,6 @@ function prepare_and_execute(){
         $stmt->close();
         $conn->close();
         header('location:lawyer_login');
-        ob_end_flush();
     } else {
         echo "Error: " . mysqli_error($conn);
     }        

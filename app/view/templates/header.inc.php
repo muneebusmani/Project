@@ -40,20 +40,17 @@ $uri = get_uri();
                 </div>
                 <div class="col-lg-5 clearfix">
                     <div class="d-inline-flex float-right p-2">
-                        <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="">
+                        <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="https://facebook.com">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="">
+                        <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="https://twitter.com">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="">
+                        <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="https://linkedin.com">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="">
+                        <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="https://instagram.com">
                             <i class="fab fa-instagram"></i>
-                        </a>
-                        <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="">
-                            <i class="fab fa-youtube"></i>
                         </a>
                     </div>
                 </div>
@@ -83,7 +80,7 @@ $uri = get_uri();
                         <a href="contact" class="nav-item nav-link <?php if ($uri === 'contact') {echo 'active';} ?>">Contact</a>
                         <!-- Dynamic Nav highlighting Ends-->
                     </div>
-                    <a href="" class="btn btn-primary d-none d-lg-block">Get A Quote</a>
+                    <a href="admin/" class="btn btn-primary d-none d-lg-block">Get A Quote</a>
                     <label class="switch ml-5 mt-2">
                         <input id="toggleDarkMode" type="checkbox">
                         <span class="slider round"></span>

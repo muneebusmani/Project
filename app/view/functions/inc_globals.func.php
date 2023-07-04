@@ -11,6 +11,7 @@ $GLOBALS['doc_root'] = $_SERVER['DOCUMENT_ROOT'];
 //Project root aka Parent folder in which this file is place
 $GLOBALS['project_root'] = '/Project/';
 
+
 //Lawyers image registration folder
 $GLOBALS['lawyers_img']='uploads/lawyers';
 

@@ -91,14 +91,4 @@
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary px-3 back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-    <?php
-    // if($router = 'contact'){
-    //     echo 
-    //     '
-    //     <!-- Contact Javascript File -->
-    //     <script src="app/view/src/mail/jqBootstrapValidation.min.js"></script>
-    //     <script src="app/view/src/mail/contact.js"></script>
-    //     '
-    //     ;
-    // }
-    ?>
+

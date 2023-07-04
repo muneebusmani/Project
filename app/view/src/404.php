@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>404 - Page Not Found</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,12 +31,9 @@
             text-decoration: none;
         }
     </style>
-</head>
-<body>
     <div class="container">
         <h1>Oops! Page Not Found</h1>
         <p>The page you're looking for doesn't exist.</p>
-        <p>Go back to <a href="home">Home</a>.</p>
+
+        <p>Go back to <a href="http://localhost<?php print_r($GLOBALS['project_root']).'home'?>">Home</a>.</p>
     </div>
-</body>
-</html>
