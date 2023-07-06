@@ -1,12 +1,12 @@
 <?php
 function file_handle(){
-    if (isset($_FILES['file']) && $_FILES['file']['error'] === 0) {
+    if (isset($_FILES['Photo']) && $_FILES['Photo']['error'] === 0) {
         // Maximum file size (in bytes)
         $maxFileSize = 10485760; // 10MB
 
         // Allowed file extensions
         $allowedExtensions = ['jpg', 'jpeg', 'png'];
-        $uploadedFile = $_FILES['file'];
+        $uploadedFile = $_FILES['Photo'];
 
         // Get the file details
         $fileName = $uploadedFile['name'];

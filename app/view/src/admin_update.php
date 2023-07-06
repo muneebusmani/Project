@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Retrieve the values from the row
                     $Name = $row['name'];
                     $Number = $row['number'];
+                    $location = $row['location'];
                     $Email = $row['email'];
                     $Address = $row['address'];
                     $Speciality = $row['speciality'];
@@ -40,8 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     }
     if (isset($_POST['update_s'])) {
-        $id=$_SESSION['ID'];
-        fetch_post();
         $errors=[];
         if (empty($name)) {
             array_push($errors, "name");
@@ -57,6 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         if (empty($speciality)) {
             array_push($errors, "speciality");
+        }
+        if (empty($location)) {
+            array_push($errors, "location");
         }
         if (empty($education)) {
             array_push($errors, "education");
@@ -82,11 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $conn=inc_db();
                 // Prepare the SQL statement
-                $sql = "UPDATE lawyers SET `name` = ?, `number` = ?, `email` = ?, `address` = ?, `speciality` = ?, `education` = ?, `experience` = ?, `password` = ? WHERE `ID` = ?";
+                $sql = "UPDATE lawyers SET `location` = ?, `name` = ?, `number` = ?, `email` = ?, `address` = ?, `speciality` = ?, `education` = ?, `experience` = ?, `password` = ? WHERE `ID` = ?";
                 $stmt = $conn->prepare($sql);
         
                 // Bind parameters to the prepared statement
-                $stmt->bind_param("sissssssi" , $name, $number, $email, $address, $speciality, $education, $experience, $password , $id);
+                $stmt->bind_param("ssissssssi",$location , $name, $number, $email, $address, $speciality, $education, $experience, $password , $id);
                 $stmt->execute();
             } catch (Exception $e) {
                 echo $e->getLine();
@@ -102,6 +104,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
         }
     }
+}
+else{
+    header('location:admin_view');
 }
 ?>
 <style>
@@ -123,14 +128,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input value="<?php echo (isset($_POST['update']))?$Email:($email??'');?>" name="email"  type="email" class="form-control" id="Email" aria-describedby="emailHelp">
         <label for="address">Residential Address</label>
         <input value="<?php echo (isset($_POST['update']))?$Address:($address??'');?>" name="address"  type="text" class="form-control" id="address" aria-describedby="emailHelp">
-    </div>
-    <div class="form-group">
-        <label for="area">Practice Area</label>
-        <input value="<?php echo (isset($_POST['update']))?$Speciality:($speciality??'');?>" name="speciality"  type="text" class="form-control" id="area" aria-describedby="emailHelp">
-        <label for="education">Education</label>
-        <input value="<?php echo (isset($_POST['update']))?$Education:($education??'');?>" name="education"  type="text" class="form-control" id="education" aria-describedby="emailHelp">
-        <label for="exp">Experience</label>
-        <input value="<?php echo (isset($_POST['update']))?$Experience:($experience??'');?>" name="experience"  type="text" class="form-control" id="exp" aria-describedby="emailHelp">
+                <div class="form-group">
+            <label for="location">location:</label>
+            <select id="location" name="location" class="form-control w-40 text-center">
+                <option <?php echo (isset($_POST['update']))?"value='$location'":"disabled"?> selected></option>
+                <?php fetch_options($conn, 'location', 'location'); ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="location">Practice Area</label>
+            <select id="location" name="speciality" class="form-control w-40 text-center">
+                <option <?php echo (isset($_POST['update']))?"value='$Speciality'":"disabled"?> selected></option>
+                <?php fetch_options($conn, 'practice_area', 'practice_area') ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="location">Education</label>
+            <select id="location" name="education" class="form-control w-40 text-center">
+                <option <?php echo (isset($_POST['update']))?"value='$Education'":"disabled"?> selected></option>
+                <?php fetch_options($conn, 'education', 'education'); ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="location">Experience</label>
+            <select id="location" name="experience" class="form-control w-40 text-center">
+                <option <?php echo (isset($_POST['update']))?"value='$Experience'":"disabled"?> selected></option>
+                <?php fetch_options($conn, 'experience', 'experience'); ?>
+            </select>
+        </div>
     </div>
     <div class="form-group mb-4">
         <label for="InputPassword1">Password</label>

@@ -158,7 +158,7 @@
     <!-- Brand Logo -->
     <a href="../../index3.php" class="brand-link">
       <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">JusticiaLaw</span>
     </a>
 
     <!-- Sidebar -->
@@ -219,73 +219,56 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Management
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="admin_view" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Lawyers</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin_add_location" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Available Locations</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin_add_education" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Available Educations</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin_add_experience" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Available Experience</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin_add_practice_areas" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Our Practice Areas</p>
+                </a>
+              </li>
+            </ul>
+          </li>
     </div>
     <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Collapsed Sidebar</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Layout</a></li>
-              <li class="breadcrumb-item active">Collapsed Sidebar</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <!-- Default box -->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Title</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                Start creating your amazing application!
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-                Footer
-              </div>
-              <!-- /.card-footer-->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

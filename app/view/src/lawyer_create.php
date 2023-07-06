@@ -2,7 +2,15 @@
 $name = $number = $email = $address = $speciality = $education = $experience = $password = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['submit'])) {
-        fetch_post();
+        $name=$_POST['name'];
+        $location=$_POST['location'];
+        $number=$_POST['number'];
+        $email=$_POST['email'];
+        $address=$_POST['address'];
+        $speciality=$_POST['speciality'];
+        $education=$_POST['education'];
+        $experience=$_POST['experience'];
+        $password=$_POST['password'];
         $errors = [];
         if (empty($name)) {
             array_push($errors, "name");
@@ -44,11 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $img = file_handle();
             if (empty($img)) {
                 echo
-                "
-                <script>
+                "<script>
                 alert('Please upload an image');
-                </script>
-                ";
+                </script>";
             } else {
                 prepare_and_execute();
             }
@@ -68,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1 class="text-center">Lawyer Registration</h1>
 
         <label for="">Upload Photo(optional)</label>
-        <input name="file" type="file">
+        <input name="Photo" type="file">
 
         <div class="form-group">
             <label for="Fullname">Full Name</label>
@@ -100,21 +106,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="form-group">
             <label for="location">Practice Area</label>
-            <select id="location" name="location" class="form-control w-40 text-center">
+            <select id="location" name="speciality" class="form-control w-40 text-center">
                 <option disabled selected></option>
                 <?php fetch_options($conn, 'practice_area', 'practice_area') ?>
             </select>
         </div>
         <div class="form-group">
             <label for="location">Education</label>
-            <select id="location" name="location" class="form-control w-40 text-center">
+            <select id="location" name="education" class="form-control w-40 text-center">
                 <option disabled selected></option>
                 <?php fetch_options($conn, 'education', 'education'); ?>
             </select>
         </div>
         <div class="form-group">
             <label for="location">Experience</label>
-            <select id="location" name="location" class="form-control w-40 text-center">
+            <select id="location" name="experience" class="form-control w-40 text-center">
                 <option disabled selected></option>
                 <?php fetch_options($conn, 'experience', 'experience'); ?>
             </select>
