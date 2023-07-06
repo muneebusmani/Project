@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 ob_start();
+
 //This checks if mod_rewrite is enabled
 if (!in_array('mod_rewrite', apache_get_modules())) {
     echo "mod_rewrite is not enabled on this server";
@@ -88,34 +89,41 @@ $file = ($router === '' || $router === 'home' || $router === 'index') ? $home : 
 //These are routes defined, for preventing unauthorized access  
 $route=
 [
-''                      ,
-'home.php?'             ,
-'index.php?'            ,
-'default.php?'          ,
-'main.php?'             ,
-'about.php?'            ,
-'contact.php?'          ,
-'service.php?'          ,
-'team.php?'             ,
+''                                              ,
+'home.php?'                                     ,
+'index.php?'                                    ,
+'default.php?'                                  ,
+'main.php?'                                     ,
+'about.php?'                                    ,
+'contact.php?'                                  ,
+'service.php?'                                  ,
+'team.php?'                                     ,
 
-'admin_view.php?'       ,
-'admin_update.php?'     ,
-'admin_delete.php?'     ,
-'lawyer_create.php?'    ,
+'admin_view.php?'                               ,
+'admin_update.php?'                             ,
+'admin_delete.php?'                             ,
+'lawyer_create.php?'                            ,
+'search.php?'                                   ,
 
-'admin_view'            ,
-'admin_update'          ,
-'admin_delete'          ,
-'lawyer_create'         ,
+'admin_view'                                    ,
+'admin_update'                                  ,
+'admin_delete'                                  ,
+'lawyer_create'                                 ,
+'search'                                        ,
+'lawyers'                                       ,
+'admin_add_location'                            ,
+'admin_add_practice_areas'                      ,
+'admin_add_education'                           ,
+'admin_add_experience'                           ,
 
-'home'                  ,
-'index'                 ,
-'default'               ,
-'main'                  ,
-'about'                 ,
-'contact'               ,
-'service'               ,
-'team'                  ,
+'home'                                          ,
+'index'                                         ,
+'default'                                       ,
+'main'                                          ,
+'about'                                         ,
+'contact'                                       ,
+'service'                                       ,
+'team'                                          ,
 'admin'                 
 ];
 

@@ -40,8 +40,12 @@ $uri = get_uri();
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <!-- Dynamic Nav highlighting Starts-->
-                        <a href="admin_view" class="nav-item nav-link active">Admin</a>
-                        <a href="home" class="nav-item nav-link active">Home</a>
+                        <a href="home" class="nav-item nav-link">Home</a>
+                        <a href="admin_view" class="nav-item nav-link <?php if ($uri === 'admin_view') {echo 'active';} ?>">Admin</a>
+                        <a href="admin_add_location" class="nav-item nav-link <?php if ($uri === 'admin_add_location') {echo 'active';} ?>">Add location</a>
+                        <a href="admin_add_education" class="nav-item nav-link <?php if ($uri === 'admin_add_education') {echo 'active';} ?>">Add education</a>
+                        <a href="admin_add_experience" class="nav-item nav-link <?php if ($uri === 'admin_add_experience') {echo 'active';} ?>">Add experience</a>
+                        <a href="admin_add_practice_areas" class="nav-item nav-link <?php if ($uri === 'admin_add_practice_areas') {echo 'active';} ?>">Add practice areas</a>
                         <!-- Dynamic Nav highlighting Ends-->
                     </div>
                 </div>

@@ -69,14 +69,6 @@ $uri = get_uri();
                         <a href="about" class="nav-item nav-link <?php if ($uri === 'about') {echo 'active';} ?>">About</a>
                         <a href="service" class="nav-item nav-link <?php if ($uri === 'service') {echo 'active';} ?>">Practice</a>
                         <a href="team" class="nav-item nav-link <?php if ($uri === 'team') {    echo 'active';} ?>">Attorneys</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="#" class="dropdown-item">Menu Item 1</a>
-                                <a href="#" class="dropdown-item">Menu Item 2</a>
-                                <a href="#" class="dropdown-item">Menu Item 3</a>
-                            </div>
-                        </div>
                         <a href="contact" class="nav-item nav-link <?php if ($uri === 'contact') {echo 'active';} ?>">Contact</a>
                         <!-- Dynamic Nav highlighting Ends-->
                     </div>
