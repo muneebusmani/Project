@@ -38,56 +38,19 @@
   }
 </style>
 
-<form method="post" class="search-wrapper" action="lawyers">
+<form method="post" class="search-wrapper" action="list_lawyers">
   <div class="search-container">
     <div class="filter-container d-flex py-3">
       <select id="practice-area-filter" name="practice_area" class="filter-select w-40 text-center">
         <option disabled selected>Practice Area</option>
         <?php
-        $column = 'PracticeArea';
-        $table = 'PracticeAreas';
-
-        // Construct the SQL query
-        $sql = "SELECT $column FROM $table";
-        $stmt = $conn->prepare($sql);
-
-        // Execute the prepared statement
-        $stmt->execute();
-
-        // Get the result set
-        $result = $stmt->get_result();
-
-        // Loop through the rows
-        while ($row = $result->fetch_assoc()) {
-          // Handle each row
-          $practiceArea = $row['PracticeArea'];
-          echo "<option value='$practiceArea'>$practiceArea</option>";
-        }
-        // Close the statement
-        $stmt->close();
+        fetch_options($conn,'practice_area','practice_area');
         ?>
       </select>
-      <select id="location-filter" name="location" class="filter-select w-40 text-center">
+      <select id="practice-area-filter" name="location" class="filter-select w-40 text-center">
         <option disabled selected>Location</option>
         <?php
-        $column = 'areas';
-        $table = 'area';
-
-        // Construct the SQL query
-        $sql = "SELECT $column FROM $table";
-        $stmt = $conn->prepare($sql);
-        // Execute the prepared statement
-        $stmt->execute();
-        // Get the result set
-        $result = $stmt->get_result();
-        // Loop through the rows
-        while ($row = $result->fetch_assoc()) {
-          // Handle each row
-          $area = $row['areas'];
-          echo "<option value='$area'>$area</option>";
-        }
-        // Close the statement
-        $stmt->close();
+        fetch_options($conn,'location','location');
         ?>
       </select>
     </div>
@@ -95,3 +58,4 @@
   </div>
   <hr>
 </form>
+<?php

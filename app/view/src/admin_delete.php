@@ -20,7 +20,7 @@ $row=$result->fetch_assoc();
 $photo=$row['Photo'];
 
 if (file_exists($photo)) {
-    echo "Delete " (unlink($photo) ? "Yes" : "No");
+    echo "Delete ".(unlink($photo) ? "Yes" : "No");
 }
 $stmt->close();
 $sql=$stmt='';

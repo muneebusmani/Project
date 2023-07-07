@@ -114,7 +114,8 @@ $route=
 'admin_add_location'                            ,
 'admin_add_practice_areas'                      ,
 'admin_add_education'                           ,
-'admin_add_experience'                           ,
+'admin_add_experience'                          ,
+'list_lawyers'                                  ,
 
 'home'                                          ,
 'index'                                         ,

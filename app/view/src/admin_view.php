@@ -12,6 +12,7 @@
       <th scope="col">ID</th>
       <th scope="col">Photo</th>
       <th scope="col">FullName</th>
+      <th scope="col">Location</th>
       <th scope="col">Email</th>
       <th scope="col">Phone</th>
       <th scope="col">Residential Address</th>
@@ -28,6 +29,7 @@
         $ID=$rows['ID'];
         $Photo=$rows['Photo'];
         $name=$rows['name'];
+        $Location=$rows['location'];
         $number=$rows['number'];
         $email=$rows['email'];
         $address=$rows['address'];
@@ -41,6 +43,7 @@
         <td scope='col'>$ID</td>
         <td scope='col'><img src='$Photo' alt='$name' width='50px' height='50px' ></td>
         <td scope='col'>$name</td>
+        <td scope='col'>$Location</td>
         <td scope='col'>$email</td>
         <td scope='col'>$number</td>
         <td scope='col'>$address</td>
