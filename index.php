@@ -12,7 +12,14 @@ if (!in_array('mod_rewrite', apache_get_modules())) {
 $autoloader = 'app/view/src/autoload_func.php';
 require($autoloader);
 autoloadFunctions();
+require('app/controller/adminController.php');
+require('app/controller/userController.php');
+require('app/controller/lawyerController.php');
+$admin=new admin();
+$lawyer=new lawyer();
+$user=new user();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php

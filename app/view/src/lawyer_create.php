@@ -1,6 +1,7 @@
 <?php
 $name = $number = $email = $address = $speciality = $education = $experience = $password = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $lawyer=new lawyer();
     if (isset($_POST['submit'])) {
         $name=$_POST['name'];
         $location=$_POST['location'];
