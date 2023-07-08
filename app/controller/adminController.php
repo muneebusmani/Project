@@ -3,7 +3,7 @@ class admin
 {
 
 
-    private function createLawyersDirectory()
+    public function createLawyersDirectory()
     {
         $dir =
             $GLOBALS['doc_root'] .
@@ -21,16 +21,16 @@ class admin
      Windows :   C:/xampp/htdocs/Project/uploads/lawyers/
      
     /*************************************************************************************************** 
-         * Inside the private function, it checks if the directory specified by $dir already exists using the is_dir() private function.
+         * Inside the public function, it checks if the directory specified by $dir already exists using the is_dir() public function.
           If the directory doesn't exist, it proceeds to the next step.
     
-         * The mkdir() private function is then used to create the directory.
+         * The mkdir() public function is then used to create the directory.
          * The directory path is specified by $dir, and the permissions for the directory are set to 0777.
          * The 0777 permission value allows full read, write, and execute permissions for the directory.
-         * The true parameter passed as the third argument ensures that the private function creates any necessary parent directories
+         * The true parameter passed as the third argument ensures that the public function creates any necessary parent directories
           along with the specified directory.
     
-         * If the directory creation is successful, the private function completes its execution.
+         * If the directory creation is successful, the public function completes its execution.
          * If the directory already exists, it doesn't attempt to create it again.
          * In the commented-out code line, it was meant to echo a message indicating that the directory already exists,
          * but it is currently commented out.
@@ -40,7 +40,7 @@ class admin
 
 
 
-    private function create_options(mysqli $conn, string $options)
+    public function create_options(mysqli $conn, string $options)
     {
         echo
         "
@@ -84,7 +84,7 @@ class admin
     }
 
 
-    private function deleteLawyersDirectory()
+    public function deleteLawyersDirectory()
     {
         $directory = $_SERVER['DOCUMENT_ROOT'] . '/uploads/lawyers';
 
@@ -102,7 +102,7 @@ class admin
     }
 
 
-    private function fetch_options_adv(mysqli $conn, string $column, string $table, string $selectedValue)
+    public function fetch_options_adv(mysqli $conn, string $column, string $table, string $selectedValue)
     {
 
 
@@ -123,7 +123,7 @@ class admin
     }
 
 
-    private function load_header_a()
+    public function load_header_a()
     {
         $header = "app/view/templates/header_a.inc.php";
         require_once($header);
