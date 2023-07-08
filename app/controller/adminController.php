@@ -1,8 +1,6 @@
 <?php
 class admin
 {
-
-
     public function createLawyersDirectory()
     {
         $dir =

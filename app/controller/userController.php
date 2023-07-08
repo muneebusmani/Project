@@ -2,7 +2,7 @@
 
 class user
 {
-    private function inc_css()
+    public function inc_css()
     {
         $cssDir = 'app/view/assets/css/';
         $css = glob($cssDir . '*.css');
@@ -13,7 +13,7 @@ class user
 
 
 
-    private function inc_db()
+    public function inc_db()
     {
         $host = 'localhost';
         $username = 'root';
@@ -24,13 +24,13 @@ class user
     }
 
 
-    private function inc_favicon()
+    public function inc_favicon()
     {
         echo '<link href="app/view/assets/img/about.jpg" rel="icon">';
     }
 
 
-    private function fetch_lawyers($conn, $practiceAreaFilter, $locationFilter): void
+    public function fetch_lawyers($conn, $practiceAreaFilter, $locationFilter): void
     {
         $sql = "SELECT * FROM lawyers WHERE speciality = ? AND location = ?";
         $stmt = $conn->prepare($sql);
@@ -55,7 +55,7 @@ class user
     }
 
 
-    private function fetch_options(mysqli $conn, string $column, string $table)
+    public function fetch_options(mysqli $conn, string $column, string $table)
     {
         // Construct the SQL query
         $sql = "SELECT $column FROM $table";
@@ -67,7 +67,7 @@ class user
     }
 
 
-    private function fetch_post()
+    public function fetch_post()
     {
         global $name, $number, $email, $address, $speciality, $education, $experience, $password;
         $name = $_POST['name'];
@@ -81,31 +81,31 @@ class user
     }
 
 
-    private function load_footer()
+    public function load_footer()
     {
         $footer = "app/view/templates/footer.inc.php";
         require_once($footer);
     }
 
 
-    private function load_header()
+    public function load_header()
     {
         $header = "app/view/templates/header.inc.php";
         require_once($header);
     }
 
 
-    private function load_head()
+    public function load_head()
     {
         $head = "app/view/templates/head.inc.php";
         require_once($head);
     }
 
 
-    private function inc_globals()
+    public function inc_globals()
     {
         /*************************************************************************************************** 
-         * This private function is created to just create and include the superglobals into index file
+         * This public function is created to just create and include the superglobals into index file
          ****************************************************************************************************/
 
         //Document root from which is renamed to localhost
@@ -122,7 +122,7 @@ class user
         //This connects to the database
         $GLOBALS['conn'] = inc_db();
 
-        //This private function will fetch, sanitize, and then output the URI
+        //This public function will fetch, sanitize, and then output the URI
         $GLOBALS['router'] = get_uri();
 
         //This is the directory which contains all pages
@@ -134,9 +134,9 @@ class user
 
 
     /*
-This private function automatically loads all of the js files present inside js folder
+This public function automatically loads all of the js files present inside js folder
 */
-    private function inc_js()
+    public function inc_js()
     {
         $js_dir = 'app/view/assets/js/';
         $js_files = glob($js_dir . '*.js');
@@ -148,7 +148,7 @@ This private function automatically loads all of the js files present inside js 
     }
 
 
-    private function lawyers($row)
+    public function lawyers($row)
     {
         $Pic = $row['Photo'] ?? '';
         $lawyerName = $row['name'] ?? '';
@@ -192,7 +192,7 @@ This private function automatically loads all of the js files present inside js 
     }
 
 
-    private function query_check()
+    public function query_check()
     {
 
         global $router, $ext, $dir;
@@ -209,7 +209,7 @@ This private function automatically loads all of the js files present inside js 
     }
 
 
-    private function get_uri()
+    public function get_uri()
     {
         $request = $_SERVER['REQUEST_URI'];
         $request = str_replace($GLOBALS['project_root'], '', $request);
@@ -218,7 +218,7 @@ This private function automatically loads all of the js files present inside js 
     /*
 ***********************************************************************************************************************************************************
  
- *  This private function removes the project root folder /Project/ from the requested uri for easy process and returns the cleaned URI in output
+ *  This public function removes the project root folder /Project/ from the requested uri for easy process and returns the cleaned URI in output
  
 ***********************************************************************************************************************************************************
 */

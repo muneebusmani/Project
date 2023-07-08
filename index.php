@@ -12,11 +12,11 @@ if (!in_array('mod_rewrite', apache_get_modules())) {
 $autoloader = 'app/view/src/autoload_func.php';
 require($autoloader);
 autoloadFunctions();
-require('app/controller/adminController.php');
-require('app/controller/userController.php');
-require('app/controller/lawyerController.php');
+
+include('app/controller/adminController.php');
+include('app/controller/userController.php');
+include('app/controller/lawyerController.php');
 $admin=new admin();
-$lawyer=new lawyer();
 $user=new user();
 ?>
 
@@ -60,7 +60,7 @@ load_head();?>
 
 
 // Code For Path which needs to be created if doesnt exist
-createLawyersDirectory();
+$admin->createLawyersDirectory();
 
 //Here are some concatenations
 $ext = '.php';
@@ -144,10 +144,10 @@ if (file_exists($file) && isset($routes[$router])) {
         Otherwise, it will render the full header, footer, etc.
         */
         if (preg_match('/admin\w*/', $file)) {
-            load_header_a();
+            $admin->load_header_a();
             require $file;
         } elseif (preg_match('/lawyer\w*/', $file)) {
-            load_header_a();
+            $admin->load_header_a();
             require $file;
         }
         else {

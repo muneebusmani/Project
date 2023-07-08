@@ -362,9 +362,6 @@
         </div>
     </div>
     <!-- Testimonial End -->
-    <?php
-    load_footer();
-    ?>
 </body>
 
 </html>

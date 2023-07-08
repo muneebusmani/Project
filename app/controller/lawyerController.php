@@ -2,7 +2,7 @@
 
 class lawyer
 {
-    private function bulk_sanitize($name, $number, $email, $address, $speciality, $education, $experience, $password)
+    public function bulk_sanitize($name, $number, $email, $address, $speciality, $education, $experience, $password)
     {
         $name       = (!empty($name)) ? sanitize($name) : 'Empty';
         $number     = (!empty($number)) ? sanitize($number) : 'Empty';
@@ -15,7 +15,7 @@ class lawyer
     }
 
 
-    private function file_handle()
+    public function file_handle()
     {
         if (isset($_FILES['Photo']) && $_FILES['Photo']['error'] === 0) {
             // Maximum file size (in bytes)
@@ -68,7 +68,7 @@ class lawyer
 
 
 
-    private function handle_err(array $values)
+    public function handle_err(array $values)
     {
         $errors = [];
         foreach ($values as $key => $value) {
@@ -93,7 +93,7 @@ class lawyer
     }
 
 
-    private function prepare_and_execute($conn, $img, $name, $location, $number, $email, $address, $speciality, $education, $experience, $password)
+    public function prepare_and_execute($conn, $img, $name, $location, $number, $email, $address, $speciality, $education, $experience, $password)
     {
         // Prepare the SQL statement
         $sql = "INSERT INTO lawyers (`Photo` ,`name`, `location`, `number`, `email`, `address` , `speciality`, `education` , `experience` , `password`) 
@@ -116,7 +116,7 @@ class lawyer
     }
 
 
-    private function sanitize($data)
+    public function sanitize($data)
     {
         global $conn;
 
@@ -140,6 +140,6 @@ class lawyer
 
 
     /*
-This private function automatically loads all of the CSS files present inside the css folder
+This public function automatically loads all of the CSS files present inside the css folder
 */
 }
