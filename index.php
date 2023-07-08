@@ -36,10 +36,10 @@ $GLOBALS['lawyers_img']='uploads/lawyers';
 
 
 //This connects to the database
-$GLOBALS['conn']=inc_db();
+$GLOBALS['conn']=$user->inc_db();
 
 //This function will fetch, sanitize, and then output the URI
-$GLOBALS['router'] = get_uri();
+$GLOBALS['router'] = $user->get_uri();
 
 //This is the directory which contains all pages
 $GLOBALS['dir'] = 'app/view/src/';
@@ -48,7 +48,7 @@ $GLOBALS['dir'] = 'app/view/src/';
 $GLOBALS['err_dir'] = 'app/view/src/404.php';
 
 ($router === 'admin') ? header('location:app/view/src/admin/'):null;
-load_head();?>
+$user->load_head();?>
 <style>
 
 </style>
@@ -68,7 +68,7 @@ $home = $dir . 'home' . $ext;
 $normalUri = $dir . $router . $ext;
 
 
-$normal = (strpos($router, '?')) ? query_check() : $normalUri;
+$normal = (strpos($router, '?')) ? $user->query_check() : $normalUri;
 
 
 // Extract and remove the query string from the current URI
@@ -151,9 +151,9 @@ if (file_exists($file) && isset($routes[$router])) {
             require $file;
         }
         else {
-            load_header();
+            $user->load_header();
             require $file;
-            load_footer();
+            $user->load_footer();
         }
 } else {
     require $err_dir;
@@ -177,7 +177,7 @@ if (file_exists($file) && isset($routes[$router])) {
 
 <!-- Custom JS-->
 <?php
-inc_js();
+$user->inc_js();
 if($router = 'contact'){
     echo 
     '
