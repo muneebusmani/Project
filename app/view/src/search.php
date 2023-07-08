@@ -38,7 +38,7 @@
   }
 </style>
 
-<form method="post" class="search-wrapper" action="list_lawyers">
+<form method="post" class="search-wrapper" action="search_output">
   <div class="search-container">
     <div class="filter-container d-flex py-3">
       <select id="practice-area-filter" name="practice_area" class="filter-select w-40 text-center">
@@ -59,3 +59,13 @@
   <hr>
 </form>
 <?php
+if (isset($_GET['lawyers'])) {
+  echo "
+  <script>
+      alert('No Lawyers Found Based on Current Criteria');
+      window.history.replaceState({}, document.title, window.location.pathname);
+  </script>
+  ";
+  unset($_GET['lawyers']);
+}
+

@@ -104,6 +104,7 @@ $route=
 'admin_delete.php?'                             ,
 'lawyer_create.php?'                            ,
 'search.php?'                                   ,
+'search_output.php?'                             ,
 
 'admin_view'                                    ,
 'admin_update'                                  ,
@@ -115,7 +116,7 @@ $route=
 'admin_add_practice_areas'                      ,
 'admin_add_education'                           ,
 'admin_add_experience'                          ,
-'list_lawyers'                                  ,
+'search_output'                                  ,
 
 'home'                                          ,
 'index'                                         ,
@@ -131,7 +132,6 @@ $route=
 $routes=array_fill_keys($route,'1');
 // This will check if the file processed in $file variable exists, if it exists it will include that file, if not then it will include the error 404 page
 if (file_exists($file) && isset($routes[$router])) {
-    if (preg_match('/(admin\w*|lawyer\w*)/', $file)) {
         /*
         This will check if the URI request contains the keyword 'admin' or 'lawyer', then it won't render header and footer.
         Otherwise, it will render the full header, footer, etc.
@@ -143,11 +143,11 @@ if (file_exists($file) && isset($routes[$router])) {
             load_header_a();
             require $file;
         }
-    } else {
-        load_header();
-        require $file;
-        load_footer();
-    }
+        else {
+            load_header();
+            require $file;
+            load_footer();
+        }
 } else {
     require $err_dir;
 }

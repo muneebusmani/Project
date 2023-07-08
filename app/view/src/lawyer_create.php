@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $err_msg = "<script>alert('$errorMessage');</script>";
             echo $err_msg;
         } else {
-            bulk_sanitize();
+            bulk_sanitize($name,$number,$email,$address,$speciality,$education,$experience,$password);
             $img = file_handle();
             if (empty($img)) {
                 echo
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 alert('Please upload an image');
                 </script>";
             } else {
-                prepare_and_execute();
+                prepare_and_execute($conn ,$img , $name, $location, $number, $email, $address, $speciality, $education, $experience, $password);
             }
         }
     }

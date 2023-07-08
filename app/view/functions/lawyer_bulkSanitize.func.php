@@ -1,8 +1,5 @@
 <?php
-function bulk_sanitize(){
-    
-    global $name,$number,$email,$address,$speciality,$education,$experience,$password;
-
+function bulk_sanitize($name,$number,$email,$address,$speciality,$education,$experience,$password){
     $name       =(!empty($name))? sanitize($name) : 'Empty';
     $number     =(!empty($number))? sanitize($number) : 'Empty';
     $email      =(!empty($email))? sanitize($email) : 'Empty';

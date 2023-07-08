@@ -70,6 +70,7 @@ $uri = get_uri();
                         <a href="service" class="nav-item nav-link <?php if ($uri === 'service') {echo 'active';} ?>">Practice</a>
                         <a href="team" class="nav-item nav-link <?php if ($uri === 'team') {    echo 'active';} ?>">Attorneys</a>
                         <a href="contact" class="nav-item nav-link <?php if ($uri === 'contact') {echo 'active';} ?>">Contact</a>
+                        <a href="search" class="nav-item nav-link <?php if ($uri === 'search') {echo 'active';} ?>">search</a>
                         <!-- Dynamic Nav highlighting Ends-->
                     </div>
                     <a href="admin/" class="btn btn-primary d-none d-lg-block">Get A Quote</a>

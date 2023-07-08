@@ -1,9 +1,5 @@
 <?php
-function prepare_and_execute(){
-    try{
-        global $conn ,$img , $name, $location, $number, $email, $address, $speciality, $education, $experience, $password;
-        $conn=inc_db();
-
+function prepare_and_execute($conn ,$img , $name, $location, $number, $email, $address, $speciality, $education, $experience, $password){
         // Prepare the SQL statement
         $sql = "INSERT INTO lawyers (`Photo` ,`name`, `location`, `number`, `email`, `address` , `speciality`, `education` , `experience` , `password`) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -22,10 +18,6 @@ function prepare_and_execute(){
         } else {
             echo "Error: " . mysqli_error($conn);
         }        
-        }
-        catch(Exception $e){
-            echo $e->getCode();
-        }
-    }
+}
 
 
