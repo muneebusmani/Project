@@ -8,11 +8,9 @@ user::inc_admin();
 user::inc_lawyer();
 
 
+
 #This checks if mod_rewrite is enabled
 user::check_mod_rewrite();
-
-
-user::start();
 
 $GLOBALS['doc_root']     = user::host_root();
 $GLOBALS['conn']         = user::inc_db();
@@ -26,17 +24,14 @@ if($router === 'admin') {
     header('location:app/view/src/admin/index.php');
 }
 
-#These are routes defined, for preventing unauthorized access
-$route=
-array_merge(
-    user::routes(),
-    admin::routes(),
-    lawyer::routes()
-);
-
-user::start_body();
-user::load_head();
 admin::createLawyersDirectory();
+
+#These are routes defined, for preventing unauthorized access
+$route=array_merge(user::routes(),admin::routes(),lawyer::routes());
+
+user::start();//HTML start
+user::load_head();//HTML Head start
+user::start_body();//HTML Body start
 
 //Here are some concatenations
 $ext = '.php';
