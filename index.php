@@ -2,88 +2,46 @@
 declare(strict_types=1);
 ob_start();
 
-//This checks if mod_rewrite is enabled
-if (!in_array('mod_rewrite', apache_get_modules())) {
-    echo "mod_rewrite is not enabled on this server";
-};
+#This Loads Controllers
 require('app/controller/userController.php');
 user::inc_admin();
 user::inc_lawyer();
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<?php
-$GLOBALS['doc_root'] = $_SERVER['DOCUMENT_ROOT'];
-$GLOBALS['project_root'] = '/Project/';
-$GLOBALS['lawyers_img']='uploads/lawyers';
-$GLOBALS['conn']=user::inc_db();
-$GLOBALS['router'] = user::get_uri();
-$GLOBALS['dir'] = 'app/view/src/';
-$GLOBALS['err_dir'] = 'app/view/src/404.php';
+
+#This checks if mod_rewrite is enabled
+user::check_mod_rewrite();
+
+
+user::start();
+
+$GLOBALS['doc_root']     = user::host_root();
+$GLOBALS['conn']         = user::inc_db();
+$GLOBALS['router']       = user::get_uri($_SERVER['REQUEST_URI']);
+$GLOBALS['project_root'] = user::project_root();
+$GLOBALS['lawyers_img']  = user::lawyers_img();
+$GLOBALS['dir']          = user::src();
+$GLOBALS['err_dir']      = user::err();
 
 if($router === 'admin') { 
     header('location:app/view/src/admin/index.php');
 }
 
-//These are routes defined, for preventing unauthorized access  
+#These are routes defined, for preventing unauthorized access
 $route=
-[
-''                                              ,
-'home.php?'                                     ,
-'index.php?'                                    ,
-'default.php?'                                  ,
-'main.php?'                                     ,
-'about.php?'                                    ,
-'contact.php?'                                  ,
-'service.php?'                                  ,
-'team.php?'                                     ,
+array_merge(
+    user::routes(),
+    admin::routes(),
+    lawyer::routes()
+);
 
-'admin_view.php?'                               ,
-'admin_update.php?'                             ,
-'admin_delete.php?'                             ,
-'lawyer_create.php?'                            ,
-'search.php?'                                   ,
-'search_output.php?'                             ,
-
-'admin_view'                                    ,
-'admin_update'                                  ,
-'admin_delete'                                  ,
-'lawyer_create'                                 ,
-'search'                                        ,
-'lawyers'                                       ,
-'admin_add_location'                            ,
-'admin_add_practice_areas'                      ,
-'admin_add_education'                           ,
-'admin_add_experience'                          ,
-'search_output'                                  ,
-
-'home'                                          ,
-'index'                                         ,
-'default'                                       ,
-'main'                                          ,
-'about'                                         ,
-'contact'                                       ,
-'service'                                       ,
-'team'                                          ,
-'admin'                 
-];
-?>
-<style>
-
-</style>
-
-<body>
-<?php
+user::start_body();
 user::load_head();
 admin::createLawyersDirectory();
-
 
 //Here are some concatenations
 $ext = '.php';
 $home = $dir . 'home' . $ext;
 $normalUri = $dir . $router . $ext;
-
 
 $normal = (strpos($router, '?')) ? user::query_check() : $normalUri;
 
@@ -111,20 +69,19 @@ $file = ($router === '' || $router === 'home' || $router === 'index') ? $home : 
 
 
 
-
 $routes=array_fill_keys($route,'1');
 // This will check if the file processed in $file variable exists, if it exists it will include that file, if not then it will include the error 404 page
-if (file_exists($file) && isset($routes[$router])) {
+if (isset($routes[$router])) {
     
         /*
         This will check if the URI request contains the keyword 'admin' or 'lawyer', then it won't render header and footer.
         Otherwise, it will render the full header, footer, etc.
         */
         if (preg_match('/admin\w*/', $file)) {
-            admin::load_header_a();
+            admin::load_header();
             require $file;
         } elseif (preg_match('/lawyer\w*/', $file)) {
-            admin::load_header_a();
+            admin::load_header();
             require $file;
         }
         else {
@@ -135,38 +92,24 @@ if (file_exists($file) && isset($routes[$router])) {
 } else {
     require $err_dir;
 }
-?>
+
+#Frontend JavaScript Libraries For Carousel and other minor UI components
+user::inc_libs();
 
 
-<!-- Frontend JavaScript Libraries For Carousel and other minor UI components -->
-<script src="app/view/assets/lib/jquery/jquery.min.js"></script>
-<script src="app/view/assets/lib/bootstrapbundlejs/bootstrap.bundle.min.js"></script>
-<script src="app/view/assets/lib/easing/easing.min.js"></script>
-<script src="app/view/assets/lib/waypoints/waypoints.min.js"></script>
-<script src="app/view/assets/lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="app/view/assets/lib/tempusdominus/js/moment.min.js"></script>
-<script src="app/view/assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
-<script src="app/view/assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+#This Loads Dark mode api
+user::inc_darkreader();
 
-<!-- Dark mode Api -->
-<script src="app/view/assets/lib/darkreader/darkreader.min.js"></script>
-<script src="app/view/assets/lib/darkreader/darkreader.config.js"></script>
 
-<!-- Custom JS-->
-<?php
+#This Method Loads js which is responsible for responsiveness of this web app
 user::inc_js();
-if($router = 'contact'){
-    echo 
-    '
-    <!-- Contact Javascript File -->
-    <script src="app/view/src/mail/jqBootstrapValidation.min.js"></script>
-    <script src="app/view/src/mail/contact.js"></script>
-    '
-    ;
+
+#This Loads Mailer
+if ($router === 'contact') {
+user::inc_mailer();
 }
-?>
-</body>
-</html>
-<?php
+user::close_body();
+user::close_html();
+
+
 ob_end_flush();
-?>

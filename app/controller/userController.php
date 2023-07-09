@@ -109,9 +109,8 @@ class user
          ****************************************************************************************************/
         foreach ($array as $key => $value) {
             $GLOBALS[$key] = $value;
-
         }
-}
+    }
 
 
     /*
@@ -190,10 +189,9 @@ This public static function automatically loads all of the js files present insi
     }
 
 
-    public static function get_uri()
+    public static function get_uri($request)
     {
-        $request = $_SERVER['REQUEST_URI'];
-        $request = str_replace($GLOBALS['project_root'], '', $request);
+        $request = str_replace(user::project_root(), '', $request);
         return $request;
     }
     /*
@@ -203,10 +201,113 @@ This public static function automatically loads all of the js files present insi
  
 ***********************************************************************************************************************************************************
 */
-public static function inc_admin(){
-    require('app/controller/adminController.php');
-}
-public static function inc_lawyer(){
-    require('app/controller/lawyerController.php');
-}
+    public static function inc_admin()
+    {
+        require('app/controller/adminController.php');
+    }
+    public static function inc_lawyer()
+    {
+        require('app/controller/lawyerController.php');
+    }
+    public static function inc_libs()
+    {
+        echo '
+        <script src="app/view/assets/lib/jquery/jquery.min.js"></script>
+        <script src="app/view/assets/lib/bootstrapbundlejs/bootstrap.bundle.min.js"></script>
+        <script src="app/view/assets/lib/easing/easing.min.js"></script>
+        <script src="app/view/assets/lib/waypoints/waypoints.min.js"></script>
+        <script src="app/view/assets/lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="app/view/assets/lib/tempusdominus/js/moment.min.js"></script>
+        <script src="app/view/assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="app/view/assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+';
+    }
+    public static function inc_darkreader()
+    {
+        echo 
+        '
+        <script src="app/view/assets/lib/darkreader/darkreader.min.js"></script>
+        <script src="app/view/assets/lib/darkreader/darkreader.config.js"></script>
+        ';
+    }
+    public static function inc_mailer(){
+        
+        echo 
+        '
+        <!-- Contact Javascript File -->
+        <script src="app/view/src/mail/jqBootstrapValidation.min.js"></script>
+        <script src="app/view/src/mail/contact.js"></script>
+            '
+            ;
+        }
+
+    public static function close_body(){
+        echo '</body>';
+    }
+    public static function close_html(){
+        echo '</html>';
+    }
+    public static function check_mod_rewrite(){
+        if (!in_array('mod_rewrite', apache_get_modules())) {
+            echo "mod_rewrite is not enabled on this server";
+            exit;
+        };
+    }
+    public static function start(){
+        echo
+        '
+        <!DOCTYPE html>
+        <html lang="en">
+        ';
+    }
+    public static function start_body(){
+        echo 
+        '<body>';
+    }
+    public static function project_root(){
+        return '/Project/';
+    }
+    public static function lawyers_img(){
+        return 'uploads/lawyers';
+    }
+    public static function src(){
+        return 'app/view/src/';
+    }
+    public static function err(){
+        return 'app/view/src/404.php';
+    }
+    public static function host_root(){
+        return $_SERVER['DOCUMENT_ROOT'];
+    }
+    public static function routes(){
+        return array(
+            #Public Pages
+            ''                                              ,
+            'home.php?'                                     ,
+            'index.php?'                                    ,
+            'default.php?'                                  ,
+            'main.php?'                                     ,
+            'about.php?'                                    ,
+            'contact.php?'                                  ,
+            'service.php?'                                  ,
+            'team.php?'                                     ,
+            'user_reg.php?'                                 ,
+            'search_output.php?'                            ,
+            'search.php?'                                   ,
+            'home'                                          ,
+            'index'                                         ,
+            'default'                                       ,
+            'main'                                          ,
+            'about'                                         ,
+            'contact'                                       ,
+            'service'                                       ,
+            'team'                                          ,
+            'search'                                        ,
+            'search_output'                                 ,
+            'user_reg'                                      ,
+        );
+    }
+
+    
+
 }

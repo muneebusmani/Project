@@ -1,46 +1,24 @@
 <?php
 $name = $number = $email = $address = $speciality = $education = $experience = $password = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $lawyer=new lawyer();
     if (isset($_POST['submit'])) {
-        $name=$_POST['name'];
-        $location=$_POST['location'];
-        $number=$_POST['number'];
-        $email=$_POST['email'];
-        $address=$_POST['address'];
-        $speciality=$_POST['speciality'];
-        $education=$_POST['education'];
-        $experience=$_POST['experience'];
-        $password=$_POST['password'];
-        $errors = [];
-        if (empty($name)) {
-            array_push($errors, "name");
-        }
-        if (empty($number)) {
-            array_push($errors, "number");
-        }
-        if (empty($email)) {
-            array_push($errors, "email");
-        }
-        if (empty($address)) {
-            array_push($errors, "address");
-        }
-        if (empty($speciality)) {
-            array_push($errors, "speciality");
-        }
-        if (empty($education)) {
-            array_push($errors, "education");
-        }
-        if (empty($experience)) {
-            array_push($errors, "experience");
-        }
-        if (empty($password)) {
-            array_push($errors, "password");
-        }
-        if (!empty($errors)) {
+        $name       =&$_POST['name'];
+        $location   =&$_POST['location'];
+        $number     =&$_POST['number'];
+        $email      =&$_POST['email'];
+        $address    =&$_POST['address'];
+        $speciality =&$_POST['speciality'];
+        $education  =&$_POST['education'];
+        $experience =&$_POST['experience'];
+        $password   =&$_POST['password'];
+
+        $errors= [];
+        $status=lawyer::err_handle($errors);
+        
+        if ($status !== 0) {
             $errorMessage = 'Please enter your ';
-            $lastError = end($errors);
-            foreach ($errors as $error) {
+            $lastError = end($status);
+            foreach ($status as $error) {
                 $errorMessage .= $error;
                 if ($error !== $lastError) {
                     $errorMessage .= ', ';
@@ -48,16 +26,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             $err_msg = "<script>alert('$errorMessage');</script>";
             echo $err_msg;
-        } else {
-            lawyer::bulk_sanitize($name,$number,$email,$address,$speciality,$education,$experience,$password);
-            $img = lawyer::file_handle();
-            if (empty($img)) {
+        } 
+        else 
+        {
+            lawyer::bulk_sanitize();
+            $img=lawyer::file_handle();
+            if (!empty($img)) {
+                lawyer::prepare_and_execute($conn ,$img , $name, $location, $number, $email, $address, $speciality, $education, $experience, $password);
+            } else {
                 echo
                 "<script>
                 alert('Please upload an image');
                 </script>";
-            } else {
-                lawyer::prepare_and_execute($conn ,$img , $name, $location, $number, $email, $address, $speciality, $education, $experience, $password);
             }
         }
     }
@@ -71,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 </style>
 <div class="d-flex justify-content-center">
-    <form class="myform" method="POST" enctype="multipart/form-data">
+    <form class="myform" method="post" enctype="multipart/form-data">
         <h1 class="text-center">Lawyer Registration</h1>
 
         <label for="">Upload Photo(optional)</label>
@@ -132,14 +112,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="form-group form-check">
-            <input type="checkbox" onclick="toggle_password();" class="" id="Check1">
+            <input type="checkbox" onclick="toggle_passwd();" class="" id="Check1">
             <label class="form-check-label" for="Check1">Show Password</label>
         </div>
             <input name="submit" type="submit" class="btn btn-primary" value="Submit">
     </form>
 </div>
 <script>
-    function toggle_password() {
+    function toggle_passwd() {
         var passToggle = document.getElementById('password');
         passToggle.type = passToggle.type == 'password' ? 'text' : 'password';
     }

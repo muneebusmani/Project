@@ -1,5 +1,5 @@
 <?php
-$uri = user::get_uri();
+$uri = user::get_uri($_SERVER['REQUEST_URI']);
 ?>
 <!--
      This will fetch the curent request in address bar excluding hostname/websitename/localhost

@@ -2,16 +2,14 @@
 
 class lawyer
 {
-    public static function bulk_sanitize($name, $number, $email, $address, $speciality, $education, $experience, $password)
+    public static function bulk_sanitize()
     {
-        $name       = (!empty($name)) ? self::sanitize($name) : 'Empty';
-        $number     = (!empty($number)) ? self::sanitize($number) : 'Empty';
-        $email      = (!empty($email)) ? self::sanitize($email) : 'Empty';
-        $address    = (!empty($address)) ? self::sanitize($address) : 'Empty';
-        $speciality = (!empty($speciality)) ? self::sanitize($speciality) : 'Empty';
-        $education  = (!empty($education)) ? self::sanitize($education) : 'Empty';
-        $experience = (!empty($experience)) ? self::sanitize($experience) : 'Empty';
-        $password   = (!empty($password)) ? self::sanitize($password) : 'Empty';
+        foreach($_POST as $value){
+            if ($value = 'Photo') {
+                continue;
+            }
+            (!empty($value)) ? self::sanitize($value) : 'Empty';
+        }
     }
 
 
@@ -88,12 +86,12 @@ class lawyer
             $err_msg = "<script>alert('$errorMessage');</script>";
             return $err_msg;
         } else {
-            return null;
+            return 0;
         }
     }
 
 
-    public static function prepare_and_execute($conn, $img, $name, $location, $number, $email, $address, $speciality, $education, $experience, $password)
+    public static function prepare_and_execute($conn,$img,$name,$location,$number,$email,$address,$speciality,$education,$experience,$password)
     {
         // Prepare the SQL statement
         $sql = "INSERT INTO lawyers (`Photo` ,`name`, `location`, `number`, `email`, `address` , `speciality`, `education` , `experience` , `password`) 
@@ -119,27 +117,45 @@ class lawyer
     public static function sanitize($data)
     {
         global $conn;
-
+        
         // Sanitize for HTML output
         $data = htmlspecialchars($data, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-
+        
         // Sanitize for general output
         $data = filter_var($data, FILTER_SANITIZE_SPECIAL_CHARS);
-
+        
         // Strip HTML tags
         $data = strip_tags($data);
-
+        
         // Addslashes (use appropriate escaping mechanism for database queries)
         $data = addslashes($data);
-
-
+        
+        
         $data = $conn->real_escape_string($data);
-
+        
         return $data;
     }
+    public static function routes(){
+        return 
+        array
+        (
+            #Lawyers Pages
+            'lawyer_create'                                 ,
+            'lawyer_create.php?'                            ,
+        );
+    }
+    public static function err_handle($errors){
+        foreach ($_POST as $key => $value) {
+            if ($key = 'Photo') {
+                continue;
+            }
+            if (empty($value)) {
+                array_push($errors, $key);
+            }
+        }
 
+        $status = ((!empty($errors))? $errors:0);
+        return $status;
 
-    /*
-This public static function automatically loads all of the CSS files present inside the css folder
-*/
+    }
 }

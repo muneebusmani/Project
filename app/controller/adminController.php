@@ -121,9 +121,30 @@ class admin
     }
 
 
-    public static function load_header_a()
+    public static function load_header()
     {
         $header = "app/view/templates/header_a.inc.php";
         require_once($header);
     }
+    public static function routes(){
+        return             
+        array(
+        #Admin Pages
+        'admin_view.php?'                               ,
+        'admin_update.php?'                             ,
+        'admin_delete.php?'                             ,
+        'admin_add_location.php?'                       ,
+        'admin_add_practice_areas.php?'                 ,
+        'admin_add_education.php?'                      ,
+        'admin_add_experience.php?'                     ,
+        'admin_view'                                    ,
+        'admin_update'                                  ,
+        'admin_delete'                                  ,
+        'admin_add_location'                            ,
+        'admin_add_practice_areas'                      ,
+        'admin_add_education'                           ,
+        'admin_add_experience'                          ,
+        );
+    }
+
 }
