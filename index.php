@@ -6,41 +6,25 @@ ob_start();
 if (!in_array('mod_rewrite', apache_get_modules())) {
     echo "mod_rewrite is not enabled on this server";
 };
-
-
-include('app/controller/adminController.php');
-include('app/controller/userController.php');
-include('app/controller/lawyerController.php');
-$admin=new admin();
-$user=new user();
+require('app/controller/userController.php');
+user::inc_admin();
+user::inc_lawyer();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <?php
-
-//Document root from which is renamed to localhost
 $GLOBALS['doc_root'] = $_SERVER['DOCUMENT_ROOT'];
-
-//Project root aka Parent folder in which this file is place
 $GLOBALS['project_root'] = '/Project/';
-
-
-//Lawyers image registration folder
 $GLOBALS['lawyers_img']='uploads/lawyers';
-
-
-//This connects to the database
-$GLOBALS['conn']=$user->inc_db();
-
-//This function will fetch, sanitize, and then output the URI
-$GLOBALS['router'] = $user->get_uri();
-
-//This is the directory which contains all pages
+$GLOBALS['conn']=user::inc_db();
+$GLOBALS['router'] = user::get_uri();
 $GLOBALS['dir'] = 'app/view/src/';
-
-//This is the file which gets loaded if the requested file doesn't exist
 $GLOBALS['err_dir'] = 'app/view/src/404.php';
+
+if($router === 'admin') { 
+    header('location:app/view/src/admin/index.php');
+}
 
 //These are routes defined, for preventing unauthorized access  
 $route=
@@ -84,8 +68,6 @@ $route=
 'team'                                          ,
 'admin'                 
 ];
-
-$user->load_head();
 ?>
 <style>
 
@@ -93,12 +75,9 @@ $user->load_head();
 
 <body>
 <?php
+user::load_head();
+admin::createLawyersDirectory();
 
-
-
-
-// Code For Path which needs to be created if doesnt exist
-$admin->createLawyersDirectory();
 
 //Here are some concatenations
 $ext = '.php';
@@ -106,7 +85,7 @@ $home = $dir . 'home' . $ext;
 $normalUri = $dir . $router . $ext;
 
 
-$normal = (strpos($router, '?')) ? $user->query_check() : $normalUri;
+$normal = (strpos($router, '?')) ? user::query_check() : $normalUri;
 
 
 // Extract and remove the query string from the current URI
@@ -142,16 +121,16 @@ if (file_exists($file) && isset($routes[$router])) {
         Otherwise, it will render the full header, footer, etc.
         */
         if (preg_match('/admin\w*/', $file)) {
-            $admin->load_header_a();
+            admin::load_header_a();
             require $file;
         } elseif (preg_match('/lawyer\w*/', $file)) {
-            $admin->load_header_a();
+            admin::load_header_a();
             require $file;
         }
         else {
-            $user->load_header();
+            user::load_header();
             require $file;
-            $user->load_footer();
+            user::load_footer();
         }
 } else {
     require $err_dir;
@@ -175,7 +154,7 @@ if (file_exists($file) && isset($routes[$router])) {
 
 <!-- Custom JS-->
 <?php
-$user->inc_js();
+user::inc_js();
 if($router = 'contact'){
     echo 
     '
@@ -189,8 +168,5 @@ if($router = 'contact'){
 </body>
 </html>
 <?php
-if($router = 'admin') { 
-    header('location:app/view/src/admin/index.php');
-    }
 ob_end_flush();
 ?>

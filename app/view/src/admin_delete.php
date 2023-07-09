@@ -4,7 +4,7 @@ if (isset($_POST['delete'])) {
 $ID=$_SESSION['ID']= $_POST['id'];
 
 // Create a connection to the database
-$conn = $user->inc_db();
+$conn = user::inc_db();
 
 //Image deletion
 $sql = "SELECT Photo FROM lawyers WHERE ID = ?";

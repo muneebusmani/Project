@@ -44,13 +44,13 @@
       <select id="practice-area-filter" name="practice_area" class="filter-select w-40 text-center">
         <option disabled selected>Practice Area</option>
         <?php
-        $user->fetch_options($conn,'practice_area','practice_area');
+        user::fetch_options($conn,'practice_area','practice_area');
         ?>
       </select>
       <select id="practice-area-filter" name="location" class="filter-select w-40 text-center">
         <option disabled selected>Location</option>
         <?php
-        $user->fetch_options($conn,'location','location');
+        user::fetch_options($conn,'location','location');
         ?>
       </select>
     </div>

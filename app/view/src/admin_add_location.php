@@ -1,2 +1,2 @@
 <?php
-$admin->create_options($conn,'location');
+admin::create_options($conn,'location');

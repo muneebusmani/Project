@@ -1,2 +1,2 @@
 <?php
-$admin->create_options($conn,'experience');
+admin::create_options($conn,'experience');

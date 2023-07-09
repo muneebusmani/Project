@@ -2,20 +2,20 @@
 
 class lawyer
 {
-    public function bulk_sanitize($name, $number, $email, $address, $speciality, $education, $experience, $password)
+    public static function bulk_sanitize($name, $number, $email, $address, $speciality, $education, $experience, $password)
     {
-        $name       = (!empty($name)) ? sanitize($name) : 'Empty';
-        $number     = (!empty($number)) ? sanitize($number) : 'Empty';
-        $email      = (!empty($email)) ? sanitize($email) : 'Empty';
-        $address    = (!empty($address)) ? sanitize($address) : 'Empty';
-        $speciality = (!empty($speciality)) ? sanitize($speciality) : 'Empty';
-        $education  = (!empty($education)) ? sanitize($education) : 'Empty';
-        $experience = (!empty($experience)) ? sanitize($experience) : 'Empty';
-        $password   = (!empty($password)) ? sanitize($password) : 'Empty';
+        $name       = (!empty($name)) ? self::sanitize($name) : 'Empty';
+        $number     = (!empty($number)) ? self::sanitize($number) : 'Empty';
+        $email      = (!empty($email)) ? self::sanitize($email) : 'Empty';
+        $address    = (!empty($address)) ? self::sanitize($address) : 'Empty';
+        $speciality = (!empty($speciality)) ? self::sanitize($speciality) : 'Empty';
+        $education  = (!empty($education)) ? self::sanitize($education) : 'Empty';
+        $experience = (!empty($experience)) ? self::sanitize($experience) : 'Empty';
+        $password   = (!empty($password)) ? self::sanitize($password) : 'Empty';
     }
 
 
-    public function file_handle()
+    public static function file_handle()
     {
         if (isset($_FILES['Photo']) && $_FILES['Photo']['error'] === 0) {
             // Maximum file size (in bytes)
@@ -68,7 +68,7 @@ class lawyer
 
 
 
-    public function handle_err(array $values)
+    public static function handle_err(array $values)
     {
         $errors = [];
         foreach ($values as $key => $value) {
@@ -93,7 +93,7 @@ class lawyer
     }
 
 
-    public function prepare_and_execute($conn, $img, $name, $location, $number, $email, $address, $speciality, $education, $experience, $password)
+    public static function prepare_and_execute($conn, $img, $name, $location, $number, $email, $address, $speciality, $education, $experience, $password)
     {
         // Prepare the SQL statement
         $sql = "INSERT INTO lawyers (`Photo` ,`name`, `location`, `number`, `email`, `address` , `speciality`, `education` , `experience` , `password`) 
@@ -116,7 +116,7 @@ class lawyer
     }
 
 
-    public function sanitize($data)
+    public static function sanitize($data)
     {
         global $conn;
 
@@ -140,6 +140,6 @@ class lawyer
 
 
     /*
-This public function automatically loads all of the CSS files present inside the css folder
+This public static function automatically loads all of the CSS files present inside the css folder
 */
 }

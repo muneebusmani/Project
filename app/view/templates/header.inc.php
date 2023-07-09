@@ -1,5 +1,5 @@
 <?php
-$uri = get_uri();
+user::get_uri();
 ?>
 <!--
      This will fetch the curent request in address bar excluding hostname/websitename/localhost
@@ -70,10 +70,10 @@ $uri = get_uri();
                         <a href="service" class="nav-item nav-link <?php if ($uri === 'service') {echo 'active';} ?>">Practice</a>
                         <a href="team" class="nav-item nav-link <?php if ($uri === 'team') {    echo 'active';} ?>">Attorneys</a>
                         <a href="contact" class="nav-item nav-link <?php if ($uri === 'contact') {echo 'active';} ?>">Contact</a>
-                        <a href="search" class="nav-item nav-link <?php if ($uri === 'search') {echo 'active';} ?>">search</a>
+                        <a href="search" class="nav-item nav-link <?php if ($uri === 'search') {echo 'active';} ?>">Search</a>
                         <!-- Dynamic Nav highlighting Ends-->
                     </div>
-                    <a href="admin/" class="btn btn-primary d-none d-lg-block">Get A Quote</a>
+                    <a href="admin/" class="btn btn-primary d-none d-lg-block">Sign up / Sign in</a>
                     <label class="switch ml-5 mt-2">
                         <input id="toggleDarkMode" type="checkbox">
                         <span class="slider round"></span>

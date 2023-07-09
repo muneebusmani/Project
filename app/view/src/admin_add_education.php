@@ -1,2 +1,2 @@
 <?php
-$admin->create_options($conn,'education');
+admin::create_options($conn,'education');

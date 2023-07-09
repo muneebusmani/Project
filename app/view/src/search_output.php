@@ -17,6 +17,6 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $practiceAreaFilter = $_POST['practice_area'];
       $locationFilter     = $_POST['location'];
-      $user->fetch_lawyers($conn,$practiceAreaFilter,$locationFilter);
+      user::fetch_lawyers($conn,$practiceAreaFilter,$locationFilter);
     }
     ?>

@@ -49,15 +49,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $err_msg = "<script>alert('$errorMessage');</script>";
             echo $err_msg;
         } else {
-            $lawyer->bulk_sanitize($name,$number,$email,$address,$speciality,$education,$experience,$password);
-            $img = $lawyer->file_handle();
+            lawyer::bulk_sanitize($name,$number,$email,$address,$speciality,$education,$experience,$password);
+            $img = lawyer::file_handle();
             if (empty($img)) {
                 echo
                 "<script>
                 alert('Please upload an image');
                 </script>";
             } else {
-                $lawyer->prepare_and_execute($conn ,$img , $name, $location, $number, $email, $address, $speciality, $education, $experience, $password);
+                lawyer::prepare_and_execute($conn ,$img , $name, $location, $number, $email, $address, $speciality, $education, $experience, $password);
             }
         }
     }
@@ -102,28 +102,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="location">location:</label>
             <select id="location" name="location" class="form-control w-40 text-center">
                 <option disabled selected></option>
-                <?php $user->fetch_options($conn, 'location', 'location'); ?>
+                <?php user::fetch_options($conn, 'location', 'location'); ?>
             </select>
         </div>
         <div class="form-group">
             <label for="location">Practice Area</label>
             <select id="location" name="speciality" class="form-control w-40 text-center">
                 <option disabled selected></option>
-                <?php $user->fetch_options($conn, 'practice_area', 'practice_area') ?>
+                <?php user::fetch_options($conn, 'practice_area', 'practice_area') ?>
             </select>
         </div>
         <div class="form-group">
             <label for="location">Education</label>
             <select id="location" name="education" class="form-control w-40 text-center">
                 <option disabled selected></option>
-                <?php $user->fetch_options($conn, 'education', 'education'); ?>
+                <?php user::fetch_options($conn, 'education', 'education'); ?>
             </select>
         </div>
         <div class="form-group">
             <label for="location">Experience</label>
             <select id="location" name="experience" class="form-control w-40 text-center">
                 <option disabled selected></option>
-                <?php $user->fetch_options($conn, 'experience', 'experience'); ?>
+                <?php user::fetch_options($conn, 'experience', 'experience'); ?>
             </select>
         </div>
         <div class="form-group mb-4">

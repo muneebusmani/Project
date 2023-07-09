@@ -2,7 +2,7 @@
 
 class user
 {
-    public function inc_css()
+    public static function inc_css()
     {
         $cssDir = 'app/view/assets/css/';
         $css = glob($cssDir . '*.css');
@@ -13,7 +13,7 @@ class user
 
 
 
-    public function inc_db()
+    public static function inc_db()
     {
         $host = 'localhost';
         $username = 'root';
@@ -24,13 +24,13 @@ class user
     }
 
 
-    public function inc_favicon()
+    public static function inc_favicon()
     {
         echo '<link href="app/view/assets/img/about.jpg" rel="icon">';
     }
 
 
-    public function fetch_lawyers($conn, $practiceAreaFilter, $locationFilter): void
+    public static function fetch_lawyers($conn, $practiceAreaFilter, $locationFilter): void
     {
         $sql = "SELECT * FROM lawyers WHERE speciality = ? AND location = ?";
         $stmt = $conn->prepare($sql);
@@ -39,7 +39,7 @@ class user
         $result = $stmt->get_result();
         $foundLawyers = false;
         while ($row = $result->fetch_assoc()) {
-            $lawyers = lawyers($row);
+            $lawyers = self::lawyers($row);
             if ($lawyers === null) {
                 header('location:search?lawyers=null');
             } else {
@@ -55,7 +55,7 @@ class user
     }
 
 
-    public function fetch_options(mysqli $conn, string $column, string $table)
+    public static function fetch_options(mysqli $conn, string $column, string $table)
     {
         // Construct the SQL query
         $sql = "SELECT $column FROM $table";
@@ -67,7 +67,7 @@ class user
     }
 
 
-    public function fetch_post()
+    public static function fetch_post()
     {
         global $name, $number, $email, $address, $speciality, $education, $experience, $password;
         $name = $_POST['name'];
@@ -81,62 +81,43 @@ class user
     }
 
 
-    public function load_footer()
+    public static function load_footer()
     {
         $footer = "app/view/templates/footer.inc.php";
         require_once($footer);
     }
 
 
-    public function load_header()
+    public static function load_header()
     {
         $header = "app/view/templates/header.inc.php";
         require_once($header);
     }
 
 
-    public function load_head()
+    public static function load_head()
     {
         $head = "app/view/templates/head.inc.php";
         require_once($head);
     }
 
 
-    public function inc_globals()
+    public static function inc_globals($array)
     {
         /*************************************************************************************************** 
-         * This public function is created to just create and include the superglobals into index file
+         * This public static function is created to just create and include the superglobals into index file
          ****************************************************************************************************/
+        foreach ($array as $key => $value) {
+            $GLOBALS[$key] = $value;
 
-        //Document root from which is renamed to localhost
-        $GLOBALS['doc_root'] = $_SERVER['DOCUMENT_ROOT'];
-
-        //Project root aka Parent folder in which this file is place
-        $GLOBALS['project_root'] = '/Project/';
-
-
-        //Lawyers image registration folder
-        $GLOBALS['lawyers_img'] = 'uploads/lawyers';
-
-
-        //This connects to the database
-        $GLOBALS['conn'] = inc_db();
-
-        //This public function will fetch, sanitize, and then output the URI
-        $GLOBALS['router'] = get_uri();
-
-        //This is the directory which contains all pages
-        $GLOBALS['dir'] = 'app/view/src/';
-
-        //This is the file which gets loaded if the requested file doesn't exist
-        $GLOBALS['err_dir'] = 'app/view/src/404.php';
-    }
+        }
+}
 
 
     /*
-This public function automatically loads all of the js files present inside js folder
+This public static function automatically loads all of the js files present inside js folder
 */
-    public function inc_js()
+    public static function inc_js()
     {
         $js_dir = 'app/view/assets/js/';
         $js_files = glob($js_dir . '*.js');
@@ -148,7 +129,7 @@ This public function automatically loads all of the js files present inside js f
     }
 
 
-    public function lawyers($row)
+    public static function lawyers($row)
     {
         $Pic = $row['Photo'] ?? '';
         $lawyerName = $row['name'] ?? '';
@@ -192,7 +173,7 @@ This public function automatically loads all of the js files present inside js f
     }
 
 
-    public function query_check()
+    public static function query_check()
     {
 
         global $router, $ext, $dir;
@@ -209,7 +190,7 @@ This public function automatically loads all of the js files present inside js f
     }
 
 
-    public function get_uri()
+    public static function get_uri()
     {
         $request = $_SERVER['REQUEST_URI'];
         $request = str_replace($GLOBALS['project_root'], '', $request);
@@ -218,8 +199,14 @@ This public function automatically loads all of the js files present inside js f
     /*
 ***********************************************************************************************************************************************************
  
- *  This public function removes the project root folder /Project/ from the requested uri for easy process and returns the cleaned URI in output
+ *  This public static function removes the project root folder /Project/ from the requested uri for easy process and returns the cleaned URI in output
  
 ***********************************************************************************************************************************************************
 */
+public static function inc_admin(){
+    require('app/controller/adminController.php');
+}
+public static function inc_lawyer(){
+    require('app/controller/lawyerController.php');
+}
 }

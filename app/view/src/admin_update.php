@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['update'])) {
             $_SESSION['ID']= $_POST['id'];
             $ID=$_SESSION['ID'];
-            $conn1=$user->inc_db();
+            $conn1=user::inc_db();
             // Prepare the SQL statement for update
             $sql = "SELECT * FROM lawyers WHERE ID = ?";
             $stmt = $conn1->prepare($sql);
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $err_msg = "<script>alert('$errorMessage');</script>";
                 echo $err_msg;
             } else{
-                    $conn=$user->inc_db();
+                    $conn=user::inc_db();
                     // Prepare the SQL statement
                     $sql = "UPDATE lawyers SET `location` = ?, `name` = ?, `number` = ?, `email` = ?, `address` = ?, `speciality` = ?, `education` = ?, `experience` = ?, `password` = ? WHERE `ID` = ?";
                     $stmt = $conn->prepare($sql);
@@ -145,7 +145,7 @@ else{
         <?php 
         $selectedLocation = ($location ?? $Location) ?? ""; // Assign the selected value to a variable
         echo "<option value=\"$selectedLocation\" selected>$selectedLocation</option>";
-        $admin->fetch_options_adv($conn, 'location', 'location',$selectedLocation);
+        admin::fetch_options_adv($conn, 'location', 'location',$selectedLocation);
         ?>
     </select>
 </div>
@@ -155,7 +155,7 @@ else{
         <?php 
         $selectedSpeciality = ($row['speciality'] ?? ""); // Assign the selected value to a variable
         echo "<option value=\"$selectedSpeciality\" selected>$selectedSpeciality</option>";
-        $admin->fetch_options_adv($conn, 'practice_area', 'practice_area',$selectedSpeciality);
+        admin::fetch_options_adv($conn, 'practice_area', 'practice_area',$selectedSpeciality);
         ?>
     </select>
 </div>
@@ -165,7 +165,7 @@ else{
         <?php 
         $selectedEducation = ($row['education'] ?? ""); // Assign the selected value to a variable
         echo "<option value=\"$selectedEducation\" selected>$selectedEducation</option>";
-        $admin->fetch_options_adv($conn, 'education', 'education',$selectedEducation);
+        admin::fetch_options_adv($conn, 'education', 'education',$selectedEducation);
         ?>
     </select>
 </div>
@@ -175,7 +175,7 @@ else{
         <?php 
         $selectedExperience = ($row['experience'] ?? ""); // Assign the selected value to a variable
         echo "<option value=\"$selectedExperience\" selected>$selectedExperience</option>";
-        $admin->fetch_options_adv($conn, 'experience', 'experience',$selectedExperience);
+        admin::fetch_options_adv($conn, 'experience', 'experience',$selectedExperience);
         ?>
     </select>
 </div>

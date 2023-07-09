@@ -1,7 +1,7 @@
 <?php
 class admin
 {
-    public function createLawyersDirectory()
+    public static function createLawyersDirectory()
     {
         $dir =
             $GLOBALS['doc_root'] .
@@ -19,16 +19,16 @@ class admin
      Windows :   C:/xampp/htdocs/Project/uploads/lawyers/
      
     /*************************************************************************************************** 
-         * Inside the public function, it checks if the directory specified by $dir already exists using the is_dir() public function.
+         * Inside the public static function, it checks if the directory specified by $dir already exists using the is_dir() public static function.
           If the directory doesn't exist, it proceeds to the next step.
     
-         * The mkdir() public function is then used to create the directory.
+         * The mkdir() public static function is then used to create the directory.
          * The directory path is specified by $dir, and the permissions for the directory are set to 0777.
          * The 0777 permission value allows full read, write, and execute permissions for the directory.
-         * The true parameter passed as the third argument ensures that the public function creates any necessary parent directories
+         * The true parameter passed as the third argument ensures that the public static function creates any necessary parent directories
           along with the specified directory.
     
-         * If the directory creation is successful, the public function completes its execution.
+         * If the directory creation is successful, the public static function completes its execution.
          * If the directory already exists, it doesn't attempt to create it again.
          * In the commented-out code line, it was meant to echo a message indicating that the directory already exists,
          * but it is currently commented out.
@@ -38,7 +38,7 @@ class admin
 
 
 
-    public function create_options(mysqli $conn, string $options)
+    public static function create_options(mysqli $conn, string $options)
     {
         echo
         "
@@ -82,7 +82,7 @@ class admin
     }
 
 
-    public function deleteLawyersDirectory()
+    public static function deleteLawyersDirectory()
     {
         $directory = $_SERVER['DOCUMENT_ROOT'] . '/uploads/lawyers';
 
@@ -100,7 +100,7 @@ class admin
     }
 
 
-    public function fetch_options_adv(mysqli $conn, string $column, string $table, string $selectedValue)
+    public static function fetch_options_adv(mysqli $conn, string $column, string $table, string $selectedValue)
     {
 
 
@@ -121,7 +121,7 @@ class admin
     }
 
 
-    public function load_header_a()
+    public static function load_header_a()
     {
         $header = "app/view/templates/header_a.inc.php";
         require_once($header);

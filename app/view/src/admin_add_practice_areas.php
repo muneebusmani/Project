@@ -1,2 +1,2 @@
 <?php
-$admin->create_options($conn,'practice_area');
+admin::create_options($conn,'practice_area');
