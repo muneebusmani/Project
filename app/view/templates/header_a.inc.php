@@ -46,6 +46,10 @@ $uri = get_uri();
                         <a href="admin_add_education" class="nav-item nav-link <?php if ($uri === 'admin_add_education') {echo 'active';} ?>">Add education</a>
                         <a href="admin_add_experience" class="nav-item nav-link <?php if ($uri === 'admin_add_experience') {echo 'active';} ?>">Add experience</a>
                         <a href="admin_add_practice_areas" class="nav-item nav-link <?php if ($uri === 'admin_add_practice_areas') {echo 'active';} ?>">Add practice areas</a>
+                        <label class="switch ml-5 mt-2">
+                        <input id="toggleDarkMode" type="checkbox">
+                        <span class="slider round"></span>
+                        </label>
                         <!-- Dynamic Nav highlighting Ends-->
                     </div>
                 </div>
