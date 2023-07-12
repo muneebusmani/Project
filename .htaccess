@@ -1,5 +1,10 @@
-#rename this file to .htaccess instead of htaccess
 RewriteEngine on
+
+#Deny access to the "restricted" directory and its subdirectories
+RewriteRule ^admin(/.*)?$ - [F]
+RewriteRule ^lawyer(/.*)?$ - [F]
+
+#Route all other requests to index.php
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

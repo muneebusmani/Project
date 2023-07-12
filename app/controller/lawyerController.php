@@ -141,7 +141,6 @@ class lawyer
         (
             #Lawyers Pages
             'lawyer_create'                                 ,
-            'lawyer_create.php?'                            ,
         );
     }
     public static function err_handle($errors){
@@ -157,5 +156,8 @@ class lawyer
         $status = ((!empty($errors))? $errors:0);
         return $status;
 
+    }
+    public static function src(){
+        return 'lawyer/';
     }
 }

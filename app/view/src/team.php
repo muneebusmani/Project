@@ -1,4 +1,4 @@
-    <!-- Page Header Start -->
+<!-- Page Header Start -->
     <div class="container-fluid bg-page-header" style="margin-bottom: 90px;">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
@@ -25,6 +25,7 @@
                 <div class="col-12">
                     <div class="bg-primary rounded" style="height: 200px;"></div>
                     <div class="owl-carousel team-carousel position-relative" style="margin-top: -97px; padding: 0 30px;">
+
                         <div class="team-item text-center bg-white rounded overflow-hidden pt-4">
                             <h5 class="mb-2 px-4">Attorney Name</h5>
                             <p class="mb-3 px-4">Practice Area</p>
@@ -73,18 +74,29 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="team-item text-center bg-white rounded overflow-hidden pt-4">
-                            <h5 class="mb-2 px-4">Attorney Name</h5>
-                            <p class="mb-3 px-4">Practice Area</p>
-                            <div class="team-img position-relative">
-                                <img class="img-fluid" src="app/view/assets/img/team-5.jpg" alt="">
-                                <div class="team-social">
-                                    <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
+<?php
+                        $result=user::list_lawyers($conn);
+                        while ($row=$result->fetch_assoc()) {
+                            $AttorneyName=$row['name'];
+                            $PracticeArea=$row['speciality'];
+                            $Photo=$row['Photo'];
+                            echo
+                            <<<HTML
+                            <div class="team-item text-center bg-white rounded overflow-hidden pt-4">
+                                <h5 class="mb-2 px-4">$AttorneyName</h5>
+                                <p class="mb-3 px-4">$PracticeArea</p>
+                                <div class="team-img position-relative">
+                                    <img class="img-fluid" src="$Photo" alt="">
+                                    <div class="team-social">
+                                        <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            HTML;
+                        }
+?>
                     </div>
                 </div>
             </div>
@@ -101,7 +113,7 @@
                     <div class="col-lg-6 py-5">
                         <div class="rounded p-5 my-5" style="background: rgba(55, 55, 63, .7);">
                             <h1 class="text-center text-white mb-4">Get An Appointment</h1>
-                            <form>
+                            <form method="post">
                                 <div class="form-group">
                                     <input type="text" class="form-control border-0 p-4" placeholder="Your Name" required="required" />
                                 </div>
@@ -112,28 +124,28 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <div class="date" id="date" data-target-input="nearest">
-                                                <input type="text" class="form-control border-0 p-4 datetimepicker-input" placeholder="Select Date" data-target="#date" data-toggle="datetimepicker" />
+                                                <input type="text" name="date" class="form-control border-0 p-4 datetimepicker-input" placeholder="Select Date" data-target="#date" data-toggle="datetimepicker" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <div class="time" id="time" data-target-input="nearest">
-                                                <input type="text" class="form-control border-0 p-4 datetimepicker-input" placeholder="Select Time" data-target="#time" data-toggle="datetimepicker" />
+                                                <input type="text" name="time" class="form-control border-0 p-4 datetimepicker-input" placeholder="Select Time" data-target="#time" data-toggle="datetimepicker" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <select class="custom-select border-0 px-4" style="height: 47px;">
-                                        <option selected>Select A Service</option>
-                                        <option value="1">Service 1</option>
-                                        <option value="2">Service 1</option>
-                                        <option value="3">Service 1</option>
+                                    <option selected>Select A Service</option>
+                                    <?php
+                                    user::fetch_options($conn,'practice_area','practice_area');
+                                    ?>
                                     </select>
                                 </div>
                                 <div>
-                                    <button class="btn btn-primary btn-block border-0 py-3" type="submit">Get An Appointment</button>
+                                    <button class="btn btn-primary btn-block border-0 py-3" name="submit" type="submit">Get An Appointment</button>
                                 </div>
                             </form>
                         </div>
@@ -191,3 +203,11 @@
         </div>
     </div>
     <!-- Features End -->
+<?php
+if(isset($_POST['submit'])){
+    foreach ($_POST as $key => $value) {
+        $$key=$value;
+    }
+    echo $date;
+    echo $time;
+}

@@ -126,17 +126,14 @@ class admin
         $header = "app/view/templates/header_a.inc.php";
         require_once($header);
     }
+    public static function src(){
+        return 'admin/';
+    }
     public static function routes(){
         return             
         array(
         #Admin Pages
-        'admin_view.php?'                               ,
-        'admin_update.php?'                             ,
-        'admin_delete.php?'                             ,
-        'admin_add_location.php?'                       ,
-        'admin_add_practice_areas.php?'                 ,
-        'admin_add_education.php?'                      ,
-        'admin_add_experience.php?'                     ,
+        'admin_index'                                    ,
         'admin_view'                                    ,
         'admin_update'                                  ,
         'admin_delete'                                  ,
@@ -144,6 +141,7 @@ class admin
         'admin_add_practice_areas'                      ,
         'admin_add_education'                           ,
         'admin_add_experience'                          ,
+        'admin_add_custom_location'                          ,
         );
     }
 
