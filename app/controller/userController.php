@@ -44,7 +44,7 @@ class user
 
     public static function fetch_lawyers(mysqli $conn, $practiceAreaFilter, $locationFilter): void
     {
-        $sql = "SELECT * FROM lawyers WHERE speciality = ? AND location = ?";
+        $sql = "SELECT * FROM lawyers WHERE speciality = ? AND location = ? and  `status` != 'Booked' and  `status` = 'active'";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ss", $practiceAreaFilter, $locationFilter);
         $stmt->execute();
@@ -169,7 +169,7 @@ class user
     
     
     public static function search_lawyers($ID,$Pic,$lawyerName,$lawyerLocation,$lawyerPracticeArea){
-        $profile='profile?lawyer='.$ID;
+        $profile="profile?lawyer=$ID";
         return 
         <<<HTML
         <div class='wrapper' style=''>

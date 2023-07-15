@@ -2,7 +2,7 @@
 if ($_GET['lawyer'] == null) {
     header('location:search');
 }
-$lawyer_id = $_GET['lawyer'];
+$lawyer_id=$_GET['lawyer'];
 $result = user::open_profile($conn, $lawyer_id);
 $row = $result->fetch_assoc();
 foreach ($row as $key => $value) {
@@ -64,9 +64,17 @@ if (isset($_POST['submit'])) {
         $stmt = $conn->prepare("INSERT INTO appointments (name, email, number, location, lawyer_name, date, time) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sssssss", $name, $email, $number, $location, $lawyerName, $_POST['date'], $_POST['time']);
     }
-
     $stmt->execute();
     $stmt->close();
+    
+
+    $conn=user::inc_db();
+    $lawyer_status_change_query="UPDATE `lawyers` SET `Status` = 'Booked()' where `ID` = ?";
+    $stmt=$conn->prepare($lawyer_status_change_query);
+    $stmt->bind_param("i",$_GET['lawyer']);
+    $stmt->execute();
+    $stmt->close();
+
 
     // Redirect or display success message
     // ...

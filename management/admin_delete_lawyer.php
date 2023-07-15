@@ -39,7 +39,7 @@ $stmt->execute();
 
 // Check if the deletion was successful
 if ($stmt->affected_rows > 0) {
-    header('location:admin_view');
+    header('location:admin_view_lawyer');
 } else {
     echo "Failed to delete entry.";
 }

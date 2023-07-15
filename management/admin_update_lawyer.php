@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Check for successful execution
             if (mysqli_stmt_affected_rows($stmt) > 0) {
                 // echo "Record updated successfully.";
-                // header('location:admin_view');
+                // header('location:admin_view_lawyer');
             } else {
                 echo  mysqli_error($conn);
             }
@@ -101,10 +101,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Bind parameters to the prepared statement
                     $stmt->bind_param("ssissssssi",$location , $name, $number, $email, $address, $speciality, $education, $experience, $password , $id);
                     $stmt->execute();
-                    header('location:admin_view');
+                    header('location:admin_view_lawyer');
                     // Check for successful execution
                 if (mysqli_stmt_affected_rows($stmt) > 0) {
-                        header('location:admin_view');
+                        header('location:admin_view_lawyer');
                 } else {
                     echo $conn->error;
                 }
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 }
 else{
-    header('location:admin_view');
+    header('location:admin_view_lawyer');
 }
 ?>
 <style>

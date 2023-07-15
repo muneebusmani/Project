@@ -154,6 +154,7 @@ class admin
             <th scope="col">ID</th>
             <th scope="col">Photo</th>
             <th scope="col">Full Name</th>
+            <th scope="col">Status</th>
             <th scope="col">Location</th>
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
@@ -175,6 +176,7 @@ HTML;
             $ID = $rows['ID'];
             $Photo = $rows['Photo'];
             $name = $rows['name'];
+            $status = $rows['Status'];
             $Location = $rows['location'];
             $number = $rows['number'];
             $email = $rows['email'];
@@ -188,6 +190,7 @@ HTML;
                 <td>$ID</td>
                 <td><img src='$Photo' alt='$name' width='50px' height='50px'></td>
                 <td>$name</td>
+                <td>$status</td>
                 <td>$Location</td>
                 <td>$email</td>
                 <td>$number</td>
@@ -198,11 +201,11 @@ HTML;
                 <td>$password</td>
                 <td style='width: 20%;'>
                     <span>
-                        <form class='d-inline' method='POST' action='admin_update'> 
+                        <form class='d-inline' method='POST' action='admin_update_lawyer'> 
                             <input value='$ID' name='id' type='hidden'>
                             <button type='submit' name='update' class='btn btn-success' value='Update'>Update</button>
                         </form>
-                        <form class='d-inline delete-form' method='POST' action='admin_delete'>
+                        <form class='d-inline delete-form' method='POST' action='admin_delete_lawyer'>
                             <input value='$ID' name='id' type='hidden'>
                             <button type='submit' name='delete' onclick='confirmDelete_a();' class='btn btn-danger' value='Delete'>Delete</button>
                         </form>
@@ -262,7 +265,7 @@ HTML;
   }
 </style>
 <div class='wrap'>
-<a class='fas fa-window-close fa-lg float-right' style='color: #ff0000;' href='admin_view'>
+<a class='fas fa-window-close fa-lg float-right' style='color: #ff0000;' href='admin_view_lawyer'>
 </a>
 <form class='text-center py-5' method='POST'>
   <h1>Add $options</h1>
@@ -289,6 +292,56 @@ HTML;
             }
         }
     }
+    
+    public static function fetch_options(mysqli $conn, string $options)
+    {
+        $sql = "SELECT `$options` FROM `$options`";
+        $result = $conn->query($sql);
+    
+        if ($result->num_rows > 0) {
+            echo "
+            <style>
+            table {
+                width: 100%;
+                text-align: center;
+            }
+            td {
+                border: 2px solid gray;
+                padding: 1rem 2rem;
+            }
+            </style>
+            <table>
+            ";
+    
+            while ($row = $result->fetch_assoc()) {
+                $randomColor = self::generateRandomColor();
+                $textColor = self::getContrastColor($randomColor);
+                echo "<tr><td style='background-color: $randomColor; color: $textColor;'>" . $row[$options] . "</td></tr>";
+            }
+    
+            echo "</table>";
+        } else {
+            echo "No $options found.";
+        }
+    }
+    
+    private static function generateRandomColor()
+    {
+        $color = '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
+        return $color;
+    }
+    
+    private static function getContrastColor($hexColor)
+    {
+        $r = hexdec(substr($hexColor, 1, 2));
+        $g = hexdec(substr($hexColor, 3, 2));
+        $b = hexdec(substr($hexColor, 5, 2));
+    
+        $yiq = (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+        return ($yiq >= 128) ? '#000000' : '#FFFFFF';
+    }
+    
+
 
 
     public static function deleteLawyersDirectory()
@@ -342,11 +395,11 @@ HTML;
         return             
         array(
         #Admin Pages
-        'admin_index'                                    ,
-        'admin_view'                                    ,
+        'admin_dashboard'                                    ,
+        'admin_view_lawyer'                                    ,
         'admin_view_appointments'                                    ,
-        'admin_update'                                  ,
-        'admin_delete'                                  ,
+        'admin_update_lawyer'                                  ,
+        'admin_delete_lawyer'                                  ,
         'admin_delete_images'                                  ,
         'admin_delete_appointments'                                  ,
         'admin_add_location'                            ,

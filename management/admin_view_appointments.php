@@ -1,3 +1,23 @@
+<style>
+        .btn {
+        width: 5rem;
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+</style>
 <?php
 // Fetch the appointments from the database
 $query = "SELECT * FROM appointments";
@@ -16,8 +36,9 @@ if ($result->num_rows > 0) {
                     <th>Number</th>
                     <th>Location</th>
                     <th>Lawyer Name</th>
-                    <th>Date</th>
-                    <th>Time</th>
+                    <th class='text-center'>Date</th>
+                    <th class='text-center'>Time</th>
+                    <th class='text-center'>Manage</th>
                 </tr>
             </thead>
         <tbody>";
@@ -30,8 +51,12 @@ if ($result->num_rows > 0) {
         <td>{$row['number']}</td>
         <td>{$row['location']}</td>
         <td>{$row['lawyer_name']}</td>
-        <td>{$row['date']}</td>
-        <td>{$row['time']}</td>
+        <td class='text-center'>{$row['date']}</td>
+        <td class='text-center'>{$row['time']}</td>
+        <td class='text-center'>
+        <a class='btn btn-success' href='update_appointment?id={$row['id']}'>Update</a>
+        <a class='btn btn-danger' href='delete_appointment?id={$row['id']}'>Delete</a>
+        </td>
         </tr>
         "
         ;
@@ -42,6 +67,6 @@ if ($result->num_rows > 0) {
      </div>
      ";
 } else {
-    header('location:admin_view?appointments=none');
+    header('location:admin_view_lawyer?appointments=none');
 }
 ?>

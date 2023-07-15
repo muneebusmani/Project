@@ -9,7 +9,7 @@
   }
 </style>
 <div class="wrap">
-<a class='fas fa-window-close fa-lg float-right' style='color: #ff0000;' href='admin_view'></a>
+<a class='fas fa-window-close fa-lg float-right' style='color: #ff0000;' href='admin_view_lawyer'></a>
     <form method="post" class="text-center py-5">
         <h1 class="display1">
             Delete All Images

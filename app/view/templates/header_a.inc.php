@@ -14,6 +14,7 @@ $uri = user::complete_uri();
      team
      and we have done routing so our files are safe and arent accessible to anyone until we register that file in routes
  -->
+
 <style>
     .ff-poppins {
         font-family: 'Poppins', sans-serif;
@@ -83,10 +84,10 @@ $uri = user::complete_uri();
             ?>
         </a>
         <ul class="nav flex-column">
-            <button class="goBack mt-3" type="button" onclick="goBack();"><i class="fas  fa-arrow-left"></i></button>
+            <button class="goBack mt-3" type="button" onclick="goBack();"><i class="fas fa-arrow-left"></i></button>
             <br>
             <li class="nav-item">
-                <a class="nav-link" href="admin_view">
+                <a class="nav-link" href="admin_view_lawyer">
                     <i class="fas special fa-user"></i>
                     <span class="main-link">
                         Admin
@@ -94,86 +95,86 @@ $uri = user::complete_uri();
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#optionsSubMenu" data-toggle="collapse" aria-expanded="false">
+                <a class="nav-link <?php echo in_array($uri, admin::routes()) ? 'collapsed' : ''; ?>" href="#optionsSubMenu" data-toggle="collapse" aria-expanded="false">
                     <i class="fas special fa-cog"></i>
                     <span class="main-link">Options</span>
                 </a>
-                <ul class="collapse" id="optionsSubMenu">
+                <ul class="collapse <?php echo in_array($uri, admin::routes()) ? 'show' : ''; ?>" id="optionsSubMenu">
                     <li>
-                        <a class="nav-link" href="#locationSubMenu" data-toggle="collapse" aria-expanded="false">
+                        <a class="nav-link <?php echo in_array($uri, ['admin_add_location', 'admin_edit_location']) ? 'active' : ''; ?>" href="#locationSubMenu" data-toggle="collapse" aria-expanded="false">
                             <i class="fas special fa-map-marker-alt"></i>
                             <span class="main-link">Locations</span>
                         </a>
-                        <ul class="collapse" id="locationSubMenu">
-                            <li><a class="nav-link" href="admin_add_location"><i class="fas  fa-plus"></i> Add Location</a></li>
-                            <li><a class="nav-link" href="admin_edit_location"><i class="fas  fa-edit"></i> Edit Location</a></li>
+                        <ul class="collapse <?php echo in_array($uri, ['admin_add_location', 'admin_edit_location']) ? 'show' : ''; ?>" id="locationSubMenu">
+                            <li><a class="nav-link" href="admin_add_location"><i class="fas fa-plus"></i> Add Location</a></li>
+                            <li><a class="nav-link" href="admin_edit_location"><i class="fas fa-edit"></i> Edit Location</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link" href="#educationSubMenu" data-toggle="collapse" aria-expanded="false">
+                        <a class="nav-link <?php echo in_array($uri, ['admin_add_education', 'admin_edit_education']) ? 'active' : ''; ?>" href="#educationSubMenu" data-toggle="collapse" aria-expanded="false">
                             <i class="fas special fa-graduation-cap"></i>
                             <span class="main-link">Education</span>
                         </a>
-                        <ul class="collapse" id="educationSubMenu">
-                            <li><a class="nav-link" href="admin_add_education"><i class="fas  fa-plus"></i> Add Education</a></li>
-                            <li><a class="nav-link" href="admin_edit_education"><i class="fas  fa-edit"></i> Edit Education</a></li>
+                        <ul class="collapse <?php echo in_array($uri, ['admin_add_education', 'admin_edit_education']) ? 'show' : ''; ?>" id="educationSubMenu">
+                            <li><a class="nav-link" href="admin_add_education"><i class="fas fa-plus"></i> Add Education</a></li>
+                            <li><a class="nav-link" href="admin_edit_education"><i class="fas fa-edit"></i> Edit Education</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link" href="#experienceSubMenu" data-toggle="collapse" aria-expanded="false">
+                        <a class="nav-link <?php echo in_array($uri, ['admin_add_experience', 'admin_edit_experience']) ? 'active' : ''; ?>" href="#experienceSubMenu" data-toggle="collapse" aria-expanded="false">
                             <i class="fas special fa-briefcase"></i>
                             <span class="main-link">Experience</span>
                         </a>
-                        <ul class="collapse" id="experienceSubMenu">
-                            <li><a class="nav-link" href="admin_add_experience"><i class="fas  fa-plus"></i> Add Experience</a></li>
-                            <li><a class="nav-link" href="admin_edit_experience"><i class="fas  fa-edit"></i> Edit Experience</a></li>
+                        <ul class="collapse <?php echo in_array($uri, ['admin_add_experience', 'admin_edit_experience']) ? 'show' : ''; ?>" id="experienceSubMenu">
+                            <li><a class="nav-link" href="admin_add_experience"><i class="fas fa-plus"></i> Add Experience</a></li>
+                            <li><a class="nav-link" href="admin_edit_experience"><i class="fas fa-edit"></i> Edit Experience</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link" href="#practiceAreasSubMenu" data-toggle="collapse" aria-expanded="false">
+                        <a class="nav-link <?php echo in_array($uri, ['admin_add_practice_areas', 'admin_edit_practice_areas']) ? 'active' : ''; ?>" href="#practiceAreasSubMenu" data-toggle="collapse" aria-expanded="false">
                             <i class="fas special fa-balance-scale"></i>
                             <span class="main-link">Practice Areas</span>
                         </a>
-                        <ul class="collapse" id="practiceAreasSubMenu">
-                            <li><a class="nav-link" href="admin_add_practice_areas"><i class="fas  fa-plus"></i> Add Practice Area</a></li>
-                            <li><a class="nav-link" href="admin_edit_practice_areas"><i class="fas  fa-edit"></i> Edit Practice Area</a></li>
+                        <ul class="collapse <?php echo in_array($uri, ['admin_add_practice_areas', 'admin_edit_practice_areas']) ? 'show' : ''; ?>" id="practiceAreasSubMenu">
+                            <li><a class="nav-link" href="admin_add_practice_areas"><i class="fas fa-plus"></i> Add Practice Area</a></li>
+                            <li><a class="nav-link" href="admin_edit_practice_areas"><i class="fas fa-edit"></i> Edit Practice Area</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link" href="#customLocationSubMenu" data-toggle="collapse" aria-expanded="false">
+                        <a class="nav-link <?php echo in_array($uri, ['admin_add_custom_location', 'admin_edit_custom_location']) ? 'active' : ''; ?>" href="#customLocationSubMenu" data-toggle="collapse" aria-expanded="false">
                             <i class="fas special fa-map-pin"></i>
                             <span class="main-link">Custom Locations</span>
                         </a>
-                        <ul class="collapse" id="customLocationSubMenu">
-                            <li><a class="nav-link" href="admin_add_custom_location"><i class="fas  fa-plus"></i> Add Custom Location</a></li>
-                            <li><a class="nav-link" href="admin_edit_custom_location"><i class="fas  fa-edit"></i> Edit Custom Location</a></li>
+                        <ul class="collapse <?php echo in_array($uri, ['admin_add_custom_location', 'admin_edit_custom_location']) ? 'show' : ''; ?>" id="customLocationSubMenu">
+                            <li><a class="nav-link" href="admin_add_custom_location"><i class="fas fa-plus"></i> Add Custom Location</a></li>
+                            <li><a class="nav-link" href="admin_edit_custom_location"><i class="fas fa-edit"></i> Edit Custom Location</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link" href="#lawyersSubMenu" data-toggle="collapse" aria-expanded="false">
+                        <a class="nav-link <?php echo in_array($uri, ['admin_add_lawyer', 'admin_edit_lawyer', 'admin_view_lawyer']) ? 'active' : ''; ?>" href="#lawyersSubMenu" data-toggle="collapse" aria-expanded="false">
                             <i class="fas special fa-users"></i>
                             <span class="main-link">Lawyers</span>
                         </a>
-                        <ul class="collapse" id="lawyersSubMenu">
-                            <li><a class="nav-link" href="admin_add_lawyer"><i class="fas  fa-plus"></i> Add Lawyer</a></li>
-                            <li><a class="nav-link" href="admin_edit_lawyer"><i class="fas  fa-edit"></i> Edit Lawyer</a></li>
-                            <li><a class="nav-link" href="admin_view"><i class="fas  fa-eye"></i> View Lawyers</a></li>
+                        <ul class="collapse <?php echo in_array($uri, ['admin_add_lawyer', 'admin_edit_lawyer', 'admin_view_lawyer']) ? 'show' : ''; ?>" id="lawyersSubMenu">
+                            <li><a class="nav-link" href="admin_add_lawyer"><i class="fas fa-plus"></i> Add Lawyer</a></li>
+                            <li><a class="nav-link" href="admin_edit_lawyer"><i class="fas fa-edit"></i> Edit Lawyer</a></li>
+                            <li><a class="nav-link" href="admin_view_lawyer"><i class="fas fa-eye"></i> View Lawyers</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link" href="admin_delete_images">
+                        <a class="nav-link <?php echo ($uri === 'admin_delete_images') ? 'active' : ''; ?>" href="admin_delete_images">
                             <i class="fas special fa-trash"></i>
                             <span class="main-link">Delete Images</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="admin_delete_appointments">
+                        <a class="nav-link <?php echo ($uri === 'admin_delete_appointments') ? 'active' : ''; ?>" href="admin_delete_appointments">
                             <i class="fas special fa-trash"></i>
                             <span class="main-link">Delete Appointments</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="admin_view_appointments">
+                        <a class="nav-link <?php echo ($uri === 'admin_view_appointments') ? 'active' : ''; ?>" href="admin_view_appointments">
                             <i class="fas special fa-calendar"></i>
                             <span class="main-link">Appointments</span>
                         </a>
@@ -181,12 +182,13 @@ $uri = user::complete_uri();
                 </ul>
             </li>
             <label class="switch">
-                <input id="toggleDarkMode" type="checkbox">
+                <input id="toggleDarkMode" type="checkbox">/
                 <span class="slider round"></span>
             </label>
         </ul>
     </div>
 </nav>
+
 
 
             <main role="main" class="col-md-10 ml-sm-auto px-4">
