@@ -1,5 +1,11 @@
 <?php
-user::get_uri($_SERVER['REQUEST_URI']);
+$uri=user::complete_uri();
+$search_pages=
+[
+    'search',
+    'search_output',
+    'profile',
+];
 ?>
 <!--
      This will fetch the curent request in address bar excluding hostname/websitename/localhost
@@ -70,7 +76,7 @@ user::get_uri($_SERVER['REQUEST_URI']);
                         <a href="service" class="nav-item nav-link <?php if ($uri === 'service') {echo 'active';} ?>">Practice</a>
                         <a href="team" class="nav-item nav-link <?php if ($uri === 'team') {    echo 'active';} ?>">Attorneys</a>
                         <a href="contact" class="nav-item nav-link <?php if ($uri === 'contact') {echo 'active';} ?>">Contact</a>
-                        <a href="search" class="nav-item nav-link <?php if ($uri === 'search') {echo 'active';} ?>">Search</a>
+                        <a href="search" class="nav-item nav-link <?php if (in_array($uri,$search_pages)) {echo 'active';} ?>">Search</a>
                         <!-- Dynamic Nav highlighting Ends-->
                     </div>
                     <a href="admin/" class="btn btn-primary d-none d-lg-block">Sign up / Sign in</a>

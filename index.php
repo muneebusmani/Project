@@ -33,12 +33,11 @@ user::start();//HTML start
 user::load_head();//HTML Head start
 user::start_body();//HTML Body start
 
+
 // Extract and remove the query string from the current URI
-$pattern = '/^(.*?)\?(.*)$/';
-$matches = [];
-if (preg_match($pattern, $router, $matches)) {
-    $router = $matches[1];
-} 
+$router=user::query_rm($router);
+
+
 // This ternary if-else determines if it is a home page or other page, then it processes the request accordingly
 $file = ($router === '' || $router === 'home' || $router === 'index') ? 'home' : $router;
 //Testing all variables
@@ -47,7 +46,8 @@ $file = ($router === '' || $router === 'home' || $router === 'index') ? 'home' :
 
 $routes=array_fill_keys($route,'1');
 // This will check if the file processed in $file variable exists, if it exists it will include that file, if not then it will include the error 404 page
-if (isset($routes[$file])) {
+if(       isset($routes[$file]))
+{
         /*
         This will check if the URI request contains the keyword 'admin' or 'lawyer', then it won't render header and footer.
         Otherwise, it will render the full header, footer, etc.
@@ -58,25 +58,51 @@ if (isset($routes[$file])) {
 
         if (preg_match($admin_pages, $file)) {
             $file=$admin_dir.$file.$ext;
-            admin::load_header();
-            require $file;
+            if(file_exists($file)){
+                admin::load_header();
+                require $file;
+                echo 
+                "
+                </main>
+                </div>
+                </div>
+                ";
+            }
+            else{
+                require $err_dir;
+            }
         }
         
         elseif (preg_match($lawyer_pages, $file)) {
             $file='index';
             $file=$lawyer_dir.$file.$ext;
-            admin::load_header();
-            require $file;
+            if(file_exists($file)){
+                admin::load_header();
+                require $file;
+            }
+            else{
+                require $err_dir;
+            }
         }
         elseif(preg_match($lawyer_profile, $file)){
             $file=$dir.$file.$ext;
-            require $file;
+            if(file_exists($file)){
+                require $file;
+            }
+            else{
+                require $err_dir;
+            }
         }
         else{
             $file=$dir.$file.$ext;
-            user::load_header();
-            require $file;
-            user::load_footer();
+            if(file_exists($file)){
+                user::load_header();
+                require $file;
+                user::load_footer();
+            }
+            else{
+                require $err_dir;
+            }
         }
     }
     else {

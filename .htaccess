@@ -1,7 +1,7 @@
 RewriteEngine on
 
 #Deny access to the "restricted" directory and its subdirectories
-RewriteRule ^admin(/.*)?$ - [F]
+RewriteRule ^management(/.*)?$ - [F]
 RewriteRule ^lawyer(/.*)?$ - [F]
 
 #Route all other requests to index.php

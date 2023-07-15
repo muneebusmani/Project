@@ -3,6 +3,6 @@ $config=
 [
 'db_host' => 'localhost',
 'db_username' => 'root',
-'db_password' => 'admin',
+'db_password' => '',
 'db_name' => 'JusticiaLaw'
 ];

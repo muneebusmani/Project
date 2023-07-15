@@ -36,14 +36,223 @@ class admin
          ****************************************************************************************************/
     }
 
+    public static function fetch_lawyers(mysqli $conn){
+        echo
+<<<HTML
+<style>
+    tr, th, td {
+        border: 2px solid black;
+        padding: 8px;
+        text-align: center;
+    }
 
+    .btn-danger, .btn-success, .btn-primary {
+        border-radius: 100px;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: middle;
+    }
+
+    .table th {
+        font-weight: bold;
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .table tbody+tbody {
+        border-top: 2px solid #dee2e6;
+    }
+
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .btn-danger {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+        color: #fff;
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+
+    .btn-success {
+        color: #fff;
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-success:hover {
+        color: #fff;
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn {
+        margin: 0.5rem;
+        height:2.5rem;
+        width:5rem;
+        text-align: center;
+    }
+
+    .delete-form {
+        display: inline-block;
+        margin-top: 1rem;
+    }
+
+    .display1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+</style>
+<h1 class="text-center my-5">
+    Registered Lawyers
+</h1>
+<div class="table-responsive">
+<table class="table w-100 ">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Location</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Residential Address</th>
+            <th scope="col">Practice Area</th>
+            <th scope="col">Education</th>
+            <th scope="col">Experience</th>
+            <th scope="col">Password</th>
+            <th scope="col">Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+HTML;
+
+
+        $sql = 'SELECT * FROM lawyers';
+        $result = $conn->query($sql);
+        while ($rows = $result->fetch_assoc()) {
+            $ID = $rows['ID'];
+            $Photo = $rows['Photo'];
+            $name = $rows['name'];
+            $Location = $rows['location'];
+            $number = $rows['number'];
+            $email = $rows['email'];
+            $address = $rows['address'];
+            $speciality = $rows['speciality'];
+            $education = $rows['education'];
+            $experience = $rows['experience'];
+            $password = $rows['password'];
+            echo "
+            <tr>
+                <td>$ID</td>
+                <td><img src='$Photo' alt='$name' width='50px' height='50px'></td>
+                <td>$name</td>
+                <td>$Location</td>
+                <td>$email</td>
+                <td>$number</td>
+                <td>$address</td>
+                <td>$speciality</td>
+                <td>$education</td>
+                <td>$experience</td>
+                <td>$password</td>
+                <td style='width: 20%;'>
+                    <span>
+                        <form class='d-inline' method='POST' action='admin_update'> 
+                            <input value='$ID' name='id' type='hidden'>
+                            <button type='submit' name='update' class='btn btn-success' value='Update'>Update</button>
+                        </form>
+                        <form class='d-inline delete-form' method='POST' action='admin_delete'>
+                            <input value='$ID' name='id' type='hidden'>
+                            <button type='submit' name='delete' onclick='confirmDelete_a();' class='btn btn-danger' value='Delete'>Delete</button>
+                        </form>
+                    </span>
+                </td>
+            </tr>
+            ";
+        }
+echo 
+<<<HTML
+        </tbody>
+    </table>
+    </div>
+    <button onclick="emptyCacheAndReload()" type='button' class='btn btn-primary'>Refresh</button>
+    
+    <script>
+        function emptyCacheAndReload() {
+            if ('caches' in window) {
+                caches.keys().then(function (cacheNames) {
+                    cacheNames.forEach(function (cacheName) {
+                        caches.delete(cacheName);
+                    });
+                });
+            }
+            window.location.reload(true);
+        }
+        function confirmDelete_a() {
+            // Prompt the user to confirm the deletion
+            var confirmed = confirm("Are you sure you want to delete this record?");
+            
+            // If the user confirmed, submit the form
+            if (confirmed) {
+                document.forms[0].submit();
+            }
+            else {
+                    event.preventDefault(); // Prevent form submission
+                    return false;
+            }
+        }
+    </script>    
+HTML;
+
+}
 
     public static function create_options(mysqli $conn, string $options)
     {
         echo
         "
 <style>
-  .wrapper{
+  .wrap{
     margin: 0px auto;
     width: 30rem;
     height: 15rem;
@@ -52,7 +261,7 @@ class admin
     border: 2px solid black;
   }
 </style>
-<div class='wrapper'>
+<div class='wrap'>
 <a class='fas fa-window-close fa-lg float-right' style='color: #ff0000;' href='admin_view'>
 </a>
 <form class='text-center py-5' method='POST'>
@@ -127,7 +336,7 @@ class admin
         require_once($header);
     }
     public static function src(){
-        return 'admin/';
+        return 'management/';
     }
     public static function routes(){
         return             
@@ -135,13 +344,17 @@ class admin
         #Admin Pages
         'admin_index'                                    ,
         'admin_view'                                    ,
+        'admin_view_appointments'                                    ,
         'admin_update'                                  ,
         'admin_delete'                                  ,
+        'admin_delete_images'                                  ,
+        'admin_delete_appointments'                                  ,
         'admin_add_location'                            ,
         'admin_add_practice_areas'                      ,
         'admin_add_education'                           ,
         'admin_add_experience'                          ,
         'admin_add_custom_location'                          ,
+        'admin_add_lawyer'                          ,
         );
     }
 

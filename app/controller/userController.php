@@ -15,6 +15,7 @@ class user
     
     public static function inc_db()
     {
+        global $config;
         try {
             require_once('app/model/db.php');
         } catch (\Throwable $e)
@@ -220,14 +221,6 @@ class user
     }
 
 
-    public static function query_check()
-    {
-        global $router;
-
-        // Split the request URI into path and query string
-
-    }
-
 
     public static function get_uri($request)
     {
@@ -358,7 +351,21 @@ class user
         padding-bottom:$unit;
         ";
     }
-
-
+    public static function query_rm($router){
+        $pattern = '/^(.*?)\?(.*)$/';
+        $matches = [];
+        if (preg_match($pattern, $router, $matches)) {
+            $router=$matches[1];
+        }
+        return $router;
+}
+    public static function profile_nav(){
+        require_once('app/view/templates/profile.inc.php');
+    }
+    public static function complete_uri(){
+    $uri=self::get_uri($_SERVER['REQUEST_URI']);
+    $uri=self::query_rm($uri);
+    return $uri;
+    }
 
 }

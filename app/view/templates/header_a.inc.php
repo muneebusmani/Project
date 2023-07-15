@@ -1,5 +1,5 @@
 <?php
-$uri = user::get_uri($_SERVER['REQUEST_URI']);
+$uri = user::complete_uri();
 ?>
 <!--
      This will fetch the curent request in address bar excluding hostname/websitename/localhost
@@ -14,47 +14,179 @@ $uri = user::get_uri($_SERVER['REQUEST_URI']);
      team
      and we have done routing so our files are safe and arent accessible to anyone until we register that file in routes
  -->
+<style>
+    .ff-poppins {
+        font-family: 'Poppins', sans-serif;
+    }
 
-<!-- Header Start -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-3 bg-secondary d-none d-lg-block">
-            <a href="home" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                <?php
-                $logo='app/view/assets/img/.png';
-                echo file_exists($logo)?'<img class="main-logo" src="'.$logo.'" alt="">':'<h1 class="m-0 display-4 text-primary py-3">JusticiaLaw</h1>';
-                ?>
-            </a>
-        </div>
-        <div class="col-lg-9">
-            <div class="row bg-white border-bottom d-none d-lg-flex">
+    .ff-viceroy {
+        font-family: 'viceroy';
+    }
 
-            </div>
-            <nav class="navbar navbar-expand-lg bg-white navbar-light p-0 py-3">
-                <a href="index.html" class="navbar-brand d-block d-lg-none">
-                    <h1 class="m-0 display-4 text-primary text-uppercase">Justice</h1>
+    .goBack {
+        width: 2.5rem;
+        border-radius: 25px;
+        border: 1px solid;
+    }
+
+    nav.sidebar {
+        position: fixed;
+        height: 100%;
+        overflow-y: scroll;
+        padding-bottom: 1rem;
+    }
+
+    .current {
+        border-radius: 25px;
+        background-color: #007bff;
+        color: white;
+    }
+
+    .nav-link {
+        padding: 10px 0;
+
+    }
+
+    .nav {
+        --padding-x: 2vw;
+        padding-left: var(--padding-x);
+        padding-right: var(--padding-x);
+    }
+
+    .special {
+        --size: 2rem;
+        width: var(--size);
+        height: var(--size);
+    }
+
+    li {
+        list-style: none;
+    }
+    ul{
+        padding-left: 1rem;
+    }
+</style>
+<script type="text/javascript">
+    function goBack() {
+        window.history.go(-1);
+    }
+</script>
+<div class="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+        <nav class="col-md-2 d-none d-md-block sidebar bg-light p-0">
+    <div class="sidebar-sticky h-100">
+        <a href="home" class="w-100">
+            <?php
+            $logo = 'app/view/assets/img/.png';
+            echo file_exists($logo) ? '<img class="main-logo" src="' . $logo . '" alt="">' : '<h1 class="w-100 text-primary bg-secondary text-center py-4">JusticiaLaw</h1>';
+            ?>
+        </a>
+        <ul class="nav flex-column">
+            <button class="goBack mt-3" type="button" onclick="goBack();"><i class="fas  fa-arrow-left"></i></button>
+            <br>
+            <li class="nav-item">
+                <a class="nav-link" href="admin_view">
+                    <i class="fas special fa-user"></i>
+                    <span class="main-link">
+                        Admin
+                    </span>
                 </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                    <div class="navbar-nav mr-auto py-0">
-                        <!-- Dynamic Nav highlighting Starts-->
-                        <a href="home" class="nav-item nav-link">Home</a>
-                        <a href="admin_view" class="nav-item nav-link <?php if ($uri === 'admin_view') {echo 'active';} ?>">Admin</a>
-                        <a href="admin_add_location" class="nav-item nav-link <?php if ($uri === 'admin_add_location') {echo 'active';} ?>">Add location</a>
-                        <a href="admin_add_education" class="nav-item nav-link <?php if ($uri === 'admin_add_education') {echo 'active';} ?>">Add education</a>
-                        <a href="admin_add_experience" class="nav-item nav-link <?php if ($uri === 'admin_add_experience') {echo 'active';} ?>">Add experience</a>
-                        <a href="admin_add_practice_areas" class="nav-item nav-link <?php if ($uri === 'admin_add_practice_areas') {echo 'active';} ?>">Add practice areas</a>
-                        <a href="admin_add_custom_location" class="nav-item nav-link <?php if ($uri === 'admin_add_practice_areas') {echo 'active';} ?>">Add custom location</a>
-                        <label class="switch ml-5 mt-2">
-                        <input id="toggleDarkMode" type="checkbox">
-                        <span class="slider round"></span>
-                        </label>
-                        <!-- Dynamic Nav highlighting Ends-->
-                    </div>
-                </div>
-            </nav>
-        </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#optionsSubMenu" data-toggle="collapse" aria-expanded="false">
+                    <i class="fas special fa-cog"></i>
+                    <span class="main-link">Options</span>
+                </a>
+                <ul class="collapse" id="optionsSubMenu">
+                    <li>
+                        <a class="nav-link" href="#locationSubMenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas special fa-map-marker-alt"></i>
+                            <span class="main-link">Locations</span>
+                        </a>
+                        <ul class="collapse" id="locationSubMenu">
+                            <li><a class="nav-link" href="admin_add_location"><i class="fas  fa-plus"></i> Add Location</a></li>
+                            <li><a class="nav-link" href="admin_edit_location"><i class="fas  fa-edit"></i> Edit Location</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#educationSubMenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas special fa-graduation-cap"></i>
+                            <span class="main-link">Education</span>
+                        </a>
+                        <ul class="collapse" id="educationSubMenu">
+                            <li><a class="nav-link" href="admin_add_education"><i class="fas  fa-plus"></i> Add Education</a></li>
+                            <li><a class="nav-link" href="admin_edit_education"><i class="fas  fa-edit"></i> Edit Education</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#experienceSubMenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas special fa-briefcase"></i>
+                            <span class="main-link">Experience</span>
+                        </a>
+                        <ul class="collapse" id="experienceSubMenu">
+                            <li><a class="nav-link" href="admin_add_experience"><i class="fas  fa-plus"></i> Add Experience</a></li>
+                            <li><a class="nav-link" href="admin_edit_experience"><i class="fas  fa-edit"></i> Edit Experience</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#practiceAreasSubMenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas special fa-balance-scale"></i>
+                            <span class="main-link">Practice Areas</span>
+                        </a>
+                        <ul class="collapse" id="practiceAreasSubMenu">
+                            <li><a class="nav-link" href="admin_add_practice_areas"><i class="fas  fa-plus"></i> Add Practice Area</a></li>
+                            <li><a class="nav-link" href="admin_edit_practice_areas"><i class="fas  fa-edit"></i> Edit Practice Area</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#customLocationSubMenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas special fa-map-pin"></i>
+                            <span class="main-link">Custom Locations</span>
+                        </a>
+                        <ul class="collapse" id="customLocationSubMenu">
+                            <li><a class="nav-link" href="admin_add_custom_location"><i class="fas  fa-plus"></i> Add Custom Location</a></li>
+                            <li><a class="nav-link" href="admin_edit_custom_location"><i class="fas  fa-edit"></i> Edit Custom Location</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#lawyersSubMenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas special fa-users"></i>
+                            <span class="main-link">Lawyers</span>
+                        </a>
+                        <ul class="collapse" id="lawyersSubMenu">
+                            <li><a class="nav-link" href="admin_add_lawyer"><i class="fas  fa-plus"></i> Add Lawyer</a></li>
+                            <li><a class="nav-link" href="admin_edit_lawyer"><i class="fas  fa-edit"></i> Edit Lawyer</a></li>
+                            <li><a class="nav-link" href="admin_view"><i class="fas  fa-eye"></i> View Lawyers</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="admin_delete_images">
+                            <i class="fas special fa-trash"></i>
+                            <span class="main-link">Delete Images</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="admin_delete_appointments">
+                            <i class="fas special fa-trash"></i>
+                            <span class="main-link">Delete Appointments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="admin_view_appointments">
+                            <i class="fas special fa-calendar"></i>
+                            <span class="main-link">Appointments</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <label class="switch">
+                <input id="toggleDarkMode" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </ul>
     </div>
-</div>
+</nav>
+
+
+            <main role="main" class="col-md-10 ml-sm-auto px-4">

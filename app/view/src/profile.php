@@ -1,4 +1,7 @@
 <?php
+if ($_GET['lawyer']==null) {
+  header('location:search');
+}
 $lawyer_id=$_GET['lawyer'];
 $result=user::open_profile($conn,$lawyer_id);
 $row=$result->fetch_assoc();
@@ -6,7 +9,6 @@ foreach ($row as $key => $value) {
     $$key=$value;
 }
 $br=user::br();
-$px_5=user::px('5rem');
 $py_5=user::py('2.5rem');
 echo
 <<<HTML
@@ -23,7 +25,7 @@ echo
     .lawyer_dets{
         margin-top: 5rem;
     }
-    .body{
+    .wrapper{
         margin-right: 5rem;
     }
     .ff-poppins{
@@ -41,13 +43,13 @@ echo
         border-radius:25px;
         border:1px solid;
     }
-    .active{
+    .current{
         border-radius:25px;
         background-color: #007bff;
         color: white;
     }
 </style>
-<div class="body">
+<div class="wrapper">
 <div class="container-fluid">
     <div class="row">
       <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -56,7 +58,7 @@ echo
             <button class="goBack" type="button" onclick="goBack();"><i class="fas fa-arrow-left"></i></button>
             $br
             <li class="nav-item">
-              <a class="nav-link active" href="profile?lawyer=$lawyer_id">
+              <a class="nav-link current" href="profile?lawyer=$lawyer_id">
                 Profile
               </a>
             </li>
@@ -66,6 +68,10 @@ echo
               </a>
             </li>
           </ul>
+          <label class="switch ml-5 mt-2">
+                        <input id="toggleDarkMode" type="checkbox">
+                        <span class="slider round"></span>
+          </label>
         </div>
       </nav>
 
