@@ -3,12 +3,20 @@ if ($_GET['lawyer']==null) {
   header('location:search');
 }
 $lawyer_id=$_GET['lawyer'];
-$result=user::open_profile($conn,$lawyer_id);
-$row=$result->fetch_assoc();
-foreach ($row as $key => $value) {
-    $$key=$value;
+if(!($row = user::open_profile($conn, $lawyer_id)))
+{
+    echo 
+    "
+    <script>
+      alert('Lawyer not Available');
+      window.location.href = 'search';
+    </script>
+    ";
 }
-$br=user::br();
+else {
+  foreach ($row as $key => $value){$$key=$value;}
+}
+  $br=user::br();
 $py_5=user::py('2.5rem');
 echo
 <<<HTML

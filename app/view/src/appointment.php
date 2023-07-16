@@ -3,10 +3,18 @@ if ($_GET['lawyer'] == null) {
     header('location:search');
 }
 $lawyer_id=$_GET['lawyer'];
-$result = user::open_profile($conn, $lawyer_id);
-$row = $result->fetch_assoc();
-foreach ($row as $key => $value) {
-    $$key = $value;
+if(!($row = user::open_profile($conn, $lawyer_id)))
+{
+    echo 
+    "
+    <script>
+      alert('Lawyer not Available');
+      window.location.href = 'search';
+    </script>
+    ";
+}
+else {
+  foreach ($row as $key => $value){$$key=$value;}
 }
 $br = user::br();
 $py_5 = user::py('2.5rem');
@@ -18,45 +26,34 @@ $py_5 = user::py('2.5rem');
 
 
 // Fetch the lawyer's name based on the lawyer_id
-$lawyerName = "";
-if (isset($_GET['lawyer'])) {
-    $lawyer_id = $_GET['lawyer'];
-    $result = user::open_profile($conn, $lawyer_id);
-    $row = $result->fetch_assoc();
-    $lawyerName = $row['name'];
-}
 
 // Insert the appointment into the table
 if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $number = $_POST['number'];
+    $name = $_SESSION['username'];
+    $email = $_SESSION['email'];
+    $number = $_SESSION['phone'];
     $location = $_POST['location'];
+    $Clocation = $_POST['location'];
+    $date=$_POST['date'];
+    $time=$_POST['time'];
+    $Booked='Booked';
 
     // Adjust the SQL query based on the location selected
-    if ($location === 'customLocation' && isset($_POST['customLocation'])) {
-        $customLocation = $_POST['customLocation'];
-
-        $stmt = $conn->prepare("INSERT INTO appointments (name, email, number, location, lawyer_name, date, time) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss", $name, $email, $number, $customLocation, $lawyerName, $_POST['date'], $_POST['time']);
-    } else {
-        $stmt = $conn->prepare("INSERT INTO appointments (name, email, number, location, lawyer_name, date, time) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss", $name, $email, $number, $location, $lawyerName, $_POST['date'], $_POST['time']);
-    }
+    if (isset($_POST['location']) && ($location !== 'lawyers_office')) {
+        $location = $location.' , '. $_POST['customLocation'];
+    } 
+    $stmt = $conn->prepare("INSERT INTO appointments (name, email, number, location, lawyer_name, date, time) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssss", $name, $email, $number, $location, $lawyerName, $date, $time);
     $stmt->execute();
     $stmt->close();
     
-
     $conn=user::inc_db();
-    $lawyer_status_change_query="UPDATE `lawyers` SET `Status` = 'Booked()' where `ID` = ?";
+    $lawyer_status_change_query="UPDATE `lawyers` SET `Status` = ? where `ID` = ?";
     $stmt=$conn->prepare($lawyer_status_change_query);
-    $stmt->bind_param("i",$_GET['lawyer']);
+    $stmt->bind_param("si",$Booked,$_GET['lawyer']);
     $stmt->execute();
     $stmt->close();
-
-
-    // Redirect or display success message
-    // ...
+    header('location:user_appointment');
 }
 
 ?>
@@ -147,23 +144,14 @@ if (isset($_POST['submit'])) {
                     <h1 class='text-center text-white mb-4'>Get An Appointment</h1>
                     <form method='post'>
                         <div class='form-group'>
-                            <input type='text' name='name' class='form-control border-0 p-4' placeholder='Your Name' required='required' />
-                        </div>
-                        <div class='form-group'>
-                            <input type='email' name='email' class='form-control border-0 p-4' placeholder='Your Email' required='required' />
-                        </div>
-                        <div class='form-group'>
-                            <input type='number' name='number' class='form-control border-0 p-4' placeholder='Your Number' required='required' />
-                        </div>
-                        <div class='form-group'>
                             <select class='form-control border-0 px-3' name='location' id='locationSelect'>
                                 <option disabled selected>Select Location</option>
-                                <option value='LawyerOffice'>Lawyer's Office</option>
-                                <option value='customLocation'>Courtroom</option>
-                                <option value='customLocation'>Home</option>
-                                <option value='customLocation'>Police Station</option>
-                                <option value='customLocation'>Hospital or Healthcare Facility</option>
-                                <option value='customLocation'>Add Your Custom Location</option>
+                                <option value='lawyers_office'>Lawyer's Office</option>
+                                <option value='courtroom'>Courtroom</option>
+                                <option value='home'>Home</option>
+                                <option value='police_Station'>Police Station</option>
+                                <option value='hospital_or_healthcare_facility'>Hospital or Healthcare Facility</option>
+                                <option value='custom_location'>Add Your Custom Location</option>
                             </select>
                         </div>
                         <div class='form-group'>

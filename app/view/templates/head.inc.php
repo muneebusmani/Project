@@ -15,13 +15,5 @@ ob_start();
     <link href="app/view/assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <?php
     user::inc_css();
-    #Frontend JavaScript Libraries For Carousel and other minor UI components
-    user::inc_libs();
-
-    #This Loads Dark mode api
-    user::inc_darkreader();
-
-    #This Method Loads js which is responsible for responsiveness of this web app
-    user::inc_js();
     ?>
     </head>

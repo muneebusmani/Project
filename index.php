@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 ob_start();
+session_start();
 
 #This Loads Controllers
 require('app/controller/userController.php');
 user::inc_admin();
 user::inc_lawyer();
-
 
 
 #This checks if mod_rewrite is enabled
@@ -25,9 +25,25 @@ $GLOBALS['ext']          = user::ext();
 
 
 admin::createLawyersDirectory();
-
 #These are routes defined, for preventing unauthorized access
+// $route=array_merge(user::routes(),admin::routes(),lawyer::routes());
+// $route=array_merge(user::routes(),user::routes_user_signed());
+// $route=user::routes();
 $route=array_merge(user::routes(),admin::routes(),lawyer::routes());
+
+// echo $_SESSION['username'];
+if (isset($_SESSION['username']) && $_SESSION['loggedin'] == true ) {
+    $route=array_merge($route,user::routes_user_signed());
+}
+if ((!isset($_SESSION['username']) )  && in_array(user::complete_uri(),user::routes_user_signed())) {
+    echo 
+    "<script>
+    alert('You Need to Login To Use That Feature!');
+    window.location.href = document.referrer;
+    </script>
+";
+}
+
 
 user::start();//HTML start
 user::load_head();//HTML Head start
@@ -52,10 +68,11 @@ if(       isset($routes[$file]))
         This will check if the URI request contains the keyword 'admin' or 'lawyer', then it won't render header and footer.
         Otherwise, it will render the full header, footer, etc.
         */
+
         $admin_pages='/admin\w*/';
         $lawyer_pages='/lawyer\w*/';
         $lawyer_profile='/(profile|appointment)(\*w)?/';
-
+        $user_sign='/(signin|signup)(\*w)?/';
         if (preg_match($admin_pages, $file)) {
             $file=$admin_dir.$file.$ext;
             if(file_exists($file)){
@@ -93,6 +110,15 @@ if(       isset($routes[$file]))
                 require $err_dir;
             }
         }
+        elseif(preg_match($user_sign, $file)){
+            $file=$dir.$file.$ext;
+            if(file_exists($file)){
+                require $file;
+            }
+            else{
+                require $err_dir;
+            }
+        }
         else{
             $file=$dir.$file.$ext;
             if(file_exists($file)){
@@ -109,6 +135,14 @@ if(       isset($routes[$file]))
         require $err_dir;
     }
 
+#Frontend JavaScript Libraries For Carousel and other minor UI components
+user::inc_libs();
+
+#This Loads Dark mode api
+user::inc_darkreader();
+
+#This Method Loads js which is responsible for responsiveness of this web app
+user::inc_js();
 
 #This Loads Mailer
 if ($router === 'contact') {

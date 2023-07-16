@@ -79,7 +79,16 @@ $search_pages=
                         <a href="search" class="nav-item nav-link <?php if (in_array($uri,$search_pages)) {echo 'active';} ?>">Search</a>
                         <!-- Dynamic Nav highlighting Ends-->
                     </div>
-                    <a href="admin/" class="btn btn-primary d-none d-lg-block">Sign up / Sign in</a>
+                    <?php
+                    echo (isset($_SESSION['username']) && $_SESSION['loggedin'] == true ) ?
+                        <<<HTML
+                        <a href="user_profile" class="btn btn-primary d-none d-lg-block mr-3">Profile</a>
+                        <a href="signout" class="btn btn-primary d-none d-lg-block">Sign Out</a>
+                        HTML:<<<HTML
+                        <a href="signup" class="btn btn-primary d-none d-lg-block">Sign up / Sign in</a>
+                        HTML;
+                    ?>
+
                     <label class="switch ml-5 mt-2">
                         <input id="toggleDarkMode" type="checkbox">
                         <span class="slider round"></span>

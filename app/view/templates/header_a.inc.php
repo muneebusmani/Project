@@ -87,7 +87,7 @@ $uri = user::complete_uri();
             <button class="goBack mt-3" type="button" onclick="goBack();"><i class="fas fa-arrow-left"></i></button>
             <br>
             <li class="nav-item">
-                <a class="nav-link" href="admin_view_lawyer">
+                <a class="nav-link" href="admin_dashboard">
                     <i class="fas special fa-user"></i>
                     <span class="main-link">
                         Admin

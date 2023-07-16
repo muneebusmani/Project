@@ -72,11 +72,17 @@ class user
         return $stmt->get_result();
     }
     public static function open_profile(mysqli $conn,$ID){
-        $sql = "SELECT * FROM lawyers where `ID` = ?";
+        $sql = "SELECT * FROM lawyers where `ID` = ? and  `status` != 'Booked'";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('s',$ID);
         $stmt->execute();
-        return $stmt->get_result();
+        $result=$stmt->get_result();
+        if($result->num_rows ==1){
+            return $result->fetch_assoc();
+        }
+        else{
+            return;
+        }
     }
 
     
@@ -123,6 +129,19 @@ class user
         {
             try {
                 $header = "app/view/templates/header.inc.php";
+                require_once($header);
+                
+            } catch (\Throwable $e) {
+                $file=$e->getFile();
+                $line=$e->getLine();
+                echo "<script>alert('Unable To load  HTML Header Error In File :$file Line Number : $line')</script>";
+                }
+        }
+        
+        public static function load_header_u()
+        {
+            try {
+                $header = "app/view/templates/header_u.inc.php";
                 require_once($header);
                 
             } catch (\Throwable $e) {
@@ -326,12 +345,34 @@ class user
             'about'                                         ,
             'contact'                                       ,
             'service'                                       ,
+            'signup'                                        ,
+            'signin'                                        ,
+            'signout'                                       ,
+        );
+    }
+    public static function routes_user_signed(){
+        return array(
+            #Public Pages
             'team'                                          ,
             'search'                                        ,
             'search_output'                                 ,
             'user_reg'                                      ,
-            'profile'                                      ,
-            'appointment'                                      ,
+            'profile'                                       ,
+            'appointment'                                   ,             
+            'user_profile'                                  ,             
+            'user_profile_d'                                  ,             
+            'user_profile_update'                                  ,             
+            'user_appointments'                                  ,             
+            'user_profile_delete'                                  ,             
+        );
+    }
+    public static function routes_user_profile(){
+        return array(
+            'user_profile'                                  ,             
+            'user_profile_d'                                  ,             
+            'user_profile_update'                                  ,             
+            'user_appointments'                                  ,             
+            'user_profile_delete'                                  ,             
         );
     }
     public static function br(){
