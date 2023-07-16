@@ -1,6 +1,7 @@
 <style>
     .parent{
         width: 20rem;
+        display: inline-block;
     }
   .child {
     display: none;
@@ -8,14 +9,22 @@
   .btn{
     padding: 1rem 2rem;
   }
+
+
 </style>
 <h1 class="text-center py-5">
     JusticiaLaw Admin
 </h1>
-  <div class="parent" onmouseover="showChild(this)" onmouseout="hideChild(this)" onclick="toggleChild(this)">
+  <div class="parent" onclick="toggleChild(this)">
     <input type="button" class="btn btn-secondary" style="width: 100%" value="Locations">
     <div class="child">
       <?php admin::fetch_options($conn, 'location') ?>
+    </div>
+  </div>
+  <div class="parent" onclick="toggleChild(this)">
+    <input type="button" class="btn btn-secondary" style="width: 100%" value="Practice Areas">
+    <div class="child">
+      <?php admin::fetch_options($conn, 'practice_area') ?>
     </div>
   </div>
 

@@ -264,6 +264,13 @@ HTML;
     border: 2px solid black;
   }
 </style>
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    // Wait for the DOM to be fully loaded
+    const inputField = document.getElementById('$options');
+    inputField.focus();
+});
+</script>
 <div class='wrap'>
 <a class='fas fa-window-close fa-lg float-right' style='color: #ff0000;' href='admin_view_lawyer'>
 </a>

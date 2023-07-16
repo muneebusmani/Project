@@ -19,18 +19,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Delete All Appointments</title>
-</head>
-<body>
-    <h1>Delete All Appointments</h1>
-    <p>Click the button below to delete all appointments.</p>
-
+<style>
+      .wrap{
+    margin: 0px auto;
+    width: 30rem;
+    height: 15rem;
+    --margin:10%;
+    margin: var(--margin) auto;
+    border: 2px solid black;
+    text-align: center;
+  } 
+</style>
+<div class="wrap">
+<a class='fas fa-window-close fa-lg float-right' style='color: #ff0000;' href='admin_view_lawyer'>
+</a>
     <form method="post">
-        <button type="submit">Delete All Appointments</button>
+        <h1 class="my-3">Delete All Appointments</h1>
+        <button class="btn btn-danger" type="submit">Delete All Appointments</button>
     </form>
-</body>
-</html>
+</div>

@@ -182,7 +182,7 @@ $uri = user::complete_uri();
                 </ul>
             </li>
             <label class="switch">
-                <input id="toggleDarkMode" type="checkbox">/
+                <input id="toggleDarkMode" type="checkbox">
                 <span class="slider round"></span>
             </label>
         </ul>

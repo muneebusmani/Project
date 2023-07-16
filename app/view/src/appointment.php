@@ -15,28 +15,7 @@ $py_5 = user::py('2.5rem');
 
 
 
-// Check if the appointment table exists
-$tableExists = $conn->query("SHOW TABLES LIKE 'appointments'");
 
-if ($tableExists->num_rows == 0) {
-    // Table does not exist, create it
-    $createTableQuery = "CREATE TABLE appointments (
-        id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        number VARCHAR(255) NOT NULL,
-        location VARCHAR(255) NOT NULL,
-        lawyer_name VARCHAR(255),
-        date VARCHAR(255),
-        time VARCHAR(255)
-    )";
-
-    if ($conn->query($createTableQuery) === TRUE) {
-        echo "Appointment table created successfully!";
-    } else {
-        echo "Error creating appointment table: " . $conn->error;
-    }
-}
 
 // Fetch the lawyer's name based on the lawyer_id
 $lawyerName = "";
