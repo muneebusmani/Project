@@ -2,6 +2,9 @@
 declare(strict_types=1);
 ob_start();
 session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 
 #This Loads Controllers
 require('app/controller/userController.php');
@@ -30,6 +33,7 @@ admin::createLawyersDirectory();
 // $route=array_merge(user::routes(),user::routes_user_signed());
 // $route=user::routes();
 $route=array_merge(user::routes(),admin::routes(),lawyer::routes());
+// $route=lawyer::routes();
 
 // echo $_SESSION['username'];
 if (isset($_SESSION['username']) && $_SESSION['loggedin'] == true ) {
@@ -51,8 +55,10 @@ user::start_body();//HTML Body start
 
 
 // Extract and remove the query string from the current URI
-$router=user::query_rm($router);
-
+$router=user::complete_uri();
+if (in_array($router,lawyer::routes())) {
+    echo "Hello";
+}
 
 // This ternary if-else determines if it is a home page or other page, then it processes the request accordingly
 $file = ($router === '' || $router === 'home' || $router === 'index') ? 'home' : $router;
@@ -70,7 +76,8 @@ if(       isset($routes[$file]))
         */
 
         $admin_pages='/admin\w*/';
-        $lawyer_pages='/lawyer\w*/';
+        $lawyer_pages=[];
+        $lawyer_pages=lawyer::routes();
         $lawyer_profile='/(profile|appointment)(\*w)?/';
         $user_sign='/(signin|signup)(\*w)?/';
         if (preg_match($admin_pages, $file)) {
@@ -90,16 +97,10 @@ if(       isset($routes[$file]))
             }
         }
         
-        elseif (preg_match($lawyer_pages, $file)) {
-            $file='index';
+        elseif(in_array($file,$lawyer_pages)) {
             $file=$lawyer_dir.$file.$ext;
-            if(file_exists($file)){
                 admin::load_header();
                 require $file;
-            }
-            else{
-                require $err_dir;
-            }
         }
         elseif(preg_match($lawyer_profile, $file)){
             $file=$dir.$file.$ext;

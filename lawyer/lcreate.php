@@ -1,5 +1,5 @@
 <?php
-$name = $number = $email = $address = $speciality = $education = $experience = $password = '';
+$name = $number     = $email = $address = $speciality = $education = $experience = $password = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['submit'])) {
         $name       =&$_POST['name'];
@@ -56,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label for="">Upload Photo(optional)</label>
         <input name="Photo" type="file">
-
         <div class="form-group">
             <label for="Fullname">Full Name</label>
             <input value="<?php echo $name; ?>" name="name" type="text" class="form-control" id="Fullname" aria-describedby="emailHelp">
@@ -114,8 +113,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-group form-check">
             <input type="checkbox" onclick="toggle_passwd();" class="" id="Check1">
             <label class="form-check-label" for="Check1">Show Password</label>
-        </div>
             <input name="submit" type="submit" class="btn btn-primary" value="Submit">
+        </div>
     </form>
 </div>
 <script>

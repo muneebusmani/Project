@@ -140,7 +140,8 @@ class lawyer
         array
         (
             #Lawyers Pages
-            'lawyer_create'                                 ,
+            'lsignup'                                 ,
+            'lsignin'                                 ,
         );
     }
     public static function err_handle($errors){
@@ -158,6 +159,7 @@ class lawyer
 
     }
     public static function src(){
-        return 'lawyer/';
+        $lawyer='lawyer/';
+        return $lawyer;
     }
 }
