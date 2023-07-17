@@ -19,6 +19,24 @@
     }
 </style>
 <?php
+if(isset($_GET['delete'])   &&  $_GET['delete']=='yes' ){
+    echo 
+    "
+    <script>
+        alert('Appointment Deleted');
+        window.location.href = 'admin_view_appointments';
+    </script>
+    ";
+}
+elseif(isset($_GET['delete'])   &&  $_GET['delete']=='no'){
+    echo 
+    "
+    <script>
+        alert('Deletion unsuccessful');
+        window.location.href = 'admin_view_appointments';
+    </script>
+    ";
+}
 // Fetch the appointments from the database
 $query = "SELECT * FROM appointments";
 $result = $conn->query($query);
@@ -54,8 +72,8 @@ if ($result->num_rows > 0) {
         <td class='text-center'>{$row['date']}</td>
         <td class='text-center'>{$row['time']}</td>
         <td class='text-center'>
-        <a class='btn btn-success' href='update_appointment?id={$row['id']}'>Update</a>
-        <a class='btn btn-danger' href='delete_appointment?id={$row['id']}'>Delete</a>
+        <a class='btn btn-success' href='admin_update_appointment?id={$row['id']}'>Update</a>
+        <a class='btn btn-danger'  href='admin_delete_appointment?id={$row['id']}'>Delete</a>
         </td>
         </tr>
         "

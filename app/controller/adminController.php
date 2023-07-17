@@ -372,7 +372,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     public static function fetch_options_adv(mysqli $conn, string $column, string $table, string $selectedValue)
     {
 
-
         // Construct the SQL query with a WHERE clause to exclude the selected value
         $sql = "SELECT $column FROM $table WHERE $column <> ?";
         $stmt = $conn->prepare($sql);
@@ -402,19 +401,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
         return             
         array(
         #Admin Pages
-        'admin_dashboard'                                    ,
-        'admin_view_lawyer'                                    ,
-        'admin_view_appointments'                                    ,
-        'admin_update_lawyer'                                  ,
-        'admin_delete_lawyer'                                  ,
-        'admin_delete_images'                                  ,
+        'admin'                                   ,
+        'admin_dashboard'                                   ,
+        'admin_view_lawyer'                             ,
+        'admin_view_appointments'                       ,
+        'admin_update_lawyer'                           ,
+        'admin_delete_lawyer'                           ,
+        'admin_delete_images'                           ,
         'admin_delete_appointments'                                  ,
         'admin_add_location'                            ,
         'admin_add_practice_areas'                      ,
         'admin_add_education'                           ,
         'admin_add_experience'                          ,
-        'admin_add_custom_location'                          ,
-        'admin_add_lawyer'                          ,
+        'admin_add_custom_location'                     ,
+        'admin_add_lawyer'                              ,
+        'admin_update_appointment'                      ,
+        'admin_delete_appointment'                      ,
         );
     }
 

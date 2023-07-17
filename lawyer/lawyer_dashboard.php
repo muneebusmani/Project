@@ -1,23 +1,23 @@
 <?php
 // Check if the user is logged in
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['lawyer_email'])) {
     // Redirect to the login page or display an error message
     header("Location: login");
     exit;
 }
 
-// Get the username from the session
-$username = $_SESSION['username'];
+// Get the lawyer_email from the session
+$lawyer_email = $_SESSION['lawyer_email'];
 
 
 // Prepare the SQL statement
-$query = "SELECT * FROM `users` WHERE `username` = ?";
+$query = "SELECT * FROM `lawyers` WHERE `email` = ?";
 
 // Prepare the statement
 $stmt = $conn->prepare($query);
 
 // Bind Parameters
-$stmt->bind_param('s',$username);
+$stmt->bind_param('s',$lawyer_email);
 
 // Execute the statement
 $stmt->execute();
@@ -30,12 +30,7 @@ $row = $result->fetch_assoc();
 
 // Update the session variables with the retrieved values
 foreach ($row as $key => $value) {
-    $_SESSION[$key] = $value;
-}
-
-//Making normal Variables out of Session
-foreach ($_SESSION as $key => $value) {
-  $$key=$value;
+    $$key = $value;
 }
 ?>
 <style>
@@ -52,15 +47,13 @@ foreach ($_SESSION as $key => $value) {
   }
 </style>
 <div class="wrap">
-  <h1>User Profile</h1>
+  <h1>Lawyer Credentials</h1>
   <div class="profile">
-    <span class="h3 mr-3">Name:</span><span class="text-primary"> <?php echo $username; ?></span><br>
-    <span class="h3 mr-3">Email: </span><span class="text-primary"> <?php echo $email; ?></span><br>
-    <span class="h3 mr-3">Phone:</span><span class="text-primary"> <?php echo $phone; ?></span><br>
-    <form method="post" action="user_profile_update" class="text-center">
+    <span class="h3 mr-3">Name:</span><span class="text-primary"> <?php echo $lawyer_email; ?></span><br>
+    <span class="h3 mr-3">Practice Area: </span><span class="text-primary"> <?php echo $speciality; ?></span><br>
+    <span class="h3 mr-3">Phone:</span><span class="text-primary"> <?php echo $number; ?></span><br>
+    <form method="post" action="lawyer_update" class="text-center">
       <input type="submit" class="btn btn-primary my-3" value="Update Profile">
     </form>
   </div>
 </div>
-
-<!-- Add your additional HTML, CSS, or JavaScript code here if needed -->

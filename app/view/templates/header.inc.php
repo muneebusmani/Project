@@ -83,7 +83,6 @@ $search_pages=
                     echo (isset($_SESSION['username']) && $_SESSION['loggedin'] == true ) ?
                         <<<HTML
                         <a href="user_profile" class="btn btn-primary d-none d-lg-block mr-3">Profile</a>
-                        <a href="signout" class="btn btn-primary d-none d-lg-block">Sign Out</a>
                         HTML:<<<HTML
                         <a href="signup" class="btn btn-primary d-none d-lg-block">Sign up / Sign in</a>
                         HTML;

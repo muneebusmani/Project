@@ -56,9 +56,6 @@ user::start_body();//HTML Body start
 
 // Extract and remove the query string from the current URI
 $router=user::complete_uri();
-if (in_array($router,lawyer::routes())) {
-    echo "Hello";
-}
 
 // This ternary if-else determines if it is a home page or other page, then it processes the request accordingly
 $file = ($router === '' || $router === 'home' || $router === 'index') ? 'home' : $router;
@@ -68,18 +65,26 @@ $file = ($router === '' || $router === 'home' || $router === 'index') ? 'home' :
 
 $routes=array_fill_keys($route,'1');
 // This will check if the file processed in $file variable exists, if it exists it will include that file, if not then it will include the error 404 page
+
 if(       isset($routes[$file]))
 {
+    if (user::complete_uri() == 'admin') {header('location:admin_dashboard');}
         /*
         This will check if the URI request contains the keyword 'admin' or 'lawyer', then it won't render header and footer.
         Otherwise, it will render the full header, footer, etc.
         */
 
         $admin_pages='/admin\w*/';
-        $lawyer_pages=[];
-        $lawyer_pages=lawyer::routes();
-        $lawyer_profile='/(profile|appointment)(\*w)?/';
+        $lawyer_pages='/lawyer\w*/';
+        $lawyer_profile='/(appointment|profile)(\*w)?/';
+        // $lawyer_profile=array('appointment','profile');  
         $user_sign='/(signin|signup)(\*w)?/';
+        $user_pages='/^user.+/';
+        
+        if (preg_match($user_pages, $file)):
+            user::load_header_u();
+        endif;
+
         if (preg_match($admin_pages, $file)) {
             $file=$admin_dir.$file.$ext;
             if(file_exists($file)){
@@ -97,17 +102,19 @@ if(       isset($routes[$file]))
             }
         }
         
-        elseif(in_array($file,$lawyer_pages)) {
+        elseif(preg_match($lawyer_pages,$file)) {
             $file=$lawyer_dir.$file.$ext;
-                admin::load_header();
-                require $file;
+            admin::load_header();
+            require $file;
         }
-        elseif(preg_match($lawyer_profile, $file)){
+        elseif(preg_match($lawyer_profile,$file)) {
+        // elseif(in_array($file,$lawyer_profile)){
             $file=$dir.$file.$ext;
             if(file_exists($file)){
                 require $file;
             }
             else{
+                echo  "this";
                 require $err_dir;
             }
         }

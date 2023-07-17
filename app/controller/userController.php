@@ -88,12 +88,15 @@ class user
     
     public static function fetch_options(mysqli $conn, string $column, string $table)
     {
-        // Construct the SQL query
-        $sql = "SELECT $column FROM $table";
-        $result = $conn->query($sql);
-        while ($row = $result->fetch_assoc()) {
-            $value = $row[$column];
-            echo "<option value='$value'>$value</option>";
+        try {
+            $sql = "SELECT $column FROM $table";
+            $result = $conn->query($sql);
+            while ($row = $result->fetch_assoc()) {
+                $value = $row[$column];
+                echo "<option value='$value'>$value</option>";
+            }
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
         }
     }
     
@@ -184,6 +187,14 @@ class user
             $js_filename = basename($js);
             echo "<script src='$js_dir$js_filename'></script>";
         }
+        echo 
+        "
+        <script type='text/javascript'>
+            function goBack(){
+                window.history.go(-1);
+            }
+        </script>
+        ";
     }
     
     
@@ -238,7 +249,12 @@ class user
             echo $th->getMessage();
         }
     }
-
+    public static function fetch_name($conn,$lawyer_id){
+        $sql="SELECT `name` FROM `lawyers` WHERE `ID` = '$lawyer_id'";
+        $result=$conn->query($sql);
+        $row=$result->fetch_assoc();
+        return $row['name'];
+    }
 
 
     public static function get_uri($request)
@@ -359,10 +375,10 @@ class user
             'user_reg'                                      ,
             'profile'                                       ,
             'appointment'                                   ,             
+            'appointments'                                   ,             
             'user_profile'                                  ,             
             'user_profile_d'                                  ,             
             'user_profile_update'                                  ,             
-            'user_appointments'                                  ,             
             'user_profile_delete'                                  ,             
         );
     }
@@ -371,7 +387,6 @@ class user
             'user_profile'                                  ,             
             'user_profile_d'                                  ,             
             'user_profile_update'                                  ,             
-            'user_appointments'                                  ,             
             'user_profile_delete'                                  ,             
         );
     }

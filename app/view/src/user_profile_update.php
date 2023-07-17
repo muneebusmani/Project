@@ -1,11 +1,12 @@
 <?php
+user::load_header_u();
 // Check if the form is submitted
 foreach($_SESSION as $key => $value){
     $$key = $value;
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['submit'])) {
-        // Retrieve form data
+        $P_username = $_POST["username"];
         $P_email = $_POST["email"];
         $P_phone = $_POST["phone"];
         $P_password = $_POST["password"];
@@ -40,23 +41,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // If there are no errors, update the session variables and save the data to the database or perform any other necessary actions
         if (empty($errors)) {
-            // Update session variables
-            $_SESSION['email'] = $P_email;
-            $_SESSION['phone'] = $P_phone;
-
-            // Prepare the insert statement
-            $updateSQL = "UPDATE users SET email  = ?, phone  = ?, password  = ? WHERE `username` = ?";
+            $updateSQL = "UPDATE users SET `username` = ?, email  = ?, phone  = ?, password  = ? WHERE `id` = ? ";
             $stmt = $conn->prepare($updateSQL);
-            $stmt->bind_param("ssss",$P_email, $P_phone, $P_password, $_SESSION['username']);
-
+            $stmt->bind_param("ssssi",$P_username,$P_email, $P_phone, $P_password,$id);
             // Execute the update statement
             if ($stmt->execute()) {
-                header ('location:signin');
+                foreach ($_POST as $key => $value ) {
+                    $_SESSION[$key]=$value;
+                    if ($key == 'confirm_password') {
+                        continue;
+                    }
+                }
+                header ('location:user_profile');
             } else {
                 // Error occurred while updating data
                 echo "Error: " . $stmt->error;
             }
-
             // Close the statement and database connection
             $stmt->close();
         }
@@ -116,6 +116,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         color: red;
         margin-bottom: 10px;
     }
+    #id , label[for="id"]{
+        display: none;
+    }
 </style>
 <h2 class="text-center my-5">Update User Credentials</h2>
 <div class="wrap">
@@ -128,17 +131,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         <?php endif; ?>
 
+        <label for="username">username:</label>
+        <input value="<?php echo $username ?? 'variable_empty';?>" type="text" id="username" name="username" required>
+
         <label for="email">Email:</label>
-        <input value="<?php echo (isset($email)) ? $email: '';?>" type="email" id="email" name="email" required>
+        <input value="<?php echo $email ?? 'variable_empty';?>" type="email" id="email" name="email" required>
 
         <label for="phone">Phone Number:</label>
-        <input value="<?php echo (isset($phone)) ? $phone: '';?>" type="text" id="phone" name="phone" required>
+        <input value="<?php echo $phone ?? 'variable_empty';?>" type="text" id="phone" name="phone" required>
 
         <label for="password">Password:</label>
-        <input value="<?php echo (isset($password)) ? $password: '';?>" type="password" id="password" name="password" required>
+        <input value="<?php echo $password ?? 'variable_empty';?>" type="password" id="password" name="password" required>
 
         <label for="confirm_password">Confirm Password:</label>
-        <input value="<?php echo (isset($password)) ? $password: '';?>" type="password" id="confirm_password" name="confirm_password" required>
+        <input value="<?php echo $password ?? 'variable_empty';?>" type="password" id="confirm_password" name="confirm_password" required>
 
         <input type="submit" name="submit" value="Update">
     </form>

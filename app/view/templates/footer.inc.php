@@ -79,10 +79,10 @@
     </div>
     <div class="row p-4 mt-5 mx-0" style="background: rgba(256, 256, 256, .05);">
         <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
-            <p class="m-0 text-white">&copy; <a class="font-weight-bold" href="#">Your Site Name</a>. All Rights Reserved.</p>
+            <p class="m-0 text-white">&copy; <a class="font-weight-bold" href="#">JusticiaLaw</a>. All Rights Reserved.</p>
         </div>
         <div class="col-md-6 text-center text-md-right">
-            <p class="m-0 text-white">Designed by <a class="font-weight-bold" href="https://freewebsitecode.com">Free Website Code</a></p>
+            <p class="m-0 text-white">Designed by Muneeb Usmani</p>
         </div>
     </div>
 </div>

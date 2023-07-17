@@ -140,8 +140,11 @@ class lawyer
         array
         (
             #Lawyers Pages
-            'lsignup'                                 ,
-            'lsignin'                                 ,
+            'lawyer_signup'                                 ,
+            'lawyer_signin'                                 ,
+            'lawyer_options'                                 ,
+            'lawyer_dashboard'                                 ,
+            'lawyer_update'                                 ,
         );
     }
     public static function err_handle($errors){
@@ -161,5 +164,26 @@ class lawyer
     public static function src(){
         $lawyer='lawyer/';
         return $lawyer;
+    }
+
+
+    
+    public static function fetch_options_adv(mysqli $conn, string $column, string $table, string $selectedValue)
+    {
+
+        // Construct the SQL query with a WHERE clause to exclude the selected value
+        $sql = "SELECT $column FROM $table WHERE $column <> ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $selectedValue);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+            $value = $row[$column];
+            if ($value === $selectedValue) {
+                continue;
+            }
+            echo "<option value='$value'>$value</option>";
+        }
     }
 }

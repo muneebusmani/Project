@@ -14,7 +14,9 @@ if(!($row = user::open_profile($conn, $lawyer_id)))
     ";
 }
 else {
-  foreach ($row as $key => $value){$$key=$value;}
+  foreach ($row as $key => $value){
+    $$key=$value;
+}
 }
 $br = user::br();
 $py_5 = user::py('2.5rem');
@@ -22,10 +24,6 @@ $py_5 = user::py('2.5rem');
 
 
 
-
-
-
-// Fetch the lawyer's name based on the lawyer_id
 
 // Insert the appointment into the table
 if (isset($_POST['submit'])) {
@@ -37,23 +35,28 @@ if (isset($_POST['submit'])) {
     $date=$_POST['date'];
     $time=$_POST['time'];
     $Booked='Booked';
-
+    
     // Adjust the SQL query based on the location selected
     if (isset($_POST['location']) && ($location !== 'lawyers_office')) {
         $location = $location.' , '. $_POST['customLocation'];
     } 
+    // Fetch the lawyer's name based on the lawyer_id
+    $lawyerName=user::fetch_name($conn,$lawyer_id);
+
+    //Do the usual query to insert the data into table
     $stmt = $conn->prepare("INSERT INTO appointments (name, email, number, location, lawyer_name, date, time) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssss", $name, $email, $number, $location, $lawyerName, $date, $time);
     $stmt->execute();
     $stmt->close();
     
+
     $conn=user::inc_db();
     $lawyer_status_change_query="UPDATE `lawyers` SET `Status` = ? where `ID` = ?";
     $stmt=$conn->prepare($lawyer_status_change_query);
     $stmt->bind_param("si",$Booked,$_GET['lawyer']);
     $stmt->execute();
     $stmt->close();
-    header('location:user_appointment');
+    header('location:appointments');
 }
 
 ?>
@@ -145,8 +148,7 @@ if (isset($_POST['submit'])) {
                     <form method='post'>
                         <div class='form-group'>
                             <select class='form-control border-0 px-3' name='location' id='locationSelect'>
-                                <option disabled selected>Select Location</option>
-                                <option value='lawyers_office'>Lawyer's Office</option>
+                                <option value='lawyers_office' selected>Lawyer's Office</option>
                                 <option value='courtroom'>Courtroom</option>
                                 <option value='home'>Home</option>
                                 <option value='police_Station'>Police Station</option>
@@ -194,7 +196,7 @@ if (isset($_POST['submit'])) {
         var customLocationContainer = document.getElementById('customLocationContainer');
 
         // Check if the selected option is 'Add Your Custom Location'
-        if (selectElement.value === 'customLocation') {
+        if (selectElement.value !== 'lawyers_office') {
             customLocationContainer.style.display = 'block';
         } else {
             customLocationContainer.style.display = 'none';
