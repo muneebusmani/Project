@@ -1,9 +1,5 @@
 <?php
 $uri = user::complete_uri();
-if((isset($_SESSION['admin_username']) !=true )){
-    header('location:admin_signin');
-    exit;
-}
 ?>
 <!--
      This will fetch the curent request in address bar excluding hostname/websitename/localhost
@@ -70,6 +66,19 @@ if((isset($_SESSION['admin_username']) !=true )){
     ul{
         padding-left: 1rem;
     }
+    @media screen and (min-width:1400px) {
+        :root{
+            --height:calc(135 -(70*135)/100);
+        }
+    }
+    @media screen and (max-width:1400px) {
+        :root{
+            --height:calc(135 -(50*135)/100);
+        }
+    }
+    img[src="app/view/assets/img/logo.png"]{
+        height:  var(--height) !important;
+    }
 </style>
 <script type="text/javascript">
     function goBack() {
@@ -80,12 +89,9 @@ if((isset($_SESSION['admin_username']) !=true )){
     <div class="container-fluid">
         <div class="row">
         <nav class="col-md-2 d-none d-md-block sidebar bg-light p-0">
-    <div class="sidebar-sticky h-100">
+        <div class="sidebar-sticky h-100">
         <a href="home" class="w-100">
-            <?php
-            $logo = 'app/view/assets/img/.png';
-            echo file_exists($logo) ? '<img class="main-logo" src="' . $logo . '" alt="">' : '<h1 class="w-100 text-primary bg-secondary text-center py-4">JusticiaLaw</h1>';
-            ?>
+        <img style="height: 135px;width:100%" src="app/view/assets/img/logo.png" alt="">
         </a>
         <ul class="nav flex-column">
             <button class="goBack mt-3" type="button" onclick="goBack();"><i class="fas fa-arrow-left"></i></button>
@@ -93,9 +99,7 @@ if((isset($_SESSION['admin_username']) !=true )){
             <li class="nav-item">
                 <a class="nav-link" href="admin_dashboard">
                     <i class="fas special fa-user"></i>
-                    <span class="main-link">
-                        Admin
-                    </span>
+                    <span class="main-link">Admin</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -183,8 +187,10 @@ if((isset($_SESSION['admin_username']) !=true )){
                             <span class="main-link">Appointments</span>
                         </a>
                     </li>
-                    <form style="padding:0px;" action="admin_signout" class="nav-item"  method="post"><input  type="submit" class="btn nav-link text-left text-primary" style="padding:0 0 1rem 0; font-weight:normal;" value="Sign Out"></form>
                 </ul>
+                <li>
+                    <form style="padding:0px;" action="admin_signout" class="nav-link"  method="post"><button  type="submit"  class="btn text-left text-primary d-inline" style="padding:0 0 1rem 0; font-weight:normal;"><i class="fas special fa-sign-out-alt text-primary"></i>Sign Out</button></form>
+                </li>
             </li>
             <label class="switch">
                 <input id="toggleDarkMode" type="checkbox">
@@ -197,3 +203,7 @@ if((isset($_SESSION['admin_username']) !=true )){
 
 
             <main role="main" class="col-md-10 ml-sm-auto px-4">
+
+
+
+            

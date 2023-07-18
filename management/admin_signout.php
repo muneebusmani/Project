@@ -1,3 +1,3 @@
 <?php
 session_unset();
-print_r($_SESSION);
+header('location:admin');

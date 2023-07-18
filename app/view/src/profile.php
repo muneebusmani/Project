@@ -14,7 +14,10 @@ if(!($row = user::open_profile($conn, $lawyer_id)))
     ";
 }
 else {
-  foreach ($row as $key => $value){$$key=$value;}
+  foreach ($row as $key => $value)
+  {
+    $$key=$value;
+  }
 }
   $br=user::br();
 $py_5=user::py('2.5rem');
@@ -71,10 +74,7 @@ echo
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="appointment?lawyer=$lawyer_id">
-                Appointment
-              </a>
-            </li>
+              <a class="nav-link" href="appointment?lawyer=$lawyer_id">Appointment</a></li>
           </ul>
           <label class="switch ml-5 mt-2">
                         <input id="toggleDarkMode" type="checkbox">

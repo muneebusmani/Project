@@ -90,6 +90,14 @@ if(       isset($routes[$file]))
         if (preg_match($admin_pages, $file)) {
             $file=$admin_dir.$file.$ext;
             if(file_exists($file)){
+                if
+                (
+                !(isset($_SESSION['admin_username']))
+                &&  
+                user::complete_uri()!= 'admin_signin'
+                )
+                {
+                    header('location:admin_signin');}
                 admin::load_header();
                 require $file;
                 echo 

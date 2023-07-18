@@ -387,7 +387,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
             echo "<option value='$value'>$value</option>";
         }
     }
+    public static function fetch_username_and_role(mysqli $conn,$username){
+        $query = "SELECT `role`,`username` FROM `admins` WHERE `username` = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
 
+        foreach ($row as $key => $value) {
+            $_SESSION['admin_'.$key]=$value;
+        }
+        $stmt->close();
+    }
+    public static function check_if_exists(mysqli $conn,string $username,string $password){
+        $query = "SELECT * FROM admins WHERE username = ? AND password = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ss", $username, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    public static function login_page(){
+        require_once 'app/view/templates/login_admin.inc.php';
+    }
 
     public static function load_header()
     {

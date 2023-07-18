@@ -420,9 +420,9 @@ class user
         require_once('app/view/templates/profile.inc.php');
     }
     public static function complete_uri(){
-    $uri=self::get_uri($_SERVER['REQUEST_URI']);
-    $uri=self::query_rm($uri);
-    return $uri;
+        $uri=self::get_uri($_SERVER['REQUEST_URI']);
+        $uri=self::query_rm($uri);
+        return $uri;
     }
 
 }
