@@ -2,7 +2,7 @@
 // Check if the user is logged in
 if (!isset($_SESSION['lawyer_email'])) {
     // Redirect to the login page or display an error message
-    header("Location: login");
+    header("Location: lawyer_signin");
     exit;
 }
 
@@ -41,17 +41,18 @@ foreach ($row as $key => $value) {
   }
   .profile{
     border: 2px solid black;
-    width: fit-content;
+    max-width: 512px;
     margin: 0 auto;
     padding: 2.5rem;
   }
 </style>
 <div class="wrap">
   <h1>Lawyer Credentials</h1>
-  <div class="profile">
-    <span class="h3 mr-3">Name:</span><span class="text-primary"> <?php echo $lawyer_email; ?></span><br>
-    <span class="h3 mr-3">Practice Area: </span><span class="text-primary"> <?php echo $speciality; ?></span><br>
-    <span class="h3 mr-3">Phone:</span><span class="text-primary"> <?php echo $number; ?></span><br>
+  <div class="profile" >
+    <span class="h6 mr-3">Name:</span>
+    <span class="text-primary"> <?php echo $name; ?></span><br>
+    <span class="h6 mr-3">Practice Area:</span><span class="text-primary"> <?php echo $speciality; ?></span><br>
+    <span class="h6 mr-3">Phone:</span><span class="text-primary"> <?php echo $number; ?></span><br>
     <form method="post" action="lawyer_update" class="text-center">
       <input type="submit" class="btn btn-primary my-3" value="Update Profile">
     </form>

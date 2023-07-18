@@ -364,6 +364,7 @@ class user
             'signup'                                        ,
             'signin'                                        ,
             'signout'                                       ,
+            'user_signout'                                  ,             
         );
     }
     public static function routes_user_signed(){

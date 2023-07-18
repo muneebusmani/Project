@@ -144,7 +144,10 @@ class lawyer
             'lawyer_signin'                                 ,
             'lawyer_options'                                 ,
             'lawyer_dashboard'                                 ,
+            'lawyer_appointments'                                 ,
             'lawyer_update'                                 ,
+            'lawyer_signout'                                 ,
+            'lawyer_dismiss_appointment'                                 ,
         );
     }
     public static function err_handle($errors){
@@ -185,5 +188,10 @@ class lawyer
             }
             echo "<option value='$value'>$value</option>";
         }
+    }
+    public static function load_header()
+    {
+        $header = "app/view/templates/header_l.inc.php";
+        require_once($header);
     }
 }

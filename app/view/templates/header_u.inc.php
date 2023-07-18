@@ -27,7 +27,7 @@ $uri = user::complete_uri();
 <div class="container-fluid">
     <div class="row">
       <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-        <h1 class="bg-secondary py-3 text-center"><?php echo strtolower($_SESSION['username']) ?></h1>
+        <h1 class="bg-secondary text-primary py-3 text-center"><?php echo strtolower($_SESSION['username']) ?></h1>
         <div class="sidebar-sticky py-3 px-3">
           <ul class="nav flex-column">
             <button class="goBack mb-4" type="button" onclick="goBack();"><i class="fas fa-arrow-left"></i></button>
@@ -37,7 +37,7 @@ $uri = user::complete_uri();
             <li class="nav-item"><a class="nav-link  <?php echo ($uri === 'user_profile_update' ) ? 'current':''?>" href="user_profile_update">Update Credentials</a></li>
             <li class="nav-item"><a class="nav-link  <?php echo ($uri === 'search' ) ? 'current':''?>" href="search">Search For Lawyers</a></li>
           </ul>
-          <form style="padding:0px;"  method="post"><input class="btn nav-link text-left text-primary" style="padding:.5rem 1rem; font-weight:normal;" href="signout" value="Sign Out"></form>
+          <form style="padding:0px;" action="user_signout" method="post"><input type="submit" class="btn nav-link text-left text-primary" style="padding:.5rem 1rem; font-weight:normal;" href="signout" value="Sign Out"></form>
           <label class="switch ml-5 mt-2">
             <input id="toggleDarkMode" type="checkbox">
             <span class="slider round"></span>

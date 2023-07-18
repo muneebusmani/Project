@@ -47,15 +47,14 @@ if ($result->num_rows === 1) {
         $updatedPassword = $_POST['password'];
 
         // Prepare the update statement
-        $updateQuery = "UPDATE lawyers SET name = ?, number = ?, email = ?, address = ?, speciality = ?, location = ?, education = ?, experience = ?, password = ? WHERE email = ?";
+        $updateQuery = "UPDATE lawyers SET name = ?, number = ?, email = ?, address = ?, speciality = ?, location = ?, education = ?, experience = ?, password = ? WHERE ID = ?";
         $stmt = $conn->prepare($updateQuery);
-        $stmt->bind_param('ssssssssss', $updatedName, $updatedNumber, $updatedEmail, $updatedAddress, $updatedSpeciality, $updatedLocation, $updatedEducation, $updatedExperience, $updatedPassword, $lawyerEmail);
-
+        $stmt->bind_param('sssssssssi', $updatedName, $updatedNumber, $updatedEmail, $updatedAddress, $updatedSpeciality, $updatedLocation, $updatedEducation, $updatedExperience, $updatedPassword, $ID);
+        $_SESSION['lawyer_email']=$updatedEmail;
         // Execute the update statement
         if ($stmt->execute()) {
-            // Update successful
             // Redirect to the profile page or display a success message
-            header("Location: lawyer_signin");
+            header("Location: lawyer_dashboard");
             exit;
         } else {
             // Update failed
@@ -74,21 +73,9 @@ if ($result->num_rows === 1) {
 }
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Update Lawyer Information</title>
-    <style>
-        /* Styles for the form */
-        /* ... */
-
-        /* Styles for error messages */
-        /* ... */
-    </style>
-</head>
 <body>
-    <h2>Update Lawyer Information</h2>
-    <form method="POST" class="w-50">
+    <form method="POST" class="w-50 m-auto">
+    <h2 class="text-center">Update Lawyer Information</h2>
     <div class="form-group">
     <label for="Fullname">Full Name</label>
     <input value="<?php echo ($Name ?? $name) ?? ''; ?>" name="name" type="text" class="form-control" id="Fullname" aria-describedby="emailHelp">    

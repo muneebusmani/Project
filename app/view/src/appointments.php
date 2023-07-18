@@ -79,7 +79,7 @@ if ($result->num_rows > 0) {
     echo 
     "<script>
     alert('no appointments going on!');
-    window.location.href = 'profile';
+    window.location.href = 'user_profile';
     </script>";
 }
 

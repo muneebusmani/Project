@@ -1,5 +1,9 @@
 <?php
 $uri = user::complete_uri();
+if((isset($_SESSION['admin_username']) !=true )){
+    header('location:admin_signin');
+    exit;
+}
 ?>
 <!--
      This will fetch the curent request in address bar excluding hostname/websitename/localhost
@@ -33,7 +37,7 @@ $uri = user::complete_uri();
     nav.sidebar {
         position: fixed;
         height: 100%;
-        overflow-y: scroll;
+        overflow-y: auto;
         padding-bottom: 1rem;
     }
 
@@ -179,6 +183,7 @@ $uri = user::complete_uri();
                             <span class="main-link">Appointments</span>
                         </a>
                     </li>
+                    <form style="padding:0px;" action="admin_signout" class="nav-item"  method="post"><input  type="submit" class="btn nav-link text-left text-primary" style="padding:0 0 1rem 0; font-weight:normal;" value="Sign Out"></form>
                 </ul>
             </li>
             <label class="switch">

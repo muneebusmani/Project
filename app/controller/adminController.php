@@ -402,6 +402,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         array(
         #Admin Pages
         'admin'                                   ,
+        'admin_signin'                                   ,
+        'admin_signout'                                   ,
         'admin_dashboard'                                   ,
         'admin_view_lawyer'                             ,
         'admin_view_appointments'                       ,

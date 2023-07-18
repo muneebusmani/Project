@@ -27,20 +27,20 @@
       <?php admin::fetch_options($conn, 'practice_area') ?>
     </div>
   </div>
-
+  
   <script>
     function showChild(parent) {
       var child = parent.querySelector('.child');
       child.style.display = 'block';
     }
-
+    
     function hideChild(parent) {
       var child = parent.querySelector('.child');
       if (!parent.dataset.clicked) {
         child.style.display = 'none';
       }
     }
-
+    
     function toggleChild(parent) {
       var child = parent.querySelector('.child');
       if (child.style.display === 'none') {

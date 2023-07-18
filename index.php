@@ -43,7 +43,7 @@ if ((!isset($_SESSION['username']) )  && in_array(user::complete_uri(),user::rou
     echo 
     "<script>
     alert('You Need to Login To Use That Feature!');
-    window.location.href = document.referrer;
+    window.location.href = 'home';
     </script>
 ";
 }
@@ -75,7 +75,9 @@ if(       isset($routes[$file]))
         */
 
         $admin_pages='/admin\w*/';
-        $lawyer_pages='/lawyer\w*/';
+        // $lawyer_pages='/lawyer\w*/';
+        $lawyer_pages = '/lawyer(?!_signin|_signup|_signout)\w*/';
+        $lawyer_auth = '/^lawyer_(signin|signup|signout)$/';
         $lawyer_profile='/(appointment|profile)(\*w)?/';
         // $lawyer_profile=array('appointment','profile');  
         $user_sign='/(signin|signup)(\*w)?/';
@@ -104,17 +106,20 @@ if(       isset($routes[$file]))
         
         elseif(preg_match($lawyer_pages,$file)) {
             $file=$lawyer_dir.$file.$ext;
-            admin::load_header();
+            lawyer::load_header();
+            require $file;
+        }
+        elseif(preg_match($lawyer_auth,$file)) {
+            $file=$lawyer_dir.$file.$ext;
             require $file;
         }
         elseif(preg_match($lawyer_profile,$file)) {
-        // elseif(in_array($file,$lawyer_profile)){
-            $file=$dir.$file.$ext;
-            if(file_exists($file)){
-                require $file;
-            }
-            else{
-                echo  "this";
+            // elseif(in_array($file,$lawyer_profile)){
+                $file=$dir.$file.$ext;
+                if(file_exists($file)){
+                    require $file;
+                }
+                else{
                 require $err_dir;
             }
         }
