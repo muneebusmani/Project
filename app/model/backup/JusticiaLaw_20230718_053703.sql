@@ -16,6 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `admins`
+--
+
+DROP TABLE IF EXISTS `admins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admins`
+--
+
+LOCK TABLES `admins` WRITE;
+/*!40000 ALTER TABLE `admins` DISABLE KEYS */;
+INSERT INTO `admins` VALUES (1,'muneeb','muneeb123');
+/*!40000 ALTER TABLE `admins` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `appointment_location`
 --
 
@@ -46,6 +71,7 @@ DROP TABLE IF EXISTS `appointments`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `appointments` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `dismissed` int(255) NOT NULL DEFAULT 0,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `number` varchar(255) NOT NULL,
@@ -54,7 +80,7 @@ CREATE TABLE `appointments` (
   `date` varchar(255) DEFAULT NULL,
   `time` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +89,7 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
+INSERT INTO `appointments` VALUES (40,1,'muneeb','asd@gmail.com','123','courtroom , Sindh High  Court','Muneeb Usmani','08/01/2023','3:06 AM');
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +170,7 @@ CREATE TABLE `lawyers` (
 
 LOCK TABLES `lawyers` WRITE;
 /*!40000 ALTER TABLE `lawyers` DISABLE KEYS */;
-INSERT INTO `lawyers` VALUES (2,'https://picsum.photos/200','Jane Smith','active','9876543210','jane.smith@example.com','456 Elm St','Family Law','Karachi','JD','8 years','password4567'),(3,'https://picsum.photos/200','Michael Johnson','active','7890123456','michael.johnson@example.com','789 Oak St','Corporate Law','Chicago','LLM','12 years','password789'),(6,'uploads/lawyers/64b53d21ee82e.jpg','Aamir Naz  Khokar','Booked','333444','aamirkhokar123@gmail.com','fcasadasd','Affidavit','Karachi','JSD / SJD','10','aamirkhokar123');
+INSERT INTO `lawyers` VALUES (2,'https://picsum.photos/200','Muneeb Usmani','Booked','9876543210','muneeb@gmail.com','456 Elm St','Corporate','Karachi','MLS / MJ','8 years','password4567'),(3,'https://picsum.photos/200','Michael Johnson','active','7890123456','michael.johnson@example.com','789 Oak St','Corporate Law','Chicago','LLM','12 years','password789'),(6,'uploads/lawyers/64b53d21ee82e.jpg','Aamir Naz  Khokar','Booked','333444','aamirkhokar123@gmail.com','fcasadasd','Affidavit','Karachi','JSD / SJD','10','aamirkhokar123');
 /*!40000 ALTER TABLE `lawyers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +241,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'asd','asd@gmail.com','123','muneeb123');
+INSERT INTO `users` VALUES (1,'muneeb','asd@gmail.com','123','muneeb123');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -227,4 +254,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-18  0:41:14
+-- Dump completed on 2023-07-18  5:37:05
