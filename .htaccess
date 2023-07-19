@@ -1,10 +1,22 @@
 RewriteEngine on
+# Enables the Apache mod_rewrite engine, allowing URL rewriting.
 
-#Deny access to the "restricted" directory and its subdirectories
+# Deny access to the "management" directory and its subdirectories
 RewriteRule ^management(/.*)?$ - [F]
-RewriteRule ^lawyer(/.*)?$ - [F]
+# Returns a "403 Forbidden" status code for any request to the "management" directory and its subdirectories.
 
-#Route all other requests to index.php
+# Deny access to the "lawyer" directory and its subdirectories
+RewriteRule ^lawyer(/.*)?$ - [F]
+# Returns a "403 Forbidden" status code for any request to the "lawyer" directory and its subdirectories.
+
+# Route all other requests to index.php
 RewriteCond %{REQUEST_FILENAME} !-d
+
+# Checks if the requested URL is not a directory.
 RewriteCond %{REQUEST_FILENAME} !-f
+
+# Checks if the requested URL is not a file.
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+# Routes all other requests that are not directories or files to "index.php" with the original URL passed as a query parameter named "url".
+# The [QSA,L] flags indicate to append any existing query string and mark it as the last rule to be processed.
