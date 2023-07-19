@@ -8,7 +8,7 @@
                 <i class="fa fa-2x fa-map-marker-alt text-primary"></i>
                 <div class="ml-3">
                     <h5 class="text-white">Our Office</h5>
-                    <p class="m-0">Location, City, Country</p>
+                    <p class="m-0">Aptech Learning, FB Area, Karachi, Pakistan</p>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
                 <i class="fa fa-2x fa-envelope-open text-primary"></i>
                 <div class="ml-3">
                     <h5 class="text-white">Email Us</h5>
-                    <p class="m-0">info@example.com</p>
+                    <p class="m-0">muneebusmani8355@gmail.com</p>
                 </div>
             </div>
         </div>
@@ -26,16 +26,14 @@
                 <i class="fa fa-2x fa-phone-alt text-primary"></i>
                 <div class="ml-3">
                     <h5 class="text-white">Call Us</h5>
-                    <p class="m-0">+012 345 6789</p>
+                    <p class="m-0">+92 335 2835245</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="row pt-5">
         <div class="col-lg-3 col-md-6 mb-5">
-            <a href="index.html" class="navbar-brand">
-                <h1 class="m-0 mt-n2 display-4 text-primary text-uppercase">Justice</h1>
-            </a>
+            <a href="index.html" class="navbar-brand"><h1 class="m-0 mt-n2 display-4 text-primary text-uppercase">Justice</h1></a>
             <p>Volup amet magna clita tempor. Tempor sea eos vero ipsum. Lorem lorem sit sed elitr sed kasd et</p>
             <div class="d-flex justify-content-start mt-4">
                 <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-twitter"></i></a>

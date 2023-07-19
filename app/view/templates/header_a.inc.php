@@ -78,6 +78,8 @@ $uri = user::complete_uri();
     }
     img[src="app/view/assets/img/logo.png"]{
         height:  var(--height) !important;
+        background-color: var(--secondary);
+        padding: 1rem 2rem;
     }
 </style>
 <script type="text/javascript">
@@ -115,7 +117,6 @@ $uri = user::complete_uri();
                         </a>
                         <ul class="collapse <?php echo in_array($uri, ['admin_add_location', 'admin_edit_location']) ? 'show' : ''; ?>" id="locationSubMenu">
                             <li><a class="nav-link" href="admin_add_location"><i class="fas fa-plus"></i> Add Location</a></li>
-                            <li><a class="nav-link" href="admin_edit_location"><i class="fas fa-edit"></i> Edit Location</a></li>
                         </ul>
                     </li>
                     <li>
@@ -125,7 +126,6 @@ $uri = user::complete_uri();
                         </a>
                         <ul class="collapse <?php echo in_array($uri, ['admin_add_education', 'admin_edit_education']) ? 'show' : ''; ?>" id="educationSubMenu">
                             <li><a class="nav-link" href="admin_add_education"><i class="fas fa-plus"></i> Add Education</a></li>
-                            <li><a class="nav-link" href="admin_edit_education"><i class="fas fa-edit"></i> Edit Education</a></li>
                         </ul>
                     </li>
                     <li>
@@ -135,7 +135,6 @@ $uri = user::complete_uri();
                         </a>
                         <ul class="collapse <?php echo in_array($uri, ['admin_add_experience', 'admin_edit_experience']) ? 'show' : ''; ?>" id="experienceSubMenu">
                             <li><a class="nav-link" href="admin_add_experience"><i class="fas fa-plus"></i> Add Experience</a></li>
-                            <li><a class="nav-link" href="admin_edit_experience"><i class="fas fa-edit"></i> Edit Experience</a></li>
                         </ul>
                     </li>
                     <li>
@@ -145,7 +144,6 @@ $uri = user::complete_uri();
                         </a>
                         <ul class="collapse <?php echo in_array($uri, ['admin_add_practice_areas', 'admin_edit_practice_areas']) ? 'show' : ''; ?>" id="practiceAreasSubMenu">
                             <li><a class="nav-link" href="admin_add_practice_areas"><i class="fas fa-plus"></i> Add Practice Area</a></li>
-                            <li><a class="nav-link" href="admin_edit_practice_areas"><i class="fas fa-edit"></i> Edit Practice Area</a></li>
                         </ul>
                     </li>
                     <li>
@@ -155,7 +153,6 @@ $uri = user::complete_uri();
                         </a>
                         <ul class="collapse <?php echo in_array($uri, ['admin_add_custom_location', 'admin_edit_custom_location']) ? 'show' : ''; ?>" id="customLocationSubMenu">
                             <li><a class="nav-link" href="admin_add_custom_location"><i class="fas fa-plus"></i> Add Custom Location</a></li>
-                            <li><a class="nav-link" href="admin_edit_custom_location"><i class="fas fa-edit"></i> Edit Custom Location</a></li>
                         </ul>
                     </li>
                     <li>
@@ -165,7 +162,6 @@ $uri = user::complete_uri();
                         </a>
                         <ul class="collapse <?php echo in_array($uri, ['admin_add_lawyer', 'admin_edit_lawyer', 'admin_view_lawyer']) ? 'show' : ''; ?>" id="lawyersSubMenu">
                             <li><a class="nav-link" href="admin_add_lawyer"><i class="fas fa-plus"></i> Add Lawyer</a></li>
-                            <li><a class="nav-link" href="admin_edit_lawyer"><i class="fas fa-edit"></i> Edit Lawyer</a></li>
                             <li><a class="nav-link" href="admin_view_lawyer"><i class="fas fa-eye"></i> View Lawyers</a></li>
                         </ul>
                     </li>
