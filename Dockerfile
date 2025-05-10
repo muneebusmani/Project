@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
     libssl-dev \
     unzip \
+    vim \
     && docker-php-ext-install \
     mysqli \
     pdo \
@@ -28,7 +29,6 @@ RUN apt-get update && apt-get install -y \
     curl \
     bcmath \
     opcache \
-    vim \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Change AllowOverride to All in the apache2.conf file
