@@ -251,11 +251,19 @@ class user
         return $row['name'];
     }
 
-    public static function get_uri($request)
+    // public static function get_uri($request)
+    // {
+    //     $request = str_replace(user::project_root(), '', $request);
+    //
+    //     return $request;
+    // }
+    public static function get_uri($uri): string
     {
-        $request = str_replace(user::project_root(), '', $request);
+        $script_name = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+        $request_uri = parse_url($uri, PHP_URL_PATH);
+        $path = str_replace($script_name, '', $request_uri);
 
-        return $request;
+        return trim($path, '/');
     }
 
     /*
