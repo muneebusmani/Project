@@ -6,11 +6,6 @@ session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// This Loads DotEnv Package
-require_once __DIR__ . '/vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
 // This Loads Controllers
 require 'app/controller/userController.php';
 user::inc_admin();
