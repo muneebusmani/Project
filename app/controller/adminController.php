@@ -1,4 +1,5 @@
 <?php
+
 class admin
 {
     public static function createLawyersDirectory()
@@ -7,38 +8,37 @@ class admin
             $GLOBALS['doc_root'] .
             $GLOBALS['project_root'] .
             $GLOBALS['lawyers_img'];
-        if (!is_dir($dir)) {
+        if (! is_dir($dir)) {
             mkdir($dir, 0777, true);
         } else {
             // echo '"uploads/lawyers/" already exists';
         }
-        /*************************************************************************************************** 
-     
-         *  This will Check and create this Directory: 
-     linux :     /var/www/html/Project/uploads/lawyers/
+        /***************************************************************************************************
+
+         *  This will Check and create this Directory: linux :     /var/www/html/Project/uploads/lawyers/
      Windows :   C:/xampp/htdocs/Project/uploads/lawyers/
-     
-    /*************************************************************************************************** 
+
+    /***************************************************************************************************
          * Inside the public static function, it checks if the directory specified by $dir already exists using the is_dir() public static function.
           If the directory doesn't exist, it proceeds to the next step.
-    
+
          * The mkdir() public static function is then used to create the directory.
          * The directory path is specified by $dir, and the permissions for the directory are set to 0777.
          * The 0777 permission value allows full read, write, and execute permissions for the directory.
          * The true parameter passed as the third argument ensures that the public static function creates any necessary parent directories
           along with the specified directory.
-    
+
          * If the directory creation is successful, the public static function completes its execution.
          * If the directory already exists, it doesn't attempt to create it again.
          * In the commented-out code line, it was meant to echo a message indicating that the directory already exists,
          * but it is currently commented out.
-    
+
          ****************************************************************************************************/
     }
 
-    public static function fetch_lawyers(mysqli $conn){
-        echo
-<<<HTML
+    public static function fetch_lawyers(mysqli $conn)
+    {
+        echo <<<'HTML'
 <style>
     tr, th, td {
         border: 2px solid black;
@@ -169,7 +169,6 @@ class admin
     <tbody>
 HTML;
 
-
         $sql = 'SELECT * FROM lawyers';
         $result = $conn->query($sql);
         while ($rows = $result->fetch_assoc()) {
@@ -187,26 +186,26 @@ HTML;
             $password = $rows['password'];
             echo "
             <tr>
-                <td>$ID</td>
-                <td><img src='$Photo' alt='$name' width='50px' height='50px'></td>
-                <td>$name</td>
-                <td>$status</td>
-                <td>$Location</td>
-                <td>$email</td>
-                <td>$number</td>
-                <td>$address</td>
-                <td>$speciality</td>
-                <td>$education</td>
-                <td>$experience</td>
-                <td>$password</td>
+                <td>{$ID}</td>
+                <td><img src='{$Photo}' alt='{$name}' width='50px' height='50px'></td>
+                <td>{$name}</td>
+                <td>{$status}</td>
+                <td>{$Location}</td>
+                <td>{$email}</td>
+                <td>{$number}</td>
+                <td>{$address}</td>
+                <td>{$speciality}</td>
+                <td>{$education}</td>
+                <td>{$experience}</td>
+                <td>{$password}</td>
                 <td style='width: 20%;'>
                     <span>
-                        <form class='d-inline' method='POST' action='admin_update_lawyer'> 
-                            <input value='$ID' name='id' type='hidden'>
+                        <form class='d-inline' method='POST' action='admin_update_lawyer'>
+                            <input value='{$ID}' name='id' type='hidden'>
                             <button type='submit' name='update' class='btn btn-success' value='Update'>Update</button>
                         </form>
                         <form class='d-inline delete-form' method='POST' action='admin_delete_lawyer'>
-                            <input value='$ID' name='id' type='hidden'>
+                            <input value='{$ID}' name='id' type='hidden'>
                             <button type='submit' name='delete' onclick='confirmDelete_a();' class='btn btn-danger' value='Delete'>Delete</button>
                         </form>
                     </span>
@@ -214,13 +213,12 @@ HTML;
             </tr>
             ";
         }
-echo 
-<<<HTML
+        echo <<<'HTML'
         </tbody>
     </table>
     </div>
     <button onclick="emptyCacheAndReload()" type='button' class='btn btn-primary'>Refresh</button>
-    
+
     <script>
         function emptyCacheAndReload() {
             if ('caches' in window) {
@@ -235,7 +233,7 @@ echo
         function confirmDelete_a() {
             // Prompt the user to confirm the deletion
             var confirmed = confirm("Are you sure you want to delete this record?");
-            
+
             // If the user confirmed, submit the form
             if (confirmed) {
                 document.forms[0].submit();
@@ -245,15 +243,14 @@ echo
                     return false;
             }
         }
-    </script>    
+    </script>
 HTML;
 
-}
+    }
 
     public static function create_options(mysqli $conn, string $options)
     {
-        echo
-        "
+        echo "
 <style>
   .wrap{
     margin: 0px auto;
@@ -267,7 +264,7 @@ HTML;
 <script>
 window.addEventListener('DOMContentLoaded', (event) => {
     // Wait for the DOM to be fully loaded
-    const inputField = document.getElementById('$options');
+    const inputField = document.getElementById('{$options}');
     inputField.focus();
 });
 </script>
@@ -275,9 +272,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 <a class='fas fa-window-close fa-lg float-right' style='color: #ff0000;' href='admin_view_lawyer'>
 </a>
 <form class='text-center py-5' method='POST'>
-  <h1>Add $options</h1>
-  <label for='$options'>$options</label>
-  <input type='text' id='$options' name='option' required>
+  <h1>Add {$options}</h1>
+  <label for='{$options}'>{$options}</label>
+  <input type='text' id='{$options}' name='option' required>
   <input type='submit' value='Add'>
   </form>
   </div>
@@ -289,24 +286,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
             $choice = $_POST['option'];
 
             // Insert the location into the options table
-            $sql = "CREATE TABLE IF NOT EXISTS `$options` (`$options` varchar(255));
-        INSERT INTO `$options` (`$options`) VALUES ('$choice');";
+            $sql = "CREATE TABLE IF NOT EXISTS `{$options}` (`{$options}` varchar(255));
+        INSERT INTO `{$options}` (`{$options}`) VALUES ('{$choice}');";
 
-            if ($conn->multi_query($sql) === TRUE) {
-                echo "$choice added successfully.";
+            if ($conn->multi_query($sql) === true) {
+                echo "{$choice} added successfully.";
             } else {
-                echo "Error: " . $conn->error;
+                echo 'Error: ' . $conn->error;
             }
         }
     }
-    
+
     public static function fetch_options(mysqli $conn, string $options)
     {
-        $sql = "SELECT `$options` FROM `$options`";
+        $sql = "SELECT `{$options}` FROM `{$options}`";
         $result = $conn->query($sql);
-    
+
         if ($result->num_rows > 0) {
-            echo "
+            echo '
             <style>
             table {
                 width: 100%;
@@ -318,38 +315,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             </style>
             <table>
-            ";
-    
+            ';
+
             while ($row = $result->fetch_assoc()) {
                 $randomColor = self::generateRandomColor();
                 $textColor = self::getContrastColor($randomColor);
-                echo "<tr><td style='background-color: $randomColor; color: $textColor;'>" . $row[$options] . "</td></tr>";
+                echo "<tr><td style='background-color: {$randomColor}; color: {$textColor};'>" . $row[$options] . '</td></tr>';
             }
-    
-            echo "</table>";
+
+            echo '</table>';
         } else {
-            echo "No $options found.";
+            echo "No {$options} found.";
         }
     }
-    
-    private static function generateRandomColor()
-    {
-        $color = '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
-        return $color;
-    }
-    
-    private static function getContrastColor($hexColor)
-    {
-        $r = hexdec(substr($hexColor, 1, 2));
-        $g = hexdec(substr($hexColor, 3, 2));
-        $b = hexdec(substr($hexColor, 5, 2));
-    
-        $yiq = (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
-        return ($yiq >= 128) ? '#000000' : '#FFFFFF';
-    }
-    
-
-
 
     public static function deleteLawyersDirectory()
     {
@@ -368,14 +346,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-
     public static function fetch_options_adv(mysqli $conn, string $column, string $table, string $selectedValue)
     {
 
         // Construct the SQL query with a WHERE clause to exclude the selected value
-        $sql = "SELECT $column FROM $table WHERE $column <> ?";
+        $sql = "SELECT {$column} FROM {$table} WHERE {$column} <> ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $selectedValue);
+        $stmt->bind_param('s', $selectedValue);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -384,11 +361,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if ($value === $selectedValue) {
                 continue;
             }
-            echo "<option value='$value'>$value</option>";
+            echo "<option value='{$value}'>{$value}</option>";
         }
     }
-    public static function fetch_username_and_role(mysqli $conn,$username){
-        $query = "SELECT `role`,`username` FROM `admins` WHERE `username` = ?";
+
+    public static function fetch_username_and_role(mysqli $conn, $username)
+    {
+        $query = 'SELECT `role`,`username` FROM `admins` WHERE `username` = ?';
         $stmt = $conn->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
@@ -396,53 +375,79 @@ window.addEventListener('DOMContentLoaded', (event) => {
         $row = $result->fetch_assoc();
 
         foreach ($row as $key => $value) {
-            $_SESSION['admin_'.$key]=$value;
+            $_SESSION['admin_' . $key] = $value;
         }
         $stmt->close();
     }
-    public static function check_if_exists(mysqli $conn,string $username,string $password){
-        $query = "SELECT * FROM admins WHERE username = ? AND password = ?";
+
+    public static function check_if_exists(mysqli $conn, string $username, string $password)
+    {
+        $query = 'SELECT * FROM admins WHERE username = ? AND password = ?';
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("ss", $username, $password);
+        $stmt->bind_param('ss', $username, $password);
         $stmt->execute();
         $result = $stmt->get_result();
+
         return $result;
     }
-    public static function login_page(){
+
+    public static function login_page()
+    {
         require_once 'app/view/templates/login_admin.inc.php';
     }
 
     public static function load_header()
     {
-        $header = "app/view/templates/header_a.inc.php";
-        require_once($header);
-    }
-    public static function src(){
-        return 'management/';
-    }
-    public static function routes(){
-        return             
-        array(
-        #Admin Pages
-        'admin'                                   ,
-        'admin_signin'                                   ,
-        'admin_signout'                                   ,
-        'admin_dashboard'                                   ,
-        'admin_view_lawyer'                             ,
-        'admin_view_appointments'                       ,
-        'admin_update_lawyer'                           ,
-        'admin_delete_lawyer'                           ,
-        'admin_delete_images'                           ,
-        'admin_delete_appointments'                                  ,
-        'admin_add_location'                            ,
-        'admin_add_practice_areas'                      ,
-        'admin_add_education'                           ,
-        'admin_add_experience'                          ,
-        'admin_add_custom_location'                     ,
-        'admin_add_lawyer'                              ,
-        'admin_update_appointment'                      ,
-        'admin_delete_appointment'                      ,
-        );
+        $header = 'app/view/templates/header_a.inc.php';
+        require_once $header;
     }
 
+    public static function src()
+    {
+        return 'management/';
+    }
+
+    public static function routes()
+    {
+        return
+        [
+            // Admin Pages
+            'admin',
+            'admin_signin',
+            'admin_signout',
+            'admin_dashboard',
+            'admin_view_lawyer',
+            'admin_view_appointments',
+            'admin_update_lawyer',
+            'admin_delete_lawyer',
+            'admin_delete_images',
+            'admin_delete_appointments',
+            'admin_add_location',
+            'admin_add_practice_areas',
+            'admin_add_education',
+            'admin_add_experience',
+            'admin_add_custom_location',
+            'admin_add_lawyer',
+            'admin_update_appointment',
+            'admin_delete_appointment',
+        ];
+    }
+
+    private static function generateRandomColor()
+    {
+        $color = '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
+
+        return $color;
+    }
+
+    private static function getContrastColor($hexColor)
+    {
+        $r = hexdec(substr($hexColor, 1, 2));
+        $g = hexdec(substr($hexColor, 3, 2));
+        $b = hexdec(substr($hexColor, 5, 2));
+
+        $yiq = (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+
+        return ($yiq >= 128) ? '#000000' : '#FFFFFF';
+    }
 }
