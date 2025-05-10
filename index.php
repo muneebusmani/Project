@@ -6,13 +6,11 @@ session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// This Loads Controllers
 require 'app/controller/userController.php';
 user::inc_admin();
 user::inc_lawyer();
-
-// This checks if mod_rewrite is enabled
 user::check_mod_rewrite();
+user::loadEnv(__DIR__ . '/.env');  // Load the .env file
 
 $GLOBALS['doc_root'] = user::host_root();
 $GLOBALS['conn'] = user::inc_db();

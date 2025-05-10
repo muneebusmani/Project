@@ -1,5 +1,5 @@
 # Use official PHP with Apache
-FROM php:8.2-apache
+FROM php:8.4-apache
 
 # Set ServerName to suppress FQDN warning
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
@@ -28,7 +28,11 @@ RUN apt-get update && apt-get install -y \
     curl \
     bcmath \
     opcache \
+    vim \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Change AllowOverride to All in the apache2.conf file
+RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
 # Copy your app
 COPY . /var/www/html/

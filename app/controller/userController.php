@@ -461,4 +461,30 @@ class user
 
         return $uri;
     }
+
+    public static function loadEnv($file)
+    {
+        if (file_exists($file)) {
+            $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+            foreach ($lines as $line) {
+                // Ignore comments (lines starting with #)
+                if (strpos(trim($line), '#') === 0) {
+                    continue;
+                }
+
+                // Split the line at '=' and trim spaces
+                [$name, $value] = explode('=', $line, 2);
+                $name = trim($name);
+                $value = trim($value);
+
+                // Remove any surrounding quotes from the value
+                $value = trim($value, '"');
+
+                // Set the environment variable
+                putenv("{$name}={$value}");
+                $_ENV[$name] = $value;  // Optional: Store in $_ENV array
+            }
+        }
+    }
 }
